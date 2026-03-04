@@ -1,0 +1,637 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+
+
+
+% cabecera
+\pagestyle{fancy}
+\fancyhead[l]{Ecuaciones Diferenciales Ingeniería}
+\fancyhead[c]{Taller \#1}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} % linea horizontal
+
+
+\begin{document}
+
+\section*{Problema 1}
+Conteste verdadero o falso,justifique de manera analítica.
+
+\subsection*{a. La E.D $\frac{dy}{dx} = xy^{1/2}$ tiene como solución la familia uniparamétrica $y = (\frac{1}{4} x^2 + c)^2$.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Para verificarlo, resolvemos la ecuación diferencial mediante el método de \textbf{separación de variables}. La ecuación es:
+$$\frac{dy}{dx} = x y^{1/2}$$
+Dividimos por $y^{1/2}$ (asumiendo $y \neq 0$) y multiplicamos por $dx$:
+$$y^{-1/2} dy = x dx$$
+Integramos ambos lados de la igualdad:
+$$\int y^{-1/2} dy = \int x dx$$
+Aplicando la regla de la potencia para integrales:
+$$2y^{1/2} = \frac{1}{2}x^2 + C_1$$
+Dividimos toda la expresión por $2$:
+$$y^{1/2} = \frac{1}{4}x^2 + \frac{C_1}{2}$$
+Definimos una nueva constante $c = \frac{C_1}{2}$. Entonces:
+$$y^{1/2} = \frac{1}{4}x^2 + c$$
+Elevando ambos lados al cuadrado para despejar $y$:
+$$y = \left( \frac{1}{4}x^2 + c \right)^2$$
+La solución coincide exactamente con la familia propuesta en el enunciado.
+
+\subsection*{b. La E.D lineal $y' + k_1 y = k_2$, donde $k_1$ y $k_2$ son constantes distintas de cero, siempre tiene una solución constante.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Una solución es constante si su derivada es cero en todo su dominio. Sea $y(x) = C$ una solución constante, entonces $y'(x) = 0$. Sustituimos estos valores en la ecuación diferencial original:
+$$0 + k_1(C) = k_2$$
+Despejamos la constante $C$:
+$$C = \frac{k_2}{k_1}$$
+Dado que el enunciado especifica que $k_1 \neq 0$ y $k_2 \neq 0$, la división está definida y el resultado es una constante distinta de cero. Por lo tanto, $y = \frac{k_2}{k_1}$ es una solución constante que satisface la ecuación idénticamente.
+
+\subsection*{c. La E.D lineal $a_1(x)y' + a_0(x)y = 0$ es también separable.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Consideremos la forma general dada:
+$$a_1(x) \frac{dy}{dx} + a_0(x)y = 0$$
+Podemos reorganizar los términos para intentar separar las variables $x$ y $y$:
+$$a_1(x) \frac{dy}{dx} = -a_0(x)y$$
+Dividimos ambos lados por $y$ (siempre que $y \neq 0$) y por $a_1(x)$ (siempre que $a_1(x) \neq 0$):
+$$\frac{1}{y} dy = -\frac{a_0(x)}{a_1(x)} dx$$
+En este punto, las variables han quedado completamente separadas: el lado izquierdo depende solo de $y$ y el derecho solo de $x$. Esto demuestra que toda ecuación diferencial lineal homogénea de primer orden es separable.
+
+\subsection*{d. La región en el plano $xy$ para que la E.D $\frac{dy}{dx} = \sqrt{xy}$ tenga solución son los semiplanos $0 < y_0, 0 < x_0$ y $y_0 < 0, x_0 < 0$.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+La función $f(x, y) = \sqrt{xy}$ está definida en el campo de los números reales solo si el argumento de la raíz cuadrada es no negativo, es decir, $xy \geq 0$. Analizando los signos en el plano cartesiano:
+1. $xy > 0$ ocurre cuando tanto $x$ como $y$ tienen el mismo signo. Esto sucede en el \textbf{primer cuadrante} ($x > 0, y > 0$) y en el \textbf{tercer cuadrante} ($x < 0, y < 0$).
+2. El enunciado describe estos cuadrantes como regiones abiertas ($0 < y_0, 0 < x_0$ y $y_0 < 0, x_0 < 0$).
+Dentro de estas regiones, la función es continua, lo que garantiza la existencia de soluciones locales según el teorema de existencia de Peano.
+
+\subsection*{e. Una sustitución adecuada para resolver la E.D $\frac{dy}{dx} = (x + y + 1)$ es $u = x + y$. Resuelva.}
+
+\textbf{Respuesta: Verdadero (la sustitución es válida) y resolución.}
+
+\textbf{Justificación y Solución:}
+Si definimos $u = x + y$, entonces derivamos respecto a $x$:
+$$\frac{du}{dx} = 1 + \frac{dy}{dx} \implies \frac{dy}{dx} = \frac{du}{dx} - 1$$
+Sustituimos en la E.D original:
+$$\frac{du}{dx} - 1 = u + 1$$
+$$\frac{du}{dx} = u + 2$$
+Esta es una ecuación separable:
+$$\frac{du}{u+2} = dx$$
+Integrando:
+$$\ln|u+2| = x + C_1 \implies u+2 = e^{x+C_1} \implies u+2 = Ce^x$$
+Regresando a la variable original $y$ ($u = x+y$):
+$$x + y + 2 = Ce^x \implies y = Ce^x - x - 2$$
+La sustitución permitió transformar una ecuación no separable en una separable, por lo que es adecuada.
+
+\subsection*{f. Dada la E.D $\frac{dy}{dx} = f(x, y)$ sujeta a $y(x_0) = y_0$, siempre puedo afirmar que existe una solución y es única.}
+
+\textbf{Respuesta: Falso.}
+
+\textbf{Justificación:}
+Para garantizar la existencia y la \textbf{unicidad} de la solución, no basta con que la ecuación esté planteada. Según el \textbf{Teorema de Existencia y Unicidad de Picard-Lindelöf}, se requiere que:
+1. $f(x, y)$ sea continua en una región $R$ que contenga al punto $(x_0, y_0)$.
+2. La derivada parcial $\frac{\partial f}{\partial y}$ también sea continua en esa misma región.
+Si estas condiciones no se cumplen (especialmente la segunda), puede que la solución no exista o que existan múltiples soluciones para el mismo punto inicial (falta de unicidad).
+
+\subsection*{g. Una solución de una E.D es cualquier función que tiene un número suficiente de derivadas que satisface idénticamente la ecuación en algún intervalo.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Esta es la definición formal de solución de una ecuación diferencial. Una función $y = \phi(x)$ es una solución si, al ser sustituida en la ecuación (junto con sus derivadas necesarias), reduce la ecuación a una identidad matemática válida para todos los valores de $x$ en un intervalo $I$.
+
+\subsection*{h. Una E.D de orden uno es siempre lineal.}
+
+\textbf{Respuesta: Falso.}
+
+\textbf{Justificación:}
+El orden de una ecuación diferencial se define por la derivada más alta presente. Una ecuación puede ser de primer orden (solo tiene $y'$) pero ser \textbf{no lineal} si la variable dependiente $y$ o su derivada $y'$ aparecen elevadas a una potencia distinta de uno, dentro de funciones trascendentes o multiplicadas entre sí.
+\textbf{Contraejemplo:} $\frac{dy}{dx} = y^2$ es de primer orden pero es no lineal debido al término $y^2$.
+
+\subsection*{i. El problema de valor inicial $y' = y^{1/2}, y(0) = 0$, no tiene solución puesto que $\frac{\partial f}{\partial y}$ es discontinua en la recta $y = 0$.}
+
+\textbf{Respuesta: Falso.}
+
+\textbf{Justificación:}
+Es cierto que $f(x, y) = y^{1/2}$ tiene una derivada parcial $\frac{\partial f}{\partial y} = \frac{1}{2\sqrt{y}}$ que es discontinua (e infinita) en $y = 0$. Esto significa que el teorema de unicidad \textbf{falla}. Sin embargo, que el teorema falle no significa que "no hay solución", sino que la solución podría no ser única.
+De hecho, este problema tiene al menos dos soluciones:
+1. La solución trivial $y(x) = 0$.
+2. La solución $y(x) = \frac{1}{4}x^2$ (para $x \geq 0$).
+Como existen soluciones, la afirmación de que "no tiene solución" es falsa.
+
+\subsection*{j. Una sustitución adecuada para resolver la E.D $\frac{dy}{dx} = \cos(x + y)$ es $u = x + y$.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Al igual que en el literal (e), esta es una ecuación de la forma $y' = f(ax + by + c)$. La sustitución $u = x + y$ implica $\frac{du}{dx} = 1 + \frac{dy}{dx}$. Sustituyendo:
+$$\frac{du}{dx} - 1 = \cos(u) \implies \frac{du}{dx} = 1 + \cos(u)$$
+Esta nueva ecuación es separable: $\frac{du}{1+\cos(u)} = dx$, lo cual simplifica significativamente la resolución del problema original.
+
+\subsection*{k. El valor de $k$ para que la ecuación diferencial $(y^3 + kxy^4 - 2x)dx + (3xy^2 + 20x^2y^3)dy = 0$ sea exacta es $k = 10$.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Para que una ecuación $Mdx + Ndy = 0$ sea exacta, debe cumplirse que $\frac{\partial M}{\partial y} = \frac{\partial N}{\partial x}$.
+Definimos:
+$M(x, y) = y^3 + kxy^4 - 2x \implies \frac{\partial M}{\partial y} = 3y^2 + 4kxy^3$
+$N(x, y) = 3xy^2 + 20x^2y^3 \implies \frac{\partial N}{\partial x} = 3y^2 + 40xy^3$
+Igualamos las parciales:
+$3y^2 + 4kxy^3 = 3y^2 + 40xy^3$
+$4kxy^3 = 40xy^3$
+Dividiendo por $4xy^3$:
+$k = \frac{40}{4} = 10$.
+Por lo tanto, el valor propuesto es correcto.
+
+\subsection*{l. Los valores de $m$ tal que $e^{mx}$ sea solución de la ecuación diferencial $y'' - 5y' + 6y = 0$ son $m = -2$ y $m = 3$.}
+
+\textbf{Respuesta: Falso.}
+
+\textbf{Justificación:}
+Sustituimos $y = e^{mx}$, $y' = me^{mx}$ y $y'' = m^2e^{mx}$ en la ecuación:
+$m^2e^{mx} - 5(me^{mx}) + 6e^{mx} = 0$
+Factorizamos $e^{mx}$ (que nunca es cero):
+$e^{mx}(m^2 - 5m + 6) = 0 \implies m^2 - 5m + 6 = 0$
+Factorizamos el trinomio:
+$(m - 3)(m - 2) = 0$
+Las raíces son $m_1 = 3$ y $m_2 = 2$.
+El enunciado afirma que los valores son $-2$ y $3$. Como el valor $2$ es positivo y no negativo, la afirmación es falsa.
+
+\subsection*{m. $y = \sin x$ es solución de la ED $\frac{dy}{dx} = \sqrt{1 - y^2}$.}
+
+\textbf{Respuesta: Verdadero (en un intervalo específico).}
+
+\textbf{Justificación:}
+Si $y = \sin x$, entonces $\frac{dy}{dx} = \cos x$.
+Sustituimos en la ecuación diferencial:
+$\cos x = \sqrt{1 - \sin^2 x}$
+Usando la identidad trigonométrica $\sin^2 x + \cos^2 x = 1$:
+$\cos x = \sqrt{\cos^2 x}$
+$\cos x = |\cos x|$
+Esta igualdad es una identidad válida para todos los intervalos donde $\cos x \geq 0$ (por ejemplo, en $(-\pi/2, \pi/2)$). Como existe un intervalo donde la función satisface la ecuación, se considera una solución.
+
+\subsection*{n. El intervalo de definición $I$ de la ED $\frac{dy}{dx} = \sqrt{1 - y^2}$ es $(-\pi/2, \pi/2)$.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Como se analizó en el punto anterior, para que $y = \sin x$ sea solución, se requiere que $\cos x = |\cos x|$, lo que obliga a que $\cos x > 0$. Además, para que la derivada sea continua y la función esté bien definida dentro de la raíz (evitando los puntos donde la derivada se hace cero o indefinida en los extremos), el intervalo abierto $(-\pi/2, \pi/2)$ es el intervalo de definición estándar donde la solución es válida y se comporta de manera regular.
+
+\subsection*{o. La ED $xy'' - 5y' + 6y = 0$ es lineal de segundo orden.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+1. \textbf{Segundo orden}: La derivada más alta es $y''$.
+2. \textbf{Lineal}: La variable dependiente $y$ y sus derivadas ($y', y''$) aparecen elevadas a la primera potencia y no están multiplicadas entre sí. Los coeficientes ($x$, $-5$, $6$) dependen únicamente de la variable independiente $x$. Cumple con la forma $a_2(x)y'' + a_1(x)y' + a_0(x)y = g(x)$.
+
+\subsection*{p. La región del plano $xy$ para el cual la ED $(4 - y^2)y' = x^2$ tendría una solución única cuyas gráficas pasan por el punto $(x_0, y_0)$ son las regiones definidas por $y > 2, y < -2 \cup -2 < y < 2$.}
+
+\textbf{Respuesta: Verdadero.}
+
+\textbf{Justificación:}
+Reescribimos la ecuación como $y' = f(x, y)$:
+$$y' = \frac{x^2}{4 - y^2}$$
+Para que exista una solución única, $f(x, y)$ y $\frac{\partial f}{\partial y}$ deben ser continuas.
+$f(x, y) = \frac{x^2}{4 - y^2}$ es discontinua cuando el denominador es cero: $4 - y^2 = 0 \implies y = \pm 2$.
+La derivada parcial es:
+$\frac{\partial f}{\partial y} = \frac{2yx^2}{(4-y^2)^2}$
+Esta parcial también es discontinua en $y = 2$ y $y = -2$.
+Por lo tanto, la solución única existe en cualquier región que no toque las rectas horizontales $y = 2$ y $y = -2$. Estas regiones son precisamente el semiplano superior ($y > 2$), el semiplano inferior ($y < -2$) y la franja central ($-2 < y < 2$).
+
+\section*{Problema 2: Resolución de Ecuaciones Diferenciales}
+
+A continuación se presenta la resolución paso a paso de las ecuaciones diferenciales planteadas, utilizando métodos de separación de variables, homogeneidad, exactitud, linealidad y sustituciones especiales.
+
+\subsection*{a. $xy dx + (2x^2 + 3y^2 - 20) dy = 0$}
+\textbf{Método: Factor integrante.}
+Definimos $M(x,y) = xy$ y $N(x,y) = 2x^2 + 3y^2 - 20$.
+Calculamos las derivadas parciales: $M_y = x$ y $N_x = 4x$. No es exacta.
+Buscamos un factor integrante que dependa solo de $y$:
+$$\frac{N_x - M_y}{M} = \frac{4x - x}{xy} = \frac{3x}{xy} = \frac{3}{y}$$
+El factor integrante es $\mu(y) = e^{\int \frac{3}{y} dy} = y^3$.
+Multiplicamos la ecuación por $y^3$:
+$$(xy^4) dx + (2x^2y^3 + 3y^5 - 20y^3) dy = 0$$
+Ahora es exacta. Integramos $M' = xy^4$ respecto a $x$:
+$$\Psi(x,y) = \frac{1}{2}x^2y^4 + g(y)$$
+Derivamos respecto a $y$ e igualamos a $N'$:
+$$2x^2y^3 + g'(y) = 2x^2y^3 + 3y^5 - 20y^3 \implies g'(y) = 3y^5 - 20y^3$$
+Integrando $g(y)$: $g(y) = \frac{1}{2}y^6 - 5y^4$.
+\textbf{Solución:} $\frac{1}{2}x^2y^4 + \frac{1}{2}y^6 - 5y^4 = C$.
+
+\subsection*{b. $(x^2 + y^2) dx + (x^2 - xy) dy = 0$}
+\textbf{Método: Ecuación Homogénea.}
+Las funciones son de grado 2. Usamos la sustitución $y = ux \implies dy = u dx + x du$.
+$$(x^2 + u^2x^2) dx + (x^2 - x^2u)(u dx + x du) = 0$$
+Dividimos por $x^2$:
+$$(1 + u^2) dx + (1 - u)(u dx + x du) = 0$$
+$$dx + u^2 dx + u dx + x du - u^2 dx - ux du = 0$$
+$$(1 + u) dx + x(1 - u) du = 0 \implies \frac{dx}{x} + \frac{1 - u}{1 + u} du = 0$$
+Dividiendo el término de $u$: $\frac{1-u}{1+u} = -1 + \frac{2}{1+u}$.
+$$\int \frac{dx}{x} + \int \left( -1 + \frac{2}{1+u} \right) du = 0 \implies \ln|x| - u + 2\ln|1+u| = C$$
+Sustituyendo $u = y/x$:
+\textbf{Solución:} $\ln|x| - \frac{y}{x} + 2\ln|1 + \frac{y}{x}| = C$.
+
+\subsection*{c. $\frac{dy}{dx} = \frac{y-x}{y+x}$}
+\textbf{Método: Ecuación Homogénea.}
+Sea $y = ux \implies \frac{dy}{dx} = u + x \frac{du}{dx}$.
+$$u + x \frac{du}{dx} = \frac{ux - x}{ux + x} = \frac{u-1}{u+1}$$
+$$x \frac{du}{dx} = \frac{u-1}{u+1} - u = \frac{u-1 - u^2 - u}{u+1} = \frac{-1 - u^2}{u+1}$$
+Separando variables:
+$$\frac{u+1}{u^2+1} du = -\frac{dx}{x} \implies \int \frac{u}{u^2+1} du + \int \frac{1}{u^2+1} du = -\int \frac{dx}{x}$$
+$$\frac{1}{2}\ln(u^2+1) + \arctan(u) = -\ln|x| + C$$
+Sustituyendo $u = y/x$:
+\textbf{Solución:} $\frac{1}{2}\ln\left(\left(\frac{y}{x}\right)^2 + 1\right) + \arctan\left(\frac{y}{x}\right) + \ln|x| = C$.
+
+\subsection*{d. $\frac{dy}{dx} = y^2 - 4$}
+\textbf{Método: Separación de variables.}
+$$\frac{dy}{y^2 - 4} = dx \implies \int \frac{dy}{(y-2)(y+2)} = \int dx$$
+Usando fracciones parciales: $\frac{1}{(y-2)(y+2)} = \frac{1}{4(y-2)} - \frac{1}{4(y+2)}$.
+$$\frac{1}{4} \ln|y-2| - \frac{1}{4} \ln|y+2| = x + C_1 \implies \ln\left| \frac{y-2}{y+2} \right| = 4x + C$$
+\textbf{Solución:} $\frac{y-2}{y+2} = Ce^{4x}$.
+
+\subsection*{e. $\frac{dp}{dt} = p - p^2$}
+\textbf{Método: Separación de variables.}
+$$\frac{dp}{p(1-p)} = dt \implies \int \left( \frac{1}{p} + \frac{1}{1-p} \right) dp = \int dt$$
+$$\ln|p| - \ln|1-p| = t + C \implies \ln\left| \frac{p}{1-p} \right| = t + C$$
+\textbf{Solución:} $\frac{p}{1-p} = Ce^t \implies p(t) = \frac{Ce^t}{1 + Ce^t}$.
+
+\subsection*{f. $\frac{dy}{dx} = (y - 1)^2$ con $y(0) = y_0$}
+\textbf{Método: Separación de variables.}
+$$\frac{dy}{(y-1)^2} = dx \implies \int (y-1)^{-2} dy = \int dx \implies -(y-1)^{-1} = x + C$$
+$$\frac{-1}{y-1} = x + C \implies y - 1 = \frac{-1}{x+C} \implies y = 1 - \frac{1}{x+C}$$
+Usando $y(0) = y_0$: $y_0 = 1 - \frac{1}{C} \implies \frac{1}{C} = 1 - y_0 \implies C = \frac{1}{1 - y_0}$.
+\textbf{Solución:} $y(x) = 1 - \frac{1}{x + \frac{1}{1-y_0}}$. (Para $y_0=2$, la curva es $y = 1 - \frac{1}{x-1}$).
+
+\subsection*{g. $(e^x + e^{-x}) \frac{dy}{dx} = y^2$}
+\textbf{Método: Separación de variables.}
+$$\frac{dy}{y^2} = \frac{dx}{e^x + e^{-x}} \implies \int y^{-2} dy = \int \frac{e^x}{e^{2x} + 1} dx$$
+En el lado derecho usamos $u = e^x, du = e^x dx$:
+$$-y^{-1} = \arctan(e^x) + C$$
+\textbf{Solución:} $y = \frac{-1}{\arctan(e^x) + C}$.
+
+\subsection*{h. $\frac{dy}{dx} = \frac{1-x-y}{x+y}$}
+\textbf{Método: Sustitución $u = x+y$.}
+Sea $u = x+y \implies \frac{du}{dx} = 1 + \frac{dy}{dx} \implies \frac{dy}{dx} = \frac{du}{dx} - 1$.
+$$\frac{du}{dx} - 1 = \frac{1-u}{u} \implies \frac{du}{dx} = \frac{1-u}{u} + 1 = \frac{1-u+u}{u} = \frac{1}{u}$$
+$$u du = dx \implies \frac{1}{2}u^2 = x + C$$
+\textbf{Solución:} $\frac{1}{2}(x+y)^2 = x + C$.
+
+\subsection*{j. $(1 - \frac{3}{y} + x) \frac{dy}{dx} + y = \frac{3}{x-1}$}
+\textbf{Método: Ecuación Exacta.}
+Reescribimos: $(y - \frac{3}{x-1}) dx + (1 - \frac{3}{y} + x) dy = 0$.
+$M = y - \frac{3}{x-1} \implies M_y = 1$.
+$N = 1 - \frac{3}{y} + x \implies N_x = 1$. Es exacta.
+$\Psi_x = y - \frac{3}{x-1} \implies \Psi = xy - 3\ln|x-1| + g(y)$.
+$\Psi_y = x + g'(y) = 1 - \frac{3}{y} + x \implies g'(y) = 1 - \frac{3}{y} \implies g(y) = y - 3\ln|y|$.
+\textbf{Solución:} $xy - 3\ln|x-1| + y - 3\ln|y| = C$.
+
+\subsection*{k. (y q.) $x \frac{dy}{dx} + y = \frac{1}{y^2}$}
+\textbf{Método: Ecuación de Bernoulli.}
+$\frac{dy}{dx} + \frac{1}{x}y = \frac{1}{x}y^{-2}$. Sea $n = -2$. Sustitución $w = y^{1-n} = y^3 \implies \frac{dw}{dx} = 3y^2 \frac{dy}{dx}$.
+Multiplicamos la ED por $3y^2$: $3xy^2 \frac{dy}{dx} + 3y^3 = 3$.
+$$x \frac{dw}{dx} + 3w = 3 \implies \frac{dw}{dx} + \frac{3}{x}w = \frac{3}{x}$$
+Factor integrante $\mu(x) = e^{\int \frac{3}{x} dx} = x^3$.
+$\frac{d}{dx}(x^3 w) = 3x^2 \implies x^3 w = x^3 + C \implies w = 1 + Cx^{-3}$.
+\textbf{Solución:} $y^3 = 1 + Cx^{-3}$.
+
+\subsection*{L. $\cos x \frac{dy}{dx} + (\sin x)y = 1$}
+\textbf{Método: Ecuación Lineal.}
+Dividimos por $\cos x$: $\frac{dy}{dx} + (\tan x)y = \sec x$.
+Factor integrante: $\mu(x) = e^{\int \tan x dx} = e^{\ln|\sec x|} = \sec x$.
+$\frac{d}{dx}(y \sec x) = \sec^2 x \implies y \sec x = \tan x + C$.
+\textbf{Solución:} $y = \sin x + C \cos x$.
+
+\subsection*{m. $\cos x dx + (1 + \frac{2}{y}) \sin x dy = 0$}
+\textbf{Método: Separación de variables.}
+$$\frac{\cos x}{\sin x} dx + (1 + \frac{2}{y}) dy = 0 \implies \int \cot x dx + \int (1 + \frac{2}{y}) dy = 0$$
+$$\ln|\sin x| + y + 2\ln|y| = C$$
+\textbf{Solución:} $y + \ln|y^2 \sin x| = C$.
+
+\subsection*{n. $3(1 + t^2) \frac{dy}{dt} = 2ty(y^3 - 1)$}
+\textbf{Método: Separación de variables.}
+$$\frac{3 dy}{y(y^3 - 1)} = \frac{2t dt}{1 + t^2}$$
+Lado izquierdo por fracciones parciales o sustitución $u = y^{-3}$:
+Resulta en $\ln|1 - y^{-3}| = \ln(1+t^2) + C$ (tras simplificar).
+\textbf{Solución:} $1 - y^{-3} = C(1+t^2) \implies y^{-3} = 1 - C(1+t^2)$.
+
+\subsection*{o. $\frac{dp}{dt} = p(a - bp)$}
+\textbf{Método: Ecuación de Bernoulli / Logística.}
+Es idéntica en forma al literal (e).
+\textbf{Solución:} $p(t) = \frac{a/b}{1 + Ce^{-at}}$.
+
+\subsection*{p. $L \frac{di}{dt} + Ri = E_0, i(0) = i_0$}
+\textbf{Método: Lineal de primer orden.}
+$\frac{di}{dt} + \frac{R}{L}i = \frac{E_0}{L}$. Factor integrante: $e^{(R/L)t}$.
+$i(t) = e^{-(R/L)t} \int \frac{E_0}{L} e^{(R/L)t} dt = e^{-(R/L)t} [\frac{E_0}{R} e^{(R/L)t} + C] = \frac{E_0}{R} + Ce^{-(R/L)t}$.
+Con $i(0) = i_0 \implies C = i_0 - \frac{E_0}{R}$.
+\textbf{Solución:} $i(t) = \frac{E_0}{R} + (i_0 - \frac{E_0}{R})e^{-(R/L)t}$.
+
+\subsection*{r. Resuelva $\frac{dy}{dx} + y = f(x), y(0) = 0$ donde $f(x) = \begin{cases} 1, & 0 \le x \le 1 \\ 0, & x > 1 \end{cases}$}
+
+\textbf{Solución:}
+
+Para resolver esta ecuación, debemos trabajar por tramos para garantizar la continuidad de la función $y(x)$ en el punto de salto $x=1$.
+
+1. \textbf{Tramo $0 \le x \le 1$:}
+La ecuación es $y' + y = 1$ con $y(0) = 0$. Es una ecuación lineal con factor integrante $\mu(x) = e^{\int 1 dx} = e^x$.
+$$\frac{d}{dx}[e^x y] = e^x \implies e^x y = \int e^x dx = e^x + c_1$$
+$$y(x) = 1 + c_1 e^{-x}$$
+Aplicando la condición inicial $y(0) = 0$: $0 = 1 + c_1 \implies c_1 = -1$.
+Por lo tanto, para el primer tramo: $y(x) = 1 - e^{-x}$.
+
+2. \textbf{Tramo $x > 1$:}
+La ecuación es $y' + y = 0$. La solución general es $y(x) = c_2 e^{-x}$.
+Para determinar $c_2$, imponemos la condición de continuidad en $x=1$. El valor de la función al final del primer tramo es $y(1) = 1 - e^{-1}$.
+$$c_2 e^{-1} = 1 - e^{-1} \implies c_2 = e(1 - e^{-1}) = e - 1$$
+Por lo tanto, para el segundo tramo: $y(x) = (e - 1)e^{-x}$.
+
+\textbf{Resultado:}
+$$y(x) = \begin{cases} 1 - e^{-x}, & 0 \le x \le 1 \\ (e - 1)e^{-x}, & x > 1 \end{cases}$$
+
+\subsection*{s. Resuelva $\frac{dy}{dx} + 2xy = f(x), y(0) = 0$ donde $f(x) = \begin{cases} x, & 0 \le x < 1 \\ 0, & x \ge 1 \end{cases}$}
+
+\textbf{Solución:}
+
+1. \textbf{Tramo $0 \le x < 1$:}
+La ecuación es $y' + 2xy = x$ con $y(0) = 0$. El factor integrante es $\mu(x) = e^{\int 2x dx} = e^{x^2}$.
+$$\frac{d}{dx}[e^{x^2} y] = x e^{x^2} \implies e^{x^2} y = \int x e^{x^2} dx = \frac{1}{2} e^{x^2} + c_1$$
+$$y(x) = \frac{1}{2} + c_1 e^{-x^2}$$
+Aplicando $y(0) = 0$: $0 = \frac{1}{2} + c_1 \implies c_1 = -1/2$.
+Para este tramo: $y(x) = \frac{1}{2}(1 - e^{-x^2})$.
+
+2. \textbf{Tramo $x \ge 1$:}
+La ecuación es $y' + 2xy = 0$, cuya solución es $y(x) = c_2 e^{-x^2}$.
+Imponemos continuidad en $x=1$. El valor del primer tramo en $x=1$ es $y(1) = \frac{1}{2}(1 - e^{-1})$.
+$$c_2 e^{-1} = \frac{1}{2}(1 - e^{-1}) \implies c_2 = \frac{e}{2}(1 - e^{-1}) = \frac{e - 1}{2}$$
+Para este tramo: $y(x) = \frac{e - 1}{2} e^{-x^2}$.
+
+\textbf{Resultado:}
+$$y(x) = \begin{cases} \frac{1}{2}(1 - e^{-x^2}), & 0 \le x < 1 \\ \frac{e - 1}{2} e^{-x^2}, & x \ge 1 \end{cases}$$
+
+\subsection*{t. Resuelva $\frac{dy}{dx} + y = f(x), y(0) = 0$ donde $f(x) = \begin{cases} 1, & 0 \le x \le 1 \\ 0, & x > 1 \end{cases}$}
+
+\textbf{Solución:}
+Este ítem es idéntico en planteamiento al literal \textbf{r}. La resolución analítica arroja el mismo resultado:
+$$y(x) = \begin{cases} 1 - e^{-x}, & 0 \le x \le 1 \\ (e - 1)e^{-x}, & x > 1 \end{cases}$$
+
+\subsection*{Análisis de la validez de la 'solución' en $[0, \infty)$}
+
+De acuerdo con los requerimientos del taller, es técnicamente incorrecto afirmar que la función hallada es una "solución" del Problema de Valor Inicial (PVI) en todo el intervalo $[0, \infty)$ por las siguientes razones:
+
+\begin{enumerate}
+    \item \textbf{Diferenciabilidad:} Por definición, una solución de una ecuación diferencial de primer orden debe ser derivable en todos los puntos del intervalo de definición. 
+    \item \textbf{Discontinuidad en la derivada:} Debido a que la función $f(x)$ tiene un salto finito (discontinuidad de tipo salto) en $x=1$, la derivada $y'(x)$ hereda esta discontinuidad. Al intentar calcular $y'(1)$, se observa que el límite por la izquierda y por la derecha no coinciden. 
+    \item \textbf{Incumplimiento de la igualdad:} En el punto exacto $x=1$, la ecuación diferencial no puede satisfacerse en el sentido clásico, ya que la derivada no existe en ese punto. 
+\end{enumerate}
+
+Por lo tanto, la función hallada es una \textbf{solución continua} que satisface la ecuación diferencial en los subintervalos abiertos $(0, 1)$ y $(1, \infty)$, pero no es una solución en el sentido estricto sobre el intervalo cerrado o que contenga al punto $x=1$.
+
+\section{Problema 3: Crecimiento de Bacterias}
+
+\textbf{Enunciado:} Inicialmente un cultivo tiene un número $P_0$ de bacterias. En $t = 1$ horas se determina que el número de bacterias es $\frac{3}{2} P_0$. Si la razón de crecimiento es proporcional al número de bacterias $P(t)$ presentes en el tiempo $t$, determine el tiempo necesario para que se triplique el número de bacterias.
+
+\textbf{Solución:}
+
+El modelo de crecimiento poblacional está dado por la ecuación diferencial:
+$$\frac{dP}{dt} = kP$$
+Cuya solución general es $P(t) = P_0 e^{kt}$.
+
+1. \textbf{Encontrar la constante de crecimiento $k$:}
+Sabemos que en $t = 1$, $P(1) = \frac{3}{2}P_0$. Sustituimos:
+$$\frac{3}{2}P_0 = P_0 e^{k(1)} \implies \frac{3}{2} = e^k \implies k = \ln\left(\frac{3}{2}\right) \approx 0.4054$$
+
+2. \textbf{Determinar el tiempo para triplicar la población ($P(t) = 3P_0$):}
+$$3P_0 = P_0 e^{kt} \implies 3 = e^{\ln(1.5)t}$$
+Aplicando logaritmo natural a ambos lados:
+$$\ln(3) = \ln(1.5)t \implies t = \frac{\ln(3)}{\ln(1.5)}$$
+Calculando el valor numérico:
+$$t \approx \frac{1.0986}{0.4054} \approx 2.71 \text{ horas}$$
+
+\textbf{Respuesta:} El tiempo necesario para que se triplique el número de bacterias es aproximadamente $2.71$ horas.
+
+\section{Problema 4: Crecimiento de una Comunidad}
+
+\textbf{Enunciado:} Se sabe que la población de una comunidad crece con una razón proporcional al número de personas presente en el tiempo $t$. Si la población inicial $P_0$ se duplicó en 5 años, ¿en cuánto tiempo se triplicará y cuadriplicará?.
+
+\textbf{Solución:}
+
+El modelo es el mismo que el anterior: $P(t) = P_0 e^{kt}$.
+
+1. \textbf{Encontrar la constante $k$:}
+Dado que $P(5) = 2P_0$:
+$$2P_0 = P_0 e^{5k} \implies 2 = e^{5k} \implies 5k = \ln(2) \implies k = \frac{\ln(2)}{5}$$
+
+2. \textbf{Tiempo para triplicar ($P(t) = 3P_0$):}
+$$3P_0 = P_0 e^{kt} \implies 3 = e^{(\frac{\ln 2}{5})t} \implies \ln(3) = \frac{\ln 2}{5}t$$
+$$t = \frac{5 \ln 3}{\ln 2} \approx 7.92 \text{ años}$$
+
+3. \textbf{Tiempo para cuadriplicar ($P(t) = 4P_0$):}
+$$4P_0 = P_0 e^{kt} \implies 4 = e^{kt} \implies \ln(4) = kt$$
+Como $4 = 2^2$, entonces $\ln(4) = 2\ln(2)$:
+$$2\ln(2) = \frac{\ln(2)}{5}t \implies 2 = \frac{t}{5} \implies t = 10 \text{ años}$$
+
+\textbf{Respuesta:} La población se triplicará en aproximadamente $7.92$ años y se cuadriplicará en exactamente $10$ años.
+
+\section{Problema 5: Temperatura del Horno}
+
+\textbf{Enunciado:} Un termómetro que indica 70°F se coloca en un horno precalentado a una temperatura constante. Un observador registra que el termómetro lee 110°F después de ½ minuto y 145°F después de un minuto. ¿Cuál es la temperatura del horno?.
+
+\textbf{Solución:}
+
+Utilizamos la \textbf{Ley de Enfriamiento/Calentamiento de Newton}:
+$$\frac{dT}{dt} = k(T - T_m)$$
+Donde $T_m$ es la temperatura ambiente (en este caso, la del horno). La solución es:
+$$T(t) = T_m + (T_0 - T_m)e^{kt}$$
+Datos conocidos: $T(0) = 70$, $T(0.5) = 110$, $T(1) = 145$.
+
+Sustituimos en la ecuación:
+1. $110 = T_m + (70 - T_m)e^{0.5k}$
+2. $145 = T_m + (70 - T_m)e^{k}$
+
+Sea $x = e^{0.5k}$, entonces $e^k = x^2$. Reescribimos el sistema:
+1. $110 - T_m = (70 - T_m)x$
+2. $145 - T_m = (70 - T_m)x^2$
+
+De la primera ecuación despejamos $x$: $x = \frac{110 - T_m}{70 - T_m}$.
+Sustituimos en la segunda:
+$$145 - T_m = (70 - T_m) \left( \frac{110 - T_m}{70 - T_m} \right)^2 \implies 145 - T_m = \frac{(110 - T_m)^2}{70 - T_m}$$
+$$(145 - T_m)(70 - T_m) = (110 - T_m)^2$$
+Multiplicamos:
+$$10150 - 145T_m - 70T_m + T_m^2 = 12100 - 220T_m + T_m^2$$
+Eliminamos $T_m^2$ y agrupamos términos de $T_m$:
+$$10150 - 215T_m = 12100 - 220T_m$$
+$$220T_m - 215T_m = 12100 - 10150$$
+$$5T_m = 1950 \implies T_m = 390$$
+
+
+\section{Problema 6: Enfriamiento y Calentamiento de una Barra de Metal}
+
+\textbf{Enunciado:} Una barra de metal con temperatura inicial de $100^\circ C$ se sumerge en un tanque A ($0^\circ C$). Tras 1 minuto, la temperatura es $90^\circ C$. A los 2 minutos, se traslada al tanque B ($100^\circ C$). Tras 1 minuto en el tanque B, la temperatura sube $10^\circ C$. ¿Cuánto tiempo total tomará alcanzar los $99.9^\circ C$?
+
+\textit{Nota: La fuente menciona "se eleva 100°C", lo cual es físicamente imposible dado que el tanque está a 100°C; se asume, basándose en problemas clásicos de ingeniería, que el valor correcto es $10^\circ C$.}
+
+\textbf{Solución:}
+
+Utilizamos la Ley de Enfriamiento de Newton: $\frac{dT}{dt} = k(T - T_m)$, cuya solución es $T(t) = T_m + (T_0 - T_m)e^{kt}$.
+
+\subsection*{Etapa 1: Tanque A ($T_m = 0^\circ C$)}
+Datos: $T(0) = 100$, $T(1) = 90$.
+1. La ecuación es: $T(t) = 100e^{k_1 t}$.
+2. Hallamos $k_1$: $90 = 100e^{k_1(1)} \implies e^{k_1} = 0.9 \implies k_1 = \ln(0.9)$.
+3. Temperatura al final de los 2 minutos (antes de cambiar de tanque):
+$$T(2) = 100(e^{k_1})^2 = 100(0.9)^2 = 81^\circ C$$
+
+\subsection*{Etapa 2: Tanque B ($T_m = 100^\circ C$)}
+Datos: $T_{inicial} = 81^\circ C$. Tras 1 minuto ($t'=1$), sube $10^\circ C$, es decir, $T(1) = 91^\circ C$.
+1. La ecuación es: $T(t') = 100 + (81 - 100)e^{k_2 t'} = 100 - 19e^{k_2 t'}$.
+2. Hallamos $k_2$: $91 = 100 - 19e^{k_2(1)} \implies 19e^{k_2} = 9 \implies k_2 = \ln(9/19)$.
+3. Buscamos el tiempo $t'$ para que $T = 99.9^\circ C$:
+$$99.9 = 100 - 19e^{k_2 t'} \implies 0.1 = 19e^{k_2 t'} \implies e^{k_2 t'} = \frac{0.1}{19}$$
+$$t' = \frac{\ln(0.1/19)}{\ln(9/19)} \approx \frac{-5.247}{-0.747} \approx 7.02 \text{ minutos}$$
+
+\textbf{Respuesta:} El tiempo total, medido desde el inicio, es $2 \text{ min (Tanque A)} + 7.02 \text{ min (Tanque B)} \approx 9.02 \text{ minutos}$.
+
+\section{Problema 7: Modelado de Mezclas en un Tanque}
+
+\textbf{Enunciado:} Tanque de 500 gal con agua pura ($A(0)=0$). Entrada: 2 lb/gal a 5 gal/min.
+
+\subsection*{a) Salida a 5 gal/min (Volumen constante)}
+La ecuación diferencial es $\frac{dA}{dt} = R_{ent} - R_{sal} = (5 \times 2) - 5\frac{A}{500} = 10 - \frac{A}{100}$.
+1. Separando variables: $\frac{dA}{1000 - A} = \frac{dt}{100} \implies -\ln|1000 - A| = \frac{t}{100} + C$.
+2. Usando $A(0)=0$: $C = -\ln(1000)$.
+3. \textbf{Cantidad de sal:} $A(t) = 1000(1 - e^{-t/100})$.
+4. \textbf{Concentración $c(t)$:} $c(t) = \frac{A(t)}{500} = 2(1 - e^{-t/100})$.
+   - $c(5) = 2(1 - e^{-0.05}) \approx 0.0975 \text{ lb/gal}$.
+   - $c(\infty) = \lim_{t \to \infty} 2(1 - e^{-t/100}) = 2 \text{ lb/gal}$.
+   - Tiempo para la mitad del límite ($c(t) = 1$): $1 = 2(1 - e^{-t/100}) \implies e^{-t/100} = 0.5 \implies t = 100\ln 2 \approx 69.3 \text{ min}$.
+
+\subsection*{b) Salida a 4 gal/min (Acumulación)}
+El volumen varía como $V(t) = 500 + (5-4)t = 500 + t$.
+$\frac{dA}{dt} = 10 - 4\frac{A}{500+t} \implies \frac{dA}{dt} + \frac{4}{500+t}A = 10$.
+1. Factor integrante: $\mu(t) = (500+t)^4$.
+2. $\frac{d}{dt}[(500+t)^4 A] = 10(500+t)^4 \implies (500+t)^4 A = 2(500+t)^5 + C$.
+3. Con $A(0)=0$: $C = -2(500)^5$.
+4. \textbf{Cantidad de sal:} $A(t) = 2(500+t) - \frac{2(500)^5}{(500+t)^4}$.
+5. \textbf{Derrame:} El tanque tiene capacidad de 600 gal. $500 + t = 600 \implies t = 100 \text{ min}$.
+6. \textbf{Sal al derramarse ($t=100$):} $A(100) = 2(600) - \frac{2(500)^5}{600^4} \approx 1200 - 482.25 \approx 717.75 \text{ lb}$.
+
+\subsection*{c) Salida a 6 gal/min (Vaciado)}
+El volumen varía como $V(t) = 500 - t$.
+$\frac{dA}{dt} = 10 - 6\frac{A}{500-t} \implies \frac{dA}{dt} + \frac{6}{500-t}A = 10$.
+1. Factor integrante: $\mu(t) = (500-t)^{-6}$.
+2. $\frac{d}{dt}[(500-t)^{-6} A] = 10(500-t)^{-6} \implies (500-t)^{-6} A = 2(500-t)^{-5} + C$.
+3. Con $A(0)=0$: $C = -2(500)^{-5}$.
+4. \textbf{Cantidad de sal:} $A(t) = 2(500-t) - 2\frac{(500-t)^6}{500^5}$.
+
+\section{Problema 8: Circuito en Serie LR}
+
+\textbf{Enunciado:} Se aplica una fuerza electromotriz de $30 \, V$ a un circuito en serie LR con $0.1 \, H$ de inductancia y $50 \, \Omega$ de resistencia. Determine la corriente $i(t)$ si $i(0) = 0$. Determine la corriente conforme $t \to \infty$.
+
+\textbf{Solución:}
+
+La ecuación diferencial que rige un circuito LR en serie es:
+$$L \frac{di}{dt} + Ri = E(t)$$
+Sustituyendo los valores dados ($L = 0.1$, $R = 50$, $E = 30$):
+$$0.1 \frac{di}{dt} + 50i = 30$$
+Dividimos toda la ecuación por $0.1$ para llevarla a su forma estándar:
+$$\frac{di}{dt} + 500i = 300$$
+
+Esta es una ecuación diferencial lineal de primer orden. El factor integrante es:
+$$\mu(t) = e^{\int 500 dt} = e^{500t}$$
+Multiplicamos la ecuación por el factor integrante:
+$$e^{500t} \frac{di}{dt} + 500 e^{500t} i = 300 e^{500t}$$
+$$\frac{d}{dt} [e^{500t} i] = 300 e^{500t}$$
+Integramos ambos lados respecto a $t$:
+$$e^{500t} i = \int 300 e^{500t} dt = \frac{300}{500} e^{500t} + C = 0.6 e^{500t} + C$$
+Despejamos $i(t)$:
+$$i(t) = 0.6 + C e^{-500t}$$
+
+Usamos la condición inicial $i(0) = 0$:
+$$0 = 0.6 + C e^{0} \implies C = -0.6$$
+La expresión para la corriente es:
+$$i(t) = 0.6 (1 - e^{-500t})$$
+
+\textbf{Comportamiento a largo plazo:}
+Para determinar la corriente conforme $t \to \infty$:
+$$\lim_{t \to \infty} 0.6 (1 - e^{-500t}) = 0.6 (1 - 0) = 0.6 \, \text{A}$$
+
+\section{Problema 9: Circuito RC}
+
+\textbf{Enunciado:} Se aplica una fuerza electromotriz de $100 \, V$ a un circuito RC, en el que la resistencia es de $200 \, \Omega$ y la capacitancia es de $10^{-4} \, F$. Determine la carga $q(t)$ del capacitor, si $q(0) = 0$. Encuentre la corriente $i(t)$.
+
+\textbf{Solución:}
+
+La ecuación diferencial para un circuito RC es:
+$$R \frac{dq}{dt} + \frac{1}{C} q = E(t)$$
+Sustituyendo los valores ($R = 200$, $C = 10^{-4}$, $E = 100$):
+$$200 \frac{dq}{dt} + \frac{1}{10^{-4}} q = 100 \implies 200 \frac{dq}{dt} + 10000q = 100$$
+Dividimos por $200$:
+$$\frac{dq}{dt} + 50q = 0.5$$
+
+El factor integrante es $\mu(t) = e^{\int 50 dt} = e^{50t}$.
+$$\frac{d}{dt} [e^{50t} q] = 0.5 e^{50t}$$
+Integramos:
+$$e^{50t} q = \int 0.5 e^{50t} dt = \frac{0.5}{50} e^{50t} + C = 0.01 e^{50t} + C$$
+$$q(t) = 0.01 + C e^{-50t}$$
+
+Usamos $q(0) = 0$:
+$$0 = 0.01 + C \implies C = -0.01$$
+\textbf{Carga:} $q(t) = 0.01 (1 - e^{-50t}) \, \text{Coulombs}$.
+
+\textbf{Corriente:}
+La corriente es la derivada de la carga respecto al tiempo ($i = \frac{dq}{dt}$):
+$$i(t) = \frac{d}{dt} [0.01 - 0.01 e^{-50t}] = -0.01 (-50 e^{-50t})$$
+\textbf{Resultado:} $i(t) = 0.5 e^{-50t} \, \text{Amperes}$.
+
+\section{Problema 10: Circuito LR con Fuerza Electromotriz a Trozos}
+
+\textbf{Enunciado:} Determine la corriente $i(t)$ para un circuito LR ($L = 20 \, H$, $R = 2 \, \Omega$) con $i(0) = 0$ y una fuerza electromotriz:
+$$E(t) = \begin{cases} 120, & 0 \le t \le 20 \\ 0, & t > 20 \end{cases}$$
+
+\textbf{Solución:}
+
+La ecuación es $20 \frac{di}{dt} + 2i = E(t) \implies \frac{di}{dt} + 0.1i = \frac{E(t)}{20}$.
+
+\subsection*{Tramo $0 \le t \le 20$ ($E(t) = 120$)}
+$$\frac{di}{dt} + 0.1i = \frac{120}{20} = 6$$
+Factor integrante: $e^{0.1t}$.
+$$e^{0.1t} i = \int 6 e^{0.1t} dt = 60 e^{0.1t} + c_1 \implies i(t) = 60 + c_1 e^{-0.1t}$$
+Con $i(0) = 0$: $0 = 60 + c_1 \implies c_1 = -60$.
+$$i(t) = 60 (1 - e^{-0.1t})$$
+Al final de este tramo ($t = 20$): $i(20) = 60 (1 - e^{-2})$.
+
+\subsection*{Tramo $t > 20$ ($E(t) = 0$)}
+$$\frac{di}{dt} + 0.1i = 0 \implies i(t) = c_2 e^{-0.1t}$$
+Para garantizar la continuidad de la corriente, igualamos con el valor en $t=20$:
+$$c_2 e^{-0.1(20)} = 60 (1 - e^{-2}) \implies c_2 e^{-2} = 60 (1 - e^{-2})$$
+$$c_2 = 60 (e^{2} - 1)$$
+Por lo tanto: $i(t) = 60 (e^{2} - 1) e^{-0.1t}$.
+
+\textbf{Resultado final:}
+$$i(t) = \begin{cases} 60 (1 - e^{-0.1t}), & 0 \le t \le 20 \\ 60 (e^2 - 1) e^{-0.1t}, & t > 20 \end{cases}$$
+
+
+\bibliographystyle{plainurl}
+\bibliography{bibliografia} 
+\end{document}

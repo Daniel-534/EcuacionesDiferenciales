@@ -1,0 +1,2663 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+
+
+
+% cabecera
+\pagestyle{fancy}
+\fancyhead[l]{Ecuaciones Diferenciales Ingeniería}
+\fancyhead[c]{Taller 2}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} % linea horizontal
+
+
+\begin{document}
+
+\tableofcontents
+\newpage
+
+\section{Problema 1}
+Conteste verdadero o falso, según corresponda y justifique su respuesta.
+
+\subsection{Item a}
+La solución de una E.D $x''(t) - \omega^2 x = 0$ es de la forma $x(t)= c_1 \cos(\omega t)+ c_2 \text{sen}(\omega t)$.
+
+\subsubsection{Solución}
+La afirmación planteada es \textbf{Falsa}. Para demostrar esto analíticamente, procedemos a resolver la ecuación diferencial ordinaria (E.D.O.) dada y comparamos la solución general obtenida con la forma propuesta en el enunciado.
+
+La ecuación diferencial proporcionada es:
+$$
+x''(t) - \omega^2 x(t) = 0
+$$
+Esta es una ecuación diferencial lineal homogénea de segundo orden con coeficientes constantes. El método estándar para resolver este tipo de ecuaciones consiste en proponer una solución de la forma exponencial:
+$$
+x(t) = e^{rt}
+$$
+donde $r$ es una constante que debe ser determinada. Calculamos las derivadas necesarias para sustituir en la ecuación original:
+$$
+x'(t) = r e^{rt}, \quad x''(t) = r^2 e^{rt}
+$$
+Sustituyendo $x(t)$ y $x''(t)$ en la E.D.O.:
+$$
+r^2 e^{rt} - \omega^2 e^{rt} = 0
+$$
+Factorizando el término exponencial (que nunca es cero):
+$$
+e^{rt}(r^2 - \omega^2) = 0 \implies r^2 - \omega^2 = 0
+$$
+Esta es la \textit{ecuación auxiliar} o \textit{ecuación característica}. Al resolverla para $r$, obtenemos:
+$$
+r^2 = \omega^2 \implies r = \pm \sqrt{\omega^2} \implies r_1 = \omega, \quad r_2 = -\omega
+$$
+Observamos que las raíces $r_1$ y $r_2$ son \textbf{números reales y distintos}. Según la teoría de ecuaciones diferenciales lineales, cuando las raíces de la ecuación característica son reales y distintas, la solución general está dada por la combinación lineal de las exponenciales correspondientes:
+$$
+x(t) = c_1 e^{r_1 t} + c_2 e^{r_2 t} = c_1 e^{\omega t} + c_2 e^{-\omega t}
+$$
+Alternativamente, esta solución puede expresarse en términos de funciones hiperbólicas como $x(t) = A \cosh(\omega t) + B \sinh(\omega t)$.
+
+La forma propuesta en el enunciado, $x(t)= c_1 \cos(\omega t)+ c_2 \text{sen}(\omega t)$, corresponde exclusivamente al caso en el que las raíces de la ecuación característica son \textbf{números imaginarios puros conjugados}, es decir, de la forma $r = \pm i\omega$. Esto ocurriría si la ecuación diferencial original tuviera un signo positivo entre los términos, específicamente $x''(t) + \omega^2 x(t) = 0$. Dado que en nuestro problema el signo es negativo ($-\omega^2 x$), las soluciones son de crecimiento/decaimiento exponencial y no oscilatorias trigonométricas. Por lo tanto, la forma sugerida es incorrecta para la ecuación dada.
+
+\subsection{Item b}
+La solución de una E.D $x''(t)+ 2\lambda x'(t) - \omega^2 x = 0$ es de la forma $x(t)= e^{-\lambda t}[c_1 \cos(\omega t)+ c_2 \text{sen}(\omega t)]$.
+
+\subsubsection{Solución}
+La afirmación presentada es \textbf{Falsa}. Para validar esta conclusión, realizamos un análisis detallado de la naturaleza de las raíces de la ecuación característica asociada a la E.D.O. proporcionada.
+
+La ecuación diferencial es:
+$$
+x''(t) + 2\lambda x'(t) - \omega^2 x(t) = 0
+$$
+Al igual que en el item anterior, asumimos una solución de la forma $x(t) = e^{rt}$. Sustituyendo en la ecuación, obtenemos la ecuación característica correspondiente:
+$$
+r^2 + 2\lambda r - \omega^2 = 0
+$$
+Para determinar la forma de la solución general, debemos resolver esta ecuación cuadrática para $r$ utilizando la fórmula general:
+$$
+r = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+$$
+Identificando los coeficientes $a = 1$, $b = 2\lambda$, y $c = -\omega^2$, sustituimos:
+$$
+r = \frac{-2\lambda \pm \sqrt{(2\lambda)^2 - 4(1)(-\omega^2)}}{2}
+$$
+Simplificando la expresión dentro de la raíz cuadrada (el discriminante):
+$$
+r = \frac{-2\lambda \pm \sqrt{4\lambda^2 + 4\omega^2}}{2} = \frac{-2\lambda \pm 2\sqrt{\lambda^2 + \omega^2}}{2}
+$$
+$$
+r = -\lambda \pm \sqrt{\lambda^2 + \omega^2}
+$$
+Analizamos el término bajo la raíz cuadrada, $\Delta' = \lambda^2 + \omega^2$. Asumiendo que $\omega$ es un número real no nulo, la suma de cuadrados $\lambda^2 + \omega^2$ es estrictamente positiva ($\lambda^2 + \omega^2 > 0$). Esto garantiza que la cantidad $\sqrt{\lambda^2 + \omega^2}$ es un número real. Por lo tanto, las raíces de la ecuación característica son:
+$$
+r_1 = -\lambda + \sqrt{\lambda^2 + \omega^2}, \quad r_2 = -\lambda - \sqrt{\lambda^2 + \omega^2}
+$$
+Las raíces $r_1$ y $r_2$ son \textbf{números reales y distintos}. La solución general para este caso se construye como:
+$$
+x(t) = c_1 e^{r_1 t} + c_2 e^{r_2 t}
+$$
+Factorizando el término común $e^{-\lambda t}$, la solución real es:
+$$
+x(t) = e^{-\lambda t} \left[ c_1 e^{\sqrt{\lambda^2 + \omega^2} \, t} + c_2 e^{-\sqrt{\lambda^2 + \omega^2} \, t} \right]
+$$
+La forma sugerida en el enunciado, $x(t)= e^{-\lambda t}[c_1 \cos(\omega t)+ c_2 \text{sen}(\omega t)]$, describe un comportamiento \textit{oscilatorio amortiguado}. Esta forma surge únicamente cuando las raíces de la ecuación característica son \textbf{números complejos conjugados} de la forma $r = -\lambda \pm i\beta$. Para que esto ocurra, el discriminante de la ecuación cuadrática debería ser negativo. Sin embargo, debido al signo negativo frente al término $\omega^2 x$ en la ecuación diferencial original ($-\omega^2$), el discriminante se vuelve positivo ($4\lambda^2 + 4\omega^2$), eliminando la posibilidad de raíces complejas y, por ende, de funciones trigonométricas en la solución. La forma propuesta sería correcta si la ecuación fuera $x''(t) + 2\lambda x'(t) + (\lambda^2 + \omega^2)x = 0$ o similar donde el término independiente sea positivo y grande enough para hacer el discriminante negativo. En conclusión, la afirmación es matemáticamente incorrecta.
+
+\subsection{Item c}
+Si $y_1(x)$ y $y_2(x)$ son soluciones linealmente independientes de la ecuación diferencial lineal homogénea de segundo orden $y'' + p(x)y' + q(x)y = 0$ en un intervalo $I$, entonces el Wronskiano $W(y_1, y_2)(x)$ es idénticamente cero en $I$.
+
+\subsubsection{Solución}
+La afirmación planteada es \textbf{Falsa}. Para demostrar esto analíticamente, debemos recurrir a la teoría fundamental de las ecuaciones diferenciales lineales de orden superior y las propiedades del Wronskiano.
+
+Definimos el Wronskiano de dos funciones diferenciables $y_1(x)$ y $y_2(x)$ como el determinante de la matriz formada por las funciones y sus primeras derivadas:
+$$
+W(y_1, y_2)(x) = \begin{vmatrix} y_1(x) & y_2(x) \\ y_1'(x) & y_2'(x) \end{vmatrix} = y_1(x)y_2'(x) - y_1'(x)y_2(x)
+$$
+El teorema de Abel-Liouville establece que para una ecuación diferencial lineal homogénea de segundo orden de la forma $y'' + p(x)y' + q(x)y = 0$, donde $p(x)$ y $q(x)$ son continuas en un intervalo $I$, el Wronskiano de dos soluciones cualesquiera satisface la siguiente ecuación diferencial de primer orden:
+$$
+\frac{dW}{dx} + p(x)W = 0
+$$
+La solución general de esta ecuación para el Wronskiano es:
+$$
+W(x) = C \exp\left( -\int_{x_0}^x p(t) \, dt \right)
+$$
+donde $C$ es una constante determinada por las condiciones iniciales. Dado que la función exponencial nunca es cero para ningún argumento real finito, el Wronskiano $W(x)$ es o bien idénticamente cero (si $C=0$) o bien diferente de cero para todo $x \in I$ (si $C \neq 0$).
+
+La relación entre el Wronskiano y la independencia lineal se establece mediante el siguiente teorema clave: Dos soluciones $y_1$ y $y_2$ de una ecuación diferencial lineal homogénea de segundo orden son \textbf{linealmente independientes} en el intervalo $I$ si y solo si su Wronskiano es \textbf{diferente de cero} para todo $x \in I$.
+$$
+y_1, y_2 \text{ son L.I.} \iff W(y_1, y_2)(x) \neq 0, \quad \forall x \in I
+$$
+La afirmación del enunciado sugiere que si las soluciones son linealmente independientes, el Wronskiano es cero. Esto es una contradicción directa con la definición y los teoremas de existencia y unicidad. Si el Wronskiano fuera cero, las soluciones serían linealmente dependientes (una sería múltiplo escalar de la otra), lo cual violaría la hipótesis del enunciado. Por lo tanto, para soluciones linealmente independientes, el Wronskiano debe ser estrictamente no nulo en todo el intervalo, haciendo que la afirmación sea falsa.
+
+\subsection{Item d}
+La solución general de una ecuación diferencial lineal no homogénea de la forma $L[y] = g(x)$ está dada por $y(x) = y_h(x) + y_p(x)$, donde $y_h$ es la solución general de la ecuación homogénea asociada y $y_p$ es una solución particular de la ecuación no homogénea.
+
+\subsubsection{Solución}
+La afirmación presentada es \textbf{Verdadera}. Esta propiedad es fundamental en la teoría de ecuaciones diferenciales lineales y se deriva directamente del principio de superposición aplicado a operadores lineales.
+
+Consideremos el operador diferencial lineal $L$ de orden $n$, definido tal que la ecuación diferencial se escribe como $L[y] = g(x)$. La ecuación homogénea asociada es $L[y] = 0$.
+Sea $y_h(x)$ la solución general de la ecuación homogénea. Esto implica que $y_h(x)$ puede expresarse como una combinación lineal de $n$ soluciones linealmente independientes $y_1, \dots, y_n$:
+$$
+y_h(x) = c_1 y_1(x) + c_2 y_2(x) + \dots + c_n y_n(x)
+$$
+y satisface por definición:
+$$
+L[y_h] = 0
+$$
+Sea $y_p(x)$ una solución particular cualquiera de la ecuación no homogénea, lo que significa que:
+$$
+L[y_p] = g(x)
+$$
+Proponemos que la función suma $y(x) = y_h(x) + y_p(x)$ es la solución general de la ecuación no homogénea. Para verificar esto, aplicamos el operador lineal $L$ a la suma propuesta. Debido a la linealidad del operador, se cumple que $L[u + v] = L[u] + L[v]$:
+$$
+L[y] = L[y_h + y_p] = L[y_h] + L[y_p]
+$$
+Sustituyendo las propiedades conocidas de $y_h$ y $y_p$:
+$$
+L[y] = 0 + g(x) = g(x)
+$$
+Esto demuestra que $y = y_h + y_p$ satisface la ecuación diferencial no homogénea.
+
+Adicionalmente, para justificar que esta es la \textit{solución general}, debemos argumentar que contiene todos los grados de libertad necesarios. Supongamos que existe otra solución arbitraria $\bar{y}(x)$ tal que $L[\bar{y}] = g(x)$. Consideremos la diferencia $u(x) = \bar{y}(x) - y_p(x)$. Aplicando el operador:
+$$
+L[u] = L[\bar{y} - y_p] = L[\bar{y}] - L[y_p] = g(x) - g(x) = 0
+$$
+Esto implica que la diferencia entre cualquier solución de la no homogénea y una solución particular fija es necesariamente una solución de la homogénea. Por lo tanto, $\bar{y}(x) - y_p(x) = y_h(x)$ para alguna elección de constantes en $y_h$, lo que nos lleva a $\bar{y}(x) = y_h(x) + y_p(x)$. Esto confirma analíticamente que la estructura propuesta en el enunciado cubre todo el espacio de soluciones, validando la afirmación como verdadera.
+
+\subsection{Item e}
+Un operador diferencial que actúa anulando a $e^x \text{sen}(x)$ es $(D+1)(D^2 - 2D + 2)$.
+
+\subsubsection{Solución}
+La afirmación planteada es \textbf{Falsa}. Para justificar esto analíticamente, debemos determinar el operador anulador mínimo correcto para la función dada y compararlo con el operador propuesto en el enunciado.
+
+El método de los coeficientes indeterminados se basa en la existencia de un operador diferencial lineal $L$ con coeficientes constantes que "anule" la función de entrada $g(x)$, es decir, tal que $L[g(x)] = 0$. La función dada es $g(x) = e^x \text{sen}(x)$. Esta función pertenece a la familia de funciones de la forma $e^{\alpha x} \text{sen}(\beta x)$, donde $\alpha = 1$ y $\beta = 1$.
+
+Para encontrar el operador anulador, identificamos las raíces de la ecuación característica asociadas a esta función. Una función de la forma $e^{\alpha x} \text{sen}(\beta x)$ (y su contraparte cosenoidal) es generada por raíces complejas conjugadas de la forma $m = \alpha \pm i\beta$. En este caso, las raíces necesarias son:
+$$
+m = 1 \pm i(1) \implies m = 1 \pm i
+$$
+El polinomio característico mínimo que tiene estas raíces se construye como:
+$$
+(m - (1+i))(m - (1-i)) = ((m-1) - i)((m-1) + i) = (m-1)^2 - i^2 = (m-1)^2 + 1
+$$
+Desarrollando el polinomio:
+$$
+(m-1)^2 + 1 = m^2 - 2m + 1 + 1 = m^2 - 2m + 2
+$$
+Por lo tanto, el operador diferencial anulador \textit{mínimo} correspondiente es:
+$$
+A(D) = D^2 - 2D + 2
+$$
+El enunciado propone el operador $L = (D+1)(D^2 - 2D + 2)$. Analicemos las raíces de este operador propuesto. El factor $(D^2 - 2D + 2)$ aporta las raíces correctas $1 \pm i$. Sin embargo, el factor adicional $(D+1)$ introduce una raíz real extra $m = -1$. Esta raíz corresponde a una función de la forma $e^{-x}$, la cual no está presente en la función original $g(x) = e^x \text{sen}(x)$.
+
+Aunque es cierto que aplicar el operador propuesto $L$ a la función daría cero (ya que contiene al anulador mínimo como factor), en el contexto del método de coeficientes indeterminados y la teoría de ecuaciones diferenciales, cuando se pregunta por "el" operador anulador o se evalúa la forma correcta para la construcción de la solución, se requiere el operador de \textit{menor orden} posible. La inclusión del factor $(D+1)$ eleva innecesariamente el orden de la ecuación diferencial auxiliar resultante e introduce términos extraños ($c e^{-x}$) en la solución general de la ecuación homogénea de orden superior asociada. Por lo tanto, la afirmación se considera falsa debido a la falta de minimalidad y precisión en el operador especificado.
+
+\subsection{Item f}
+Mediante el método de coeficientes indeterminados, la solución particular $y_p$ de la E.D $y'' - 5y' + 4y = 8e^x$ adopta la forma $y_p = Bxe^x$.
+
+\subsubsection{Solución}
+La afirmación presentada es \textbf{Verdadera}. Para validar esta conclusión, debemos analizar la ecuación diferencial homogénea asociada y comparar sus raíces con el exponente de la función no homogénea para determinar la forma adecuada de la solución particular.
+
+La ecuación diferencial dada es:
+$$
+y'' - 5y' + 4y = 8e^x
+$$
+Primero, resolvemos la ecuación homogénea asociada $y'' - 5y' + 4y = 0$. La ecuación característica correspondiente es:
+$$
+r^2 - 5r + 4 = 0
+$$
+Factorizando el polinomio cuadrático:
+$$
+(r - 4)(r - 1) = 0
+$$
+Las raíces de la ecuación característica son $r_1 = 1$ y $r_2 = 4$. Estas raíces son reales y distintas, por lo que la solución complementaria es $y_h = c_1 e^x + c_2 e^{4x}$.
+
+Ahora, examinamos el término no homogéneo $g(x) = 8e^x$. Este término es de la forma $P(x)e^{\alpha x}$, donde $P(x) = 8$ (un polinomio de grado 0) y $\alpha = 1$.
+Según el método de coeficientes indeterminados, la forma inicial propuesta para la solución particular sería $y_p = A e^{\alpha x} = A e^x$. Sin embargo, debemos verificar si este término ya es solución de la ecuación homogénea.
+
+Comparamos el exponente $\alpha = 1$ con las raíces de la ecuación característica $r_1 = 1, r_2 = 4$. Observamos que $\alpha = 1$ coincide exactamente con la raíz $r_1 = 1$. Esta coincidencia indica que el término $e^x$ ya está presente en la solución complementaria $y_h$.
+La regla del método establece que si $\alpha$ es una raíz de la ecuación característica de multiplicidad $k$, la forma propuesta debe multiplicarse por $x^k$. En este caso, $r = 1$ es una raíz de multiplicidad $k = 1$ (aparece una sola vez).
+
+Por lo tanto, la forma correcta para la solución particular debe ser multiplicada por $x^1$:
+$$
+y_p = x^1 \cdot (B e^x) = Bxe^x
+$$
+El enunciado afirma que la forma adoptada es $y_p = Bxe^x$. Esto coincide exactamente con la deducción analítica basada en la multiplicidad de la raíz. No es necesario multiplicar por $x^2$ porque la multiplicidad es 1, y no se puede dejar solo $Be^x$ porque sería linealmente dependiente con la solución homogénea. En consecuencia, la afirmación es correcta.
+
+\subsection{Item g}
+Mediante el método de coeficientes indeterminados, la solución particular $y_p$ de la E.D $y'' - 2y' - 3y = 4e^x - 9$ adopta la forma $y_p = Bxe^x$.
+
+\subsubsection{Solución}
+La afirmación presentada es \textbf{Falsa}. Para demostrar esto, debemos analizar detalladamente la estructura de la ecuación diferencial y aplicar rigurosamente el método de coeficientes indeterminados para determinar la forma correcta de la solución particular.
+
+La ecuación diferencial dada es:
+$$
+y'' - 2y' - 3y = 4e^x - 9
+$$
+Primero, resolvemos la ecuación homogénea asociada $y'' - 2y' - 3y = 0$ para encontrar las raíces de la ecuación característica, ya que estas determinan si existe resonancia con los términos no homogéneos. La ecuación auxiliar es:
+$$
+r^2 - 2r - 3 = 0
+$$
+Factorizando el polinomio cuadrático:
+$$
+(r - 3)(r + 1) = 0
+$$
+Las raíces son $r_1 = 3$ y $r_2 = -1$. Por lo tanto, la solución complementaria es $y_h = c_1 e^{3x} + c_2 e^{-x}$.
+
+Ahora, analizamos el término no homogéneo $g(x) = 4e^x - 9$. Este término es una suma de dos funciones de tipos diferentes: una exponencial $g_1(x) = 4e^x$ y una constante $g_2(x) = -9$. El principio de superposición nos indica que la forma de $y_p$ debe ser la suma de las formas propuestas para cada término por separado.
+
+1.  \textbf{Para el término $4e^x$:} La función es de la forma $Ce^{\alpha x}$ con $\alpha = 1$. Comparamos $\alpha = 1$ con las raíces de la ecuación característica $\{3, -1\}$. Dado que $1$ no es una raíz de la ecuación auxiliar, no hay resonancia. La forma propuesta para este término debería ser simplemente $A e^x$. La forma sugerida en el enunciado, $Bxe^x$, incluye un factor $x$ adicional, lo cual solo sería necesario si $\alpha = 1$ fuera una raíz de la ecuación característica (lo cual no es cierto).
+
+2.  \textbf{Para el término $-9$:} Esta es una constante, que puede verse como un polinomio de grado cero $P_0(x)e^{0x}$ con $\alpha = 0$. Comparamos $\alpha = 0$ con las raíces $\{3, -1\}$. Como $0$ no es una raíz, la forma propuesta para este término debería ser una constante $C$. El enunciado omite completamente este término en la forma propuesta de $y_p$.
+
+La forma correcta y completa para la solución particular, combinando ambos análisis, es:
+$$
+y_p = A e^x + C
+$$
+La afirmación del enunciado propone $y_p = Bxe^x$, la cual es incorrecta por dos razones analíticas: primero, introduce innecesariamente una multiplicidad por $x$ para el término exponencial, y segundo, ignora por completo el término constante requerido por el $-9$ en el lado derecho de la ecuación. Por lo tanto, la afirmación es falsa.
+
+\subsection{Item h}
+El conjunto de funciones $f_1(x)= x^2$, $f_2(x)= 1 - x^2$, $f_3(x)= 2 + x^2$ en el intervalo $(-\infty, \infty)$ es linealmente independiente.
+
+\subsubsection{Solución}
+La afirmación planteada es \textbf{Falsa}. Para verificar la independencia lineal de un conjunto de funciones, debemos determinar si la combinación lineal de dichas funciones es igual a cero únicamente cuando todos los coeficientes son cero.
+
+Definimos la combinación lineal de las funciones $f_1, f_2, f_3$ con coeficientes constantes $c_1, c_2, c_3$:
+$$
+c_1 f_1(x) + c_2 f_2(x) + c_3 f_3(x) = 0
+$$
+Sustituimos las expresiones explícitas de las funciones dadas en la ecuación anterior:
+$$
+c_1 (x^2) + c_2 (1 - x^2) + c_3 (2 + x^2) = 0
+$$
+Esta igualdad debe cumplirse para toda $x$ en el intervalo $(-\infty, \infty)$. Agrupamos los términos según las potencias de $x$:
+$$
+c_1 x^2 + c_2 - c_2 x^2 + 2c_3 + c_3 x^2 = 0
+$$
+$$
+(c_1 - c_2 + c_3)x^2 + (c_2 + 2c_3) = 0
+$$
+Para que este polinomio sea idénticamente cero para todo $x$, los coeficientes de cada potencia de $x$ deben ser individualmente cero. Esto nos genera el siguiente sistema de ecuaciones lineales homogéneas:
+\begin{align*}
+\text{Coeficiente de } x^2: & \quad c_1 - c_2 + c_3 = 0 \\
+\text{Término constante}: & \quad c_2 + 2c_3 = 0
+\end{align*}
+Tenemos un sistema de 2 ecuaciones con 3 incógnitas ($c_1, c_2, c_3$). Esto implica que el sistema tiene infinitas soluciones, es decir, existen soluciones no triviales (donde no todos los $c_i$ son cero). Podemos expresar las variables en términos de una variable libre, por ejemplo, $c_3$.
+
+De la segunda ecuación:
+$$
+c_2 = -2c_3
+$$
+Sustituyendo $c_2$ en la primera ecuación:
+$$
+c_1 - (-2c_3) + c_3 = 0 \implies c_1 + 2c_3 + c_3 = 0 \implies c_1 = -3c_3
+$$
+Si elegimos un valor arbitrario no nulo para $c_3$, digamos $c_3 = 1$, obtenemos:
+$$
+c_3 = 1, \quad c_2 = -2, \quad c_1 = -3
+$$
+Verificamos esta combinación lineal con los valores encontrados:
+$$
+-3(x^2) - 2(1 - x^2) + 1(2 + x^2) = -3x^2 - 2 + 2x^2 + 2 + x^2 = (-3 + 2 + 1)x^2 + (-2 + 2) = 0
+$$
+Dado que hemos encontrado constantes $c_1, c_2, c_3$ no todas cero que satisfacen la condición de combinación lineal nula, el conjunto de funciones es \textbf{linealmente dependiente}. Otra forma de verlo analíticamente es observar que $f_3(x)$ puede escribirse como combinación lineal de $f_1$ y $f_2$:
+$$
+f_3(x) = 2 + x^2 = -2(1 - x^2) + 3(x^2) = -2f_2(x) + 3f_1(x)
+$$
+La existencia de esta relación directa confirma la dependencia lineal. Por consiguiente, la afirmación de que son linealmente independientes es falsa.
+
+
+\subsection{Item i}
+Suponga que $m_1=3$, $m_2=-5$ y $m_3= 1$ son raíces de multiplicidad uno, dos y tres respectivamente, de una ecuación auxiliar entonces la solución general de la E.D lineal homogénea es $y= c_1 x^3 + c_2 x^{-5} + c_3 x^{-5} \ln x+ c_4 x+ c_5 x \ln x+ c_6 x(\ln x)^2$ si es una ecuación de Cauchy-Euler.
+
+\subsubsection{Solución}
+La afirmación presentada es \textbf{Verdadera}. Para validar esto, debemos analizar la teoría específica de las ecuaciones diferenciales de Cauchy-Euler y cómo las raíces de la ecuación auxiliar determinan la forma de la solución general.
+
+Una ecuación diferencial de Cauchy-Euler de orden $n$ tiene la forma general:
+$$
+a_n x^n y^{(n)} + a_{n-1} x^{n-1} y^{(n-1)} + \dots + a_1 x y' + a_0 y = 0
+$$
+Para resolverla, se propone una solución de la forma $y = x^m$. Al sustituir esta forma en la ecuación, se obtiene una ecuación auxiliar polinómica en términos de $m$. La estructura de la solución general depende directamente de la naturaleza y multiplicidad de las raíces $m$ de esta ecuación auxiliar.
+
+Analicemos caso por caso las raíces proporcionadas en el enunciado:
+\begin{enumerate}
+    \item \textbf{Raíz $m_1 = 3$ con multiplicidad 1:}
+    Cuando tenemos una raíz real distinta $m$, la solución correspondiente es simplemente $x^m$. Por lo tanto, para $m_1 = 3$, el término en la solución general es:
+    $$
+    y_1 = c_1 x^3
+    $$
+    \item \textbf{Raíz $m_2 = -5$ con multiplicidad 2:}
+    Cuando una raíz real $m$ se repite $k$ veces (multiplicidad $k$), las soluciones linealmente independientes asociadas se generan multiplicando por potencias crecientes del logaritmo natural $\ln x$. Para multiplicidad 2, las soluciones son $x^m$ y $x^m \ln x$. Por lo tanto, para $m_2 = -5$, los términos son:
+    $$
+    y_2 = c_2 x^{-5} + c_3 x^{-5} \ln x
+    $$
+    \item \textbf{Raíz $m_3 = 1$ con multiplicidad 3:}
+    Para una raíz real con multiplicidad 3, las soluciones independientes son $x^m$, $x^m \ln x$, y $x^m (\ln x)^2$. Por lo tanto, para $m_3 = 1$, los términos son:
+    $$
+    y_3 = c_4 x^1 + c_5 x^1 \ln x + c_6 x^1 (\ln x)^2
+    $$
+\end{enumerate}
+
+La solución general de la ecuación diferencial es la superposición (suma lineal) de todas las soluciones independientes encontradas para cada raíz:
+$$
+y(x) = y_1 + y_2 + y_3
+$$
+Sustituyendo las expresiones obtenidas:
+$$
+y(x) = c_1 x^3 + (c_2 x^{-5} + c_3 x^{-5} \ln x) + (c_4 x + c_5 x \ln x + c_6 x (\ln x)^2)
+$$
+Esta expresión coincide exactamente con la fórmula propuesta en el enunciado: $y= c_1 x^3 + c_2 x^{-5} + c_3 x^{-5} \ln x+ c_4 x+ c_5 x \ln x+ c_6 x(\ln x)^2$. Por lo tanto, la afirmación es correcta desde el punto de vista teórico y estructural.
+
+\subsection{Item j}
+Un múltiplo constante de una solución de una E.D lineal es también una solución.
+
+\subsubsection{Solución}
+La afirmación planteada es \textbf{Falsa}. Aunque esta propiedad es cierta para un subconjunto importante de ecuaciones diferenciales lineales (las homogéneas), no se cumple universalmente para todas las ecuaciones diferenciales lineales, específicamente falla en el caso de las ecuaciones no homogéneas. Para justificar esto analíticamente, utilizaremos la definición de un operador diferencial lineal.
+
+Sea $L$ un operador diferencial lineal de orden $n$. Una ecuación diferencial lineal se puede escribir como:
+$$
+L[y] = g(x)
+$$
+Donde $y$ es la función incógnita y $g(x)$ es el término no homogéneo (función de entrada).
+
+\textbf{Caso 1: Ecuación Homogénea ($g(x) = 0$)}
+Si la ecuación es homogénea, tenemos $L[y] = 0$. Supongamos que $y_1$ es una solución, es decir, $L[y_1] = 0$. Si tomamos un múltiplo constante $c y_1$, por la linealidad del operador ($L[cy] = cL[y]$):
+$$
+L[c y_1] = c L[y_1] = c \cdot 0 = 0
+$$
+En este caso, el múltiplo constante \textit{sí} es solución.
+
+\textbf{Caso 2: Ecuación No Homogénea ($g(x) \neq 0$)}
+Si la ecuación es no homogénea, tenemos $L[y] = g(x)$ con $g(x) \neq 0$. Supongamos que $y_p$ es una solución particular, es decir, $L[y_p] = g(x)$. Si tomamos un múltiplo constante $c y_p$ con $c \neq 1$:
+$$
+L[c y_p] = c L[y_p] = c \cdot g(x)
+$$
+Para que $c y_p$ sea también solución de la ecuación original, debería cumplir $L[c y_p] = g(x)$. Esto implicaría:
+$$
+c \cdot g(x) = g(x) \implies (c - 1)g(x) = 0
+$$
+Dado que $g(x) \neq 0$, esto solo es posible si $c = 1$. Para cualquier otra constante $c \neq 1$, la función $c y_p$ \textbf{no} satisface la ecuación diferencial.
+
+\textbf{Conclusión:}
+La afirmación del enunciado es general ("una E.D lineal") y no restringe el caso a ecuaciones homogéneas. Dado que existe al menos un caso (ecuaciones no homogéneas) donde la propiedad no se cumple, la afirmación general es falsa. La propiedad de que "un múltiplo constante de una solución es también una solución" es exclusiva de las ecuaciones lineales \textit{homogéneas}.
+
+\subsection{Item k}
+El conjunto de funciones es linealmente independiente $f_1(x)= x^2$, $f_2(x)= x|x|$ en el intervalo $(-\infty, 0)$.
+
+\subsubsection{Solución}
+La afirmación presentada es \textbf{Falsa}. Para determinar la independencia lineal de un conjunto de funciones en un intervalo específico, debemos verificar si la única combinación lineal que produce la función cero es la trivial (todos los coeficientes iguales a cero).
+
+Definimos la combinación lineal de las funciones dadas con constantes $c_1$ y $c_2$:
+$$
+c_1 f_1(x) + c_2 f_2(x) = 0 \quad \text{para toda } x \in (-\infty, 0)
+$$
+Sustituimos las definiciones de las funciones:
+$$
+f_1(x) = x^2
+$$
+$$
+f_2(x) = x|x|
+$$
+Es crucial analizar el comportamiento de la función valor absoluto $|x|$ en el intervalo dado $(-\infty, 0)$. Por definición:
+$$
+|x| = \begin{cases} x & \text{si } x \geq 0 \\ -x & \text{si } x < 0 \end{cases}
+$$
+Dado que nuestro intervalo es $(-\infty, 0)$, todos los valores de $x$ son estrictamente negativos ($x < 0$). Por lo tanto, en este intervalo, $|x| = -x$.
+Sustituimos esto en la expresión de $f_2(x)$:
+$$
+f_2(x) = x(-x) = -x^2 \quad \text{para } x \in (-\infty, 0)
+$$
+Ahora, observamos la relación entre $f_1(x)$ y $f_2(x)$ en este intervalo:
+$$
+f_1(x) = x^2
+$$
+$$
+f_2(x) = -x^2 = -1 \cdot f_1(x)
+$$
+Esto muestra que $f_2(x)$ es un múltiplo escalar constante de $f_1(x)$ en el intervalo especificado. Podemos construir una combinación lineal no trivial que sea idénticamente cero. Por ejemplo, eligiendo $c_1 = 1$ y $c_2 = 1$:
+$$
+1 \cdot f_1(x) + 1 \cdot f_2(x) = x^2 + (-x^2) = 0
+$$
+O más formalmente, buscando $c_1, c_2$ no ambos cero:
+$$
+c_1 x^2 + c_2 (-x^2) = 0 \implies (c_1 - c_2)x^2 = 0
+$$
+Esto se cumple para todo $x$ si $c_1 = c_2$. Podemos elegir $c_1 = 1, c_2 = 1$, que es una solución no trivial.
+
+La definición de independencia lineal exige que la única solución sea $c_1 = c_2 = 0$. Como hemos encontrado constantes no nulas que satisfacen la ecuación, el conjunto de funciones es \textbf{linealmente dependiente} en el intervalo $(-\infty, 0)$. El enunciado afirma que son linealmente independientes, lo cual es incorrecto. (Nota: En el intervalo $(-\infty, \infty)$ completo, estas funciones sí serían linealmente independientes, pero la restricción al intervalo negativo cambia el resultado).
+
+\section{Problema 2}
+Use la situación $x= e^t$ para transformar la ecuación respectiva de Cauchy-Euler en una E.D con coeficientes constantes. Resuelva la ecuación original.
+
+\subsection{Item a}
+$x^2y'' - xy' + y = \ln x$
+
+\subsubsection{Solución}
+Para resolver la ecuación diferencial de Cauchy-Euler dada, $x^2y'' - xy' + y = \ln x$, utilizaremos la transformación de variables sugerida para convertir la ecuación en una lineal con coeficientes constantes. Este método es fundamental para tratar ecuaciones donde los coeficientes son potencias de la variable independiente que coinciden con el orden de la derivada.
+
+\textbf{1. Transformación de Variables}
+Definimos el cambio de variable $x = e^t$, lo que implica que $t = \ln x$ para $x > 0$. Necesitamos expresar las derivadas de $y$ con respecto a $x$ en términos de derivadas con respecto a $t$. Utilizando la regla de la cadena:
+$$
+\frac{dy}{dx} = \frac{dy}{dt} \frac{dt}{dx} = \frac{dy}{dt} \frac{d}{dx}(\ln x) = \frac{1}{x} \frac{dy}{dt}
+$$
+Multiplicando por $x$, obtenemos la primera identidad transformada:
+$$
+x y' = \frac{dy}{dt}
+$$
+Para la segunda derivada, derivamos nuevamente respecto a $x$:
+$$
+\frac{d^2y}{dx^2} = \frac{d}{dx} \left( \frac{1}{x} \frac{dy}{dt} \right) = -\frac{1}{x^2} \frac{dy}{dt} + \frac{1}{x} \frac{d}{dx} \left( \frac{dy}{dt} \right)
+$$
+Aplicando la regla de la cadena al segundo término:
+$$
+\frac{d}{dx} \left( \frac{dy}{dt} \right) = \frac{d}{dt} \left( \frac{dy}{dt} \right) \frac{dt}{dx} = \frac{d^2y}{dt^2} \frac{1}{x}
+$$
+Sustituyendo esto en la expresión de la segunda derivada:
+$$
+\frac{d^2y}{dx^2} = -\frac{1}{x^2} \frac{dy}{dt} + \frac{1}{x^2} \frac{d^2y}{dt^2} = \frac{1}{x^2} \left( \frac{d^2y}{dt^2} - \frac{dy}{dt} \right)
+$$
+Multiplicando por $x^2$, obtenemos la segunda identidad transformada:
+$$
+x^2 y'' = \frac{d^2y}{dt^2} - \frac{dy}{dt}
+$$
+
+\textbf{2. Ecuación Transformada}
+Sustituimos las expresiones $x y' = \frac{dy}{dt}$, $x^2 y'' = \frac{d^2y}{dt^2} - \frac{dy}{dt}$ y el término no homogéneo $\ln x = t$ en la ecuación original:
+$$
+\left( \frac{d^2y}{dt^2} - \frac{dy}{dt} \right) - \left( \frac{dy}{dt} \right) + y = t
+$$
+Agrupando términos semejantes, obtenemos la ecuación diferencial lineal con coeficientes constantes en la variable $t$:
+$$
+\frac{d^2y}{dt^2} - 2\frac{dy}{dt} + y = t
+$$
+O en notación de operador diferencial $D = \frac{d}{dt}$:
+$$
+(D^2 - 2D + 1)y = t
+$$
+
+\textbf{3. Solución de la Ecuación Homogénea}
+Primero resolvemos la ecuación homogénea asociada $(D^2 - 2D + 1)y = 0$. La ecuación característica es:
+$$
+r^2 - 2r + 1 = 0
+$$
+Factorizando el polinomio cuadrático:
+$$
+(r - 1)^2 = 0
+$$
+Obtenemos una raíz real repetida $r = 1$ con multiplicidad 2. Por lo tanto, la solución complementaria en términos de $t$ es:
+$$
+y_h(t) = c_1 e^{t} + c_2 t e^{t}
+$$
+
+\textbf{4. Solución Particular}
+Para encontrar la solución particular $y_p(t)$ de la ecuación no homogénea $(D^2 - 2D + 1)y = t$, utilizamos el método de coeficientes indeterminados. Dado que el lado derecho es un polinomio de grado 1 ($P(t) = t$), proponemos una solución particular de la forma:
+$$
+y_p(t) = At + B
+$$
+Calculamos las derivadas necesarias:
+$$
+y_p'(t) = A, \quad y_p''(t) = 0
+$$
+Sustituimos $y_p$, $y_p'$ y $y_p''$ en la ecuación diferencial transformada:
+$$
+0 - 2(A) + (At + B) = t
+$$
+$$
+At + (B - 2A) = t
+$$
+Igualamos los coeficientes de las potencias de $t$ en ambos lados de la ecuación:
+\begin{itemize}
+    \item Para $t^1$: $A = 1$
+    \item Para $t^0$: $B - 2A = 0 \implies B = 2A \implies B = 2(1) = 2$
+\end{itemize}
+Por lo tanto, la solución particular es:
+$$
+y_p(t) = t + 2
+$$
+
+\textbf{5. Solución General en términos de $t$}
+La solución general es la suma de la solución homogénea y la particular:
+$$
+y(t) = y_h(t) + y_p(t) = c_1 e^{t} + c_2 t e^{t} + t + 2
+$$
+
+\textbf{6. Retorno a la Variable Original $x$}
+Finalmente, deshacemos el cambio de variable utilizando $t = \ln x$ y $e^t = x$. Sustituimos estas relaciones en la solución general:
+\begin{itemize}
+    \item $e^t \to x$
+    \item $t e^t \to (\ln x) x = x \ln x$
+    \item $t \to \ln x$
+\end{itemize}
+La solución general de la ecuación diferencial original en términos de $x$ es:
+$$
+y(x) = c_1 x + c_2 x \ln x + \ln x + 2
+$$
+Esta expresión representa la familia completa de soluciones para la ecuación de Cauchy-Euler dada en el intervalo $x > 0$.
+
+\subsection{Item b}
+$x^2y'' - xy' + y = \ln x^2$
+
+\subsubsection{Solución}
+Para resolver la ecuación diferencial de Cauchy-Euler propuesta, $x^2y'' - xy' + y = \ln x^2$, aplicaremos el método de transformación de variables indicado en el enunciado del problema 2. Este método nos permite convertir una ecuación con coeficientes variables en una ecuación diferencial lineal con coeficientes constantes, la cual es más sencilla de resolver mediante técnicas algebraicas estándar.
+
+\textbf{1. Simplificación del Término No Homogéneo}
+Primero, observamos el término del lado derecho de la ecuación: $\ln x^2$. Utilizando las propiedades de los logaritmos, sabemos que $\ln(x^k) = k \ln x$. Por lo tanto, para $x > 0$, podemos reescribir la ecuación como:
+$$
+x^2y'' - xy' + y = 2 \ln x
+$$
+Esta simplificación es crucial para facilitar la identificación de la forma de la solución particular en el dominio transformado.
+
+\textbf{2. Transformación de Variables}
+Introducimos el cambio de variable $x = e^t$, lo que implica $t = \ln x$. Bajo esta transformación, los términos derivativos se modifican de la siguiente manera:
+$$
+x y' = \frac{dy}{dt} \quad \text{y} \quad x^2 y'' = \frac{d^2y}{dt^2} - \frac{dy}{dt}
+$$
+Sustituimos estas expresiones en la ecuación diferencial original:
+$$
+\left( \frac{d^2y}{dt^2} - \frac{dy}{dt} \right) - \left( \frac{dy}{dt} \right) + y = 2t
+$$
+Agrupando los términos semejantes de las derivadas, obtenemos la ecuación diferencial transformada con coeficientes constantes:
+$$
+\frac{d^2y}{dt^2} - 2\frac{dy}{dt} + y = 2t
+$$
+En notación de operador diferencial $D = \frac{d}{dt}$, esto se escribe como:
+$$
+(D^2 - 2D + 1)y = 2t
+$$
+
+\textbf{3. Solución de la Ecuación Homogénea}
+Resolvemos primero la ecuación homogénea asociada $(D^2 - 2D + 1)y = 0$. La ecuación característica correspondiente es:
+$$
+r^2 - 2r + 1 = 0
+$$
+Factorizando el polinomio, obtenemos:
+$$
+(r - 1)^2 = 0
+$$
+Esto nos indica que existe una raíz real repetida $r = 1$ con multiplicidad 2. Según la teoría de ecuaciones lineales, cuando las raíces son reales e iguales, la solución complementaria incluye un término multiplicado por $t$. Por lo tanto, la solución homogénea en términos de $t$ es:
+$$
+y_h(t) = c_1 e^{t} + c_2 t e^{t}
+$$
+
+\textbf{4. Solución Particular}
+Para encontrar la solución particular $y_p(t)$, analizamos el lado derecho de la ecuación transformada, que es $g(t) = 2t$. Esto es un polinomio de grado 1. Proponemos una solución particular de la forma genérica de un polinomio de primer grado:
+$$
+y_p(t) = At + B
+$$
+Calculamos las primeras y segundas derivadas de esta propuesta:
+$$
+y_p'(t) = A, \quad y_p''(t) = 0
+$$
+Sustituimos $y_p$, $y_p'$ y $y_p''$ en la ecuación diferencial transformada $(y'' - 2y' + y = 2t)$:
+$$
+0 - 2(A) + (At + B) = 2t
+$$
+$$
+At + (B - 2A) = 2t
+$$
+Para que esta igualdad se cumpla para todo $t$, los coeficientes de las potencias correspondientes de $t$ en ambos lados deben ser iguales. Esto genera el siguiente sistema de ecuaciones algebraicas:
+\begin{itemize}
+    \item Coeficiente de $t^1$: $A = 2$
+    \item Término constante ($t^0$): $B - 2A = 0$
+\end{itemize}
+Sustituyendo $A = 2$ en la segunda ecuación:
+$$
+B - 2(2) = 0 \implies B = 4
+$$
+Por lo tanto, la solución particular en el dominio $t$ es:
+$$
+y_p(t) = 2t + 4
+$$
+
+\textbf{5. Solución General y Retorno a la Variable Original}
+La solución general en términos de $t$ es la suma de la solución homogénea y la particular:
+$$
+y(t) = c_1 e^{t} + c_2 t e^{t} + 2t + 4
+$$
+Finalmente, debemos regresar a la variable original $x$. Utilizamos las relaciones inversas $t = \ln x$ y $e^t = x$. Sustituimos estas relaciones en la solución general:
+\begin{itemize}
+    \item $e^t \rightarrow x$
+    \item $t e^t \rightarrow (\ln x) x = x \ln x$
+    \item $t \rightarrow \ln x$
+\end{itemize}
+La solución final de la ecuación diferencial es:
+$$
+y(x) = c_1 x + c_2 x \ln x + 2 \ln x + 4
+$$
+
+\subsection{Item c}
+$x^2y'' + 10xy' + 8y = x^2$
+
+\subsubsection{Solución}
+Procedemos a resolver la ecuación de Cauchy-Euler $x^2y'' + 10xy' + 8y = x^2$ utilizando la misma metodología de transformación de variables $x = e^t$. Este enfoque es particularmente útil cuando el término no homogéneo es una potencia de $x$, ya que se transforma en una exponencial en el dominio $t$.
+
+\textbf{1. Transformación de la Ecuación}
+Aplicamos el cambio de variable $x = e^t$ (con $t = \ln x$). Las transformaciones para los términos derivativos son:
+$$
+x y' \rightarrow \frac{dy}{dt}, \quad x^2 y'' \rightarrow \frac{d^2y}{dt^2} - \frac{dy}{dt}
+$$
+El término no homogéneo $x^2$ se transforma utilizando la propiedad de las potencias:
+$$
+x^2 = (e^t)^2 = e^{2t}
+$$
+Sustituimos todo en la ecuación original:
+$$
+\left( \frac{d^2y}{dt^2} - \frac{dy}{dt} \right) + 10\left( \frac{dy}{dt} \right) + 8y = e^{2t}
+$$
+Agrupamos los términos de las derivadas primeras:
+$$
+\frac{d^2y}{dt^2} + (-1 + 10)\frac{dy}{dt} + 8y = e^{2t}
+$$
+$$
+\frac{d^2y}{dt^2} + 9\frac{dy}{dt} + 8y = e^{2t}
+$$
+En notación de operador diferencial:
+$$
+(D^2 + 9D + 8)y = e^{2t}
+$$
+
+\textbf{2. Solución de la Ecuación Homogénea}
+Analizamos la ecuación homogénea asociada $(D^2 + 9D + 8)y = 0$. La ecuación característica es:
+$$
+r^2 + 9r + 8 = 0
+$$
+Buscamos dos números que multiplicados den 8 y sumados den 9. Estos son 1 y 8. Factorizamos:
+$$
+(r + 1)(r + 8) = 0
+$$
+Las raíces son reales y distintas: $r_1 = -1$ y $r_2 = -8$. Por lo tanto, la solución complementaria en términos de $t$ es una combinación lineal de las exponenciales correspondientes:
+$$
+y_h(t) = c_1 e^{-t} + c_2 e^{-8t}
+$$
+
+\textbf{3. Solución Particular}
+El término no homogéneo es una función exponencial $g(t) = e^{2t}$. Proponemos una solución particular de la forma $y_p(t) = A e^{2t}$, donde $A$ es una constante por determinar. Notamos que el exponente $2$ no coincide con ninguna de las raíces de la ecuación característica ($-1$ y $-8$), por lo que no es necesario multiplicar por $t$.
+
+Calculamos las derivadas de la propuesta:
+$$
+y_p(t) = A e^{2t}
+$$
+$$
+y_p'(t) = 2A e^{2t}
+$$
+$$
+y_p''(t) = 4A e^{2t}
+$$
+Sustituimos estas expresiones en la ecuación diferencial transformada $(y'' + 9y' + 8y = e^{2t})$:
+$$
+4A e^{2t} + 9(2A e^{2t}) + 8(A e^{2t}) = e^{2t}
+$$
+Factorizamos $e^{2t}$ (que es nunca cero) y simplificamos:
+$$
+e^{2t} (4A + 18A + 8A) = e^{2t}
+$$
+$$
+30A = 1 \implies A = \frac{1}{30}
+$$
+Por lo tanto, la solución particular es:
+$$
+y_p(t) = \frac{1}{30} e^{2t}
+$$
+
+\textbf{4. Solución General y Retorno a la Variable Original}
+La solución general en el dominio $t$ es:
+$$
+y(t) = c_1 e^{-t} + c_2 e^{-8t} + \frac{1}{30} e^{2t}
+$$
+Para obtener la solución en términos de la variable original $x$, utilizamos las relaciones $e^{-t} = \frac{1}{e^t} = \frac{1}{x}$, $e^{-8t} = \frac{1}{x^8}$ y $e^{2t} = x^2$. Sustituyendo estas equivalencias:
+\begin{itemize}
+    \item $c_1 e^{-t} \rightarrow c_1 x^{-1} = \frac{c_1}{x}$
+    \item $c_2 e^{-8t} \rightarrow c_2 x^{-8} = \frac{c_2}{x^8}$
+    \item $\frac{1}{30} e^{2t} \rightarrow \frac{1}{30} x^2$
+\end{itemize}
+La solución final de la ecuación diferencial de Cauchy-Euler es:
+$$
+y(x) = \frac{c_1}{x} + \frac{c_2}{x^8} + \frac{x^2}{30}
+$$
+O expresado con exponentes negativos para mantener la consistencia algebraica:
+$$
+y(x) = c_1 x^{-1} + c_2 x^{-8} + \frac{1}{30} x^2
+$$
+
+\section{Problema 3}
+Resolver la E.D, en la cual la función de entrada $g(x)$ es discontinua. Es importante garantizar que $y$ y $y'$ sean continuas en $x = \pi/2$.
+
+\subsection{Item a}
+$y'' + 4y = g(x)$, $y(0) = 1$, $y'(0) = 2$ donde
+$$
+g(x) = \begin{cases} 
+\text{sen}(x), & 0 \leq x \leq \pi/2 \\
+0, & x > \pi/2 
+\end{cases}
+$$
+
+\subsubsection{Solución}
+
+Para resolver esta ecuación diferencial con función de entrada discontinua, debemos resolver la ecuación en dos intervalos separados y luego empalmar las soluciones garantizando la continuidad de $y$ y $y'$ en el punto de discontinuidad $x = \pi/2$.
+
+\textbf{1. Solución para el primer intervalo: $0 \leq x \leq \pi/2$}
+
+En este intervalo, la ecuación diferencial es:
+$$
+y'' + 4y = \text{sen}(x)
+$$
+
+\textit{Solución Homogénea:}
+La ecuación característica asociada a la parte homogénea $y'' + 4y = 0$ es:
+$$
+r^2 + 4 = 0 \implies r = \pm 2i
+$$
+Por lo tanto, la solución complementaria es:
+$$
+y_h(x) = c_1 \cos(2x) + c_2 \text{sen}(2x)
+$$
+
+\textit{Solución Particular:}
+Para el término no homogéneo $g(x) = \text{sen}(x)$, proponemos una solución particular de la forma:
+$$
+y_p(x) = A \cos(x) + B \text{sen}(x)
+$$
+Calculamos las derivadas:
+$$
+y_p'(x) = -A \text{sen}(x) + B \cos(x)
+$$
+$$
+y_p''(x) = -A \cos(x) - B \text{sen}(x)
+$$
+Sustituimos en la ecuación diferencial $y'' + 4y = \text{sen}(x)$:
+$$
+(-A \cos(x) - B \text{sen}(x)) + 4(A \cos(x) + B \text{sen}(x)) = \text{sen}(x)
+$$
+$$
+3A \cos(x) + 3B \text{sen}(x) = \text{sen}(x)
+$$
+Igualando coeficientes:
+\begin{itemize}
+    \item Para $\cos(x)$: $3A = 0 \implies A = 0$
+    \item Para $\text{sen}(x)$: $3B = 1 \implies B = \frac{1}{3}$
+\end{itemize}
+Por lo tanto, la solución particular es:
+$$
+y_p(x) = \frac{1}{3} \text{sen}(x)
+$$
+
+\textit{Solución General del Primer Intervalo:}
+$$
+y_1(x) = c_1 \cos(2x) + c_2 \text{sen}(2x) + \frac{1}{3} \text{sen}(x)
+$$
+
+\textit{Aplicación de Condiciones Iniciales:}
+Usamos $y(0) = 1$ y $y'(0) = 2$ para determinar $c_1$ y $c_2$.
+
+Para $y(0) = 1$:
+$$
+y_1(0) = c_1 \cos(0) + c_2 \text{sen}(0) + \frac{1}{3} \text{sen}(0) = c_1 = 1
+$$
+$$
+c_1 = 1
+$$
+
+Para $y'(0) = 2$, primero calculamos $y_1'(x)$:
+$$
+y_1'(x) = -2c_1 \text{sen}(2x) + 2c_2 \cos(2x) + \frac{1}{3} \cos(x)
+$$
+Evaluando en $x = 0$:
+$$
+y_1'(0) = -2(1) \text{sen}(0) + 2c_2 \cos(0) + \frac{1}{3} \cos(0) = 2c_2 + \frac{1}{3} = 2
+$$
+$$
+2c_2 = 2 - \frac{1}{3} = \frac{5}{3} \implies c_2 = \frac{5}{6}
+$$
+
+Por lo tanto, la solución en el primer intervalo es:
+$$
+y_1(x) = \cos(2x) + \frac{5}{6} \text{sen}(2x) + \frac{1}{3} \text{sen}(x), \quad 0 \leq x \leq \pi/2
+$$
+
+\textbf{2. Solución para el segundo intervalo: $x > \pi/2$}
+
+En este intervalo, la ecuación diferencial es homogénea:
+$$
+y'' + 4y = 0
+$$
+La solución general es:
+$$
+y_2(x) = k_1 \cos(2x) + k_2 \text{sen}(2x)
+$$
+donde $k_1$ y $k_2$ son constantes que debemos determinar usando las condiciones de continuidad en $x = \pi/2$.
+
+\textbf{3. Condiciones de Continuidad en $x = \pi/2$}
+
+Para garantizar que la solución sea físicamente significativa, debemos exigir que $y$ y $y'$ sean continuas en el punto de transición $x = \pi/2$. Esto significa:
+$$
+y_1(\pi/2) = y_2(\pi/2) \quad \text{y} \quad y_1'(\pi/2) = y_2'(\pi/2)
+$$
+
+\textit{Evaluando $y_1(\pi/2)$:}
+$$
+y_1(\pi/2) = \cos(\pi) + \frac{5}{6} \text{sen}(\pi) + \frac{1}{3} \text{sen}(\pi/2)
+$$
+$$
+y_1(\pi/2) = -1 + \frac{5}{6}(0) + \frac{1}{3}(1) = -1 + \frac{1}{3} = -\frac{2}{3}
+$$
+
+\textit{Evaluando $y_1'(\pi/2)$:}
+$$
+y_1'(x) = -2 \text{sen}(2x) + \frac{5}{3} \cos(2x) + \frac{1}{3} \cos(x)
+$$
+$$
+y_1'(\pi/2) = -2 \text{sen}(\pi) + \frac{5}{3} \cos(\pi) + \frac{1}{3} \cos(\pi/2)
+$$
+$$
+y_1'(\pi/2) = -2(0) + \frac{5}{3}(-1) + \frac{1}{3}(0) = -\frac{5}{3}
+$$
+
+\textit{Evaluando $y_2(\pi/2)$ y $y_2'(\pi/2)$:}
+$$
+y_2(\pi/2) = k_1 \cos(\pi) + k_2 \text{sen}(\pi) = -k_1
+$$
+$$
+y_2'(x) = -2k_1 \text{sen}(2x) + 2k_2 \cos(2x)
+$$
+$$
+y_2'(\pi/2) = -2k_1 \text{sen}(\pi) + 2k_2 \cos(\pi) = -2k_2
+$$
+
+\textit{Igualando para encontrar $k_1$ y $k_2$:}
+$$
+-k_1 = -\frac{2}{3} \implies k_1 = \frac{2}{3}
+$$
+$$
+-2k_2 = -\frac{5}{3} \implies k_2 = \frac{5}{6}
+$$
+
+Por lo tanto, la solución en el segundo intervalo es:
+$$
+y_2(x) = \frac{2}{3} \cos(2x) + \frac{5}{6} \text{sen}(2x), \quad x > \pi/2
+$$
+
+\textbf{4. Solución Completa}
+
+La solución final de la ecuación diferencial con la función de entrada discontinua es:
+
+$$
+y(x) = \begin{cases} 
+\displaystyle \cos(2x) + \frac{5}{6} \text{sen}(2x) + \frac{1}{3} \text{sen}(x), & 0 \leq x \leq \pi/2 \\[10pt]
+\displaystyle \frac{2}{3} \cos(2x) + \frac{5}{6} \text{sen}(2x), & x > \pi/2 
+\end{cases}
+$$
+
+\textbf{5. Verificación de Continuidad}
+
+Podemos verificar que la solución satisface las condiciones de continuidad:
+
+En $x = \pi/2$:
+\begin{itemize}
+    \item $y_1(\pi/2) = -\frac{2}{3}$ y $y_2(\pi/2) = \frac{2}{3}(-1) = -\frac{2}{3}$ $\checkmark$
+    \item $y_1'(\pi/2) = -\frac{5}{3}$ y $y_2'(\pi/2) = -2(\frac{5}{6}) = -\frac{5}{3}$ $\checkmark$
+\end{itemize}
+
+Ambas funciones y sus derivadas coinciden en el punto de transición, garantizando una solución suave y físicamente consistente para todo $x \geq 0$.
+
+\section{Problema 4}
+Resolver la ecuación diferencial, garantizando que $y$ y $y'$ sean continuas en $x = \pi$.
+
+\subsection{Item a}
+$y'' + 4y = g(x)$, $y(0) = 1$, $y'(0) = 2$ donde
+$$
+g(x) = \begin{cases} 
+20, & 0 \leq x \leq \pi \\
+0, & x > \pi 
+\end{cases}
+$$
+
+\subsubsection{Solución}
+Para resolver esta ecuación diferencial con una función de entrada discontinua (definida por partes), debemos abordar el problema en dos etapas correspondientes a los intervalos definidos por $g(x)$. Posteriormente, empalmaremos las soluciones en el punto de transición $x = \pi$ imponiendo las condiciones de continuidad para la función $y$ y su primera derivada $y'$.
+
+\textbf{1. Solución para el primer intervalo: $0 \leq x \leq \pi$}
+
+En este intervalo, la función de entrada es constante $g(x) = 20$. La ecuación diferencial a resolver es:
+$$
+y'' + 4y = 20
+$$
+con las condiciones iniciales $y(0) = 1$ y $y'(0) = 2$.
+
+\textit{Solución Homogénea:}
+Primero resolvemos la ecuación homogénea asociada $y'' + 4y = 0$. La ecuación característica es:
+$$
+r^2 + 4 = 0 \implies r = \pm 2i
+$$
+Dado que las raíces son imaginarias puras, la solución complementaria es:
+$$
+y_h(x) = c_1 \cos(2x) + c_2 \text{sen}(2x)
+$$
+
+\textit{Solución Particular:}
+Para el término no homogéneo constante $20$, proponemos una solución particular constante $y_p = A$. Sustituyendo en la ecuación diferencial:
+$$
+y_p'' + 4y_p = 0 + 4A = 20 \implies A = 5
+$$
+Por lo tanto, $y_p(x) = 5$.
+
+\textit{Solución General del Primer Intervalo:}
+La solución general es la suma de la homogénea y la particular:
+$$
+y_1(x) = c_1 \cos(2x) + c_2 \text{sen}(2x) + 5
+$$
+
+\textit{Aplicación de Condiciones Iniciales:}
+Usamos las condiciones dadas en $x = 0$ para determinar $c_1$ y $c_2$.
+Para $y(0) = 1$:
+$$
+y_1(0) = c_1 \cos(0) + c_2 \text{sen}(0) + 5 = c_1 + 5 = 1 \implies c_1 = -4
+$$
+Para $y'(0) = 2$, calculamos primero la derivada $y_1'(x)$:
+$$
+y_1'(x) = -2c_1 \text{sen}(2x) + 2c_2 \cos(2x)
+$$
+Evaluando en $x = 0$:
+$$
+y_1'(0) = -2(-4) \text{sen}(0) + 2c_2 \cos(0) = 2c_2 = 2 \implies c_2 = 1
+$$
+Sustituyendo las constantes, la solución en el primer intervalo es:
+$$
+y_1(x) = -4 \cos(2x) + \text{sen}(2x) + 5, \quad 0 \leq x \leq \pi
+$$
+
+\textbf{2. Solución para el segundo intervalo: $x > \pi$}
+
+En este intervalo, la función de entrada es $g(x) = 0$. La ecuación diferencial es homogénea:
+$$
+y'' + 4y = 0
+$$
+La solución general tiene la misma forma estructural que la homogénea anterior, pero con constantes diferentes que determinaremos por continuidad:
+$$
+y_2(x) = k_1 \cos(2x) + k_2 \text{sen}(2x)
+$$
+
+\textbf{3. Condiciones de Continuidad en $x = \pi$}
+
+El problema exige explícitamente que $y$ y $y'$ sean continuas en el punto de transición $x = \pi$. Esto implica que los límites laterales de la función y su derivada deben coincidir:
+$$
+y_1(\pi) = y_2(\pi) \quad \text{y} \quad y_1'(\pi) = y_2'(\pi)
+$$
+
+\textit{Evaluando la solución del primer intervalo en $\pi$:}
+$$
+y_1(\pi) = -4 \cos(2\pi) + \text{sen}(2\pi) + 5
+$$
+Sabemos que $\cos(2\pi) = 1$ y $\text{sen}(2\pi) = 0$, por lo tanto:
+$$
+y_1(\pi) = -4(1) + 0 + 5 = 1
+$$
+Ahora evaluamos la derivada $y_1'(x)$ en $\pi$. Recordemos que $c_1 = -4$ y $c_2 = 1$:
+$$
+y_1'(x) = -2(-4) \text{sen}(2x) + 2(1) \cos(2x) = 8 \text{sen}(2x) + 2 \cos(2x)
+$$
+$$
+y_1'(\pi) = 8 \text{sen}(2\pi) + 2 \cos(2\pi) = 8(0) + 2(1) = 2
+$$
+
+\textit{Evaluando la solución del segundo intervalo en $\pi$:}
+$$
+y_2(\pi) = k_1 \cos(2\pi) + k_2 \text{sen}(2\pi) = k_1(1) + k_2(0) = k_1
+$$
+Calculamos la derivada $y_2'(x)$:
+$$
+y_2'(x) = -2k_1 \text{sen}(2x) + 2k_2 \cos(2x)
+$$
+Evaluando en $\pi$:
+$$
+y_2'(\pi) = -2k_1 \text{sen}(2\pi) + 2k_2 \cos(2\pi) = 0 + 2k_2(1) = 2k_2
+$$
+
+\textit{Determinación de las constantes $k_1$ y $k_2$:}
+Igualamos los valores obtenidos para garantizar la continuidad:
+\begin{align*}
+y_1(\pi) = y_2(\pi) & \implies 1 = k_1 \\
+y_1'(\pi) = y_2'(\pi) & \implies 2 = 2k_2 \implies k_2 = 1
+\end{align*}
+Por lo tanto, la solución en el segundo intervalo es:
+$$
+y_2(x) = \cos(2x) + \text{sen}(2x), \quad x > \pi
+$$
+
+\textbf{4. Solución Final Completa}
+
+Uniendo las soluciones obtenidas en ambos intervalos, la solución final del problema de valores iniciales con función discontinua es:
+
+$$
+y(x) = \begin{cases} 
+\displaystyle -4 \cos(2x) + \text{sen}(2x) + 5, & 0 \leq x \leq \pi \\[10pt]
+\displaystyle \cos(2x) + \text{sen}(2x), & x > \pi 
+\end{cases}
+$$
+
+\textbf{5. Verificación Analítica}
+
+Podemos verificar brevemente que las condiciones de continuidad se satisfacen con la solución propuesta:
+\begin{itemize}
+    \item \textbf{Continuidad de $y$ en $\pi$:}
+    $$ \lim_{x \to \pi^-} y(x) = -4(1) + 0 + 5 = 1, \quad \lim_{x \to \pi^+} y(x) = 1 + 0 = 1 $$
+    Los límites coinciden.
+    \item \textbf{Continuidad de $y'$ en $\pi$:}
+    $$ \lim_{x \to \pi^-} y'(x) = 8(0) + 2(1) = 2, \quad \lim_{x \to \pi^+} y'(x) = -2(0) + 2(1) = 2 $$
+    Los límites de las derivadas coinciden.
+\end{itemize}
+La solución es analíticamente correcta y satisface todas las condiciones impuestas por el enunciado.
+
+
+
+\section{Problema 5}
+Resuelva las ecuaciones diferenciales sujetas a las condiciones iniciales proporcionadas.
+
+\subsection{Item a}
+$4x^2 y'' + y = 0$, con $y(-1) = 2$, $y'(-1) = 4$.
+
+\subsubsection{Solución}
+La ecuación diferencial dada es una ecuación de Cauchy-Euler homogénea de segundo orden, identificable por la potencia de $x$ en cada término coincidiendo con el orden de la derivada. Dado que las condiciones iniciales están especificadas en $x = -1$, trabajaremos en el intervalo $(-\infty, 0)$.
+
+\textbf{1. Ecuación Característica}
+Proponemos una solución de la forma $y = |x|^m = (-x)^m$ para $x < 0$. Calculamos las derivadas:
+$$
+y' = m(-x)^{m-1}(-1) = -m(-x)^{m-1}
+$$
+$$
+y'' = -m(m-1)(-x)^{m-2}(-1) = m(m-1)(-x)^{m-2}
+$$
+Sustituimos $y$, $y'$ y $y''$ en la ecuación original $4x^2 y'' + y = 0$. Notamos que $x^2 = (-x)^2$:
+$$
+4(-x)^2 [m(m-1)(-x)^{m-2}] + (-x)^m = 0
+$$
+$$
+4m(m-1)(-x)^m + (-x)^m = 0
+$$
+Factorizando $(-x)^m$ (que no es cero):
+$$
+4m(m-1) + 1 = 0
+$$
+$$
+4m^2 - 4m + 1 = 0
+$$
+Esta es la ecuación auxiliar. Resolviendo para $m$:
+$$
+(2m - 1)^2 = 0 \implies m = \frac{1}{2}
+$$
+Obtenemos una raíz real repetida $m_1 = m_2 = \frac{1}{2}$.
+
+\textbf{2. Solución General}
+Para una ecuación de Cauchy-Euler con raíces reales repetidas $m$ en el intervalo $x < 0$, la solución general está dada por:
+$$
+y(x) = c_1 (-x)^m + c_2 (-x)^m \ln(-x)
+$$
+Sustituyendo $m = \frac{1}{2}$:
+$$
+y(x) = c_1 (-x)^{1/2} + c_2 (-x)^{1/2} \ln(-x)
+$$
+O equivalentemente:
+$$
+y(x) = c_1 \sqrt{-x} + c_2 \sqrt{-x} \ln(-x)
+$$
+
+\textbf{3. Aplicación de Condiciones Iniciales}
+Usamos $y(-1) = 2$ para encontrar $c_1$. Evaluamos en $x = -1$ (notando que $-x = 1$ y $\ln(1) = 0$):
+$$
+y(-1) = c_1 \sqrt{1} + c_2 \sqrt{1} \cdot 0 = c_1
+$$
+$$
+c_1 = 2
+$$
+Ahora utilizamos $y'(-1) = 4$. Primero calculamos la derivada $y'(x)$ usando la regla del producto y la regla de la cadena:
+$$
+y'(x) = \frac{d}{dx} \left[ c_1 (-x)^{1/2} \right] + \frac{d}{dx} \left[ c_2 (-x)^{1/2} \ln(-x) \right]
+$$
+Para el primer término:
+$$
+\frac{d}{dx} [c_1 (-x)^{1/2}] = c_1 \cdot \frac{1}{2}(-x)^{-1/2} \cdot (-1) = -\frac{c_1}{2\sqrt{-x}}
+$$
+Para el segundo término:
+$$
+\frac{d}{dx} [c_2 (-x)^{1/2} \ln(-x)] = c_2 \left[ \frac{1}{2}(-x)^{-1/2}(-1)\ln(-x) + (-x)^{1/2} \cdot \frac{1}{-x} \cdot (-1) \right]
+$$
+Simplificando el segundo término (notando que $\frac{(-x)^{1/2}}{x} = \frac{\sqrt{-x}}{-(-x)} = -\frac{1}{\sqrt{-x}}$):
+$$
+= c_2 \left[ -\frac{\ln(-x)}{2\sqrt{-x}} - \frac{1}{\sqrt{-x}} \right]
+$$
+Combinando las derivadas:
+$$
+y'(x) = -\frac{c_1}{2\sqrt{-x}} - \frac{c_2 \ln(-x)}{2\sqrt{-x}} - \frac{c_2}{\sqrt{-x}}
+$$
+Evaluamos en $x = -1$ (donde $\sqrt{-x} = 1$ y $\ln(-x) = 0$):
+$$
+y'(-1) = -\frac{c_1}{2} - 0 - c_2 = -\frac{c_1}{2} - c_2
+$$
+Sustituimos $c_1 = 2$ e igualamos a la condición inicial $y'(-1) = 4$:
+$$
+-\frac{2}{2} - c_2 = 4 \implies -1 - c_2 = 4 \implies c_2 = -5
+$$
+
+\textbf{4. Solución Particular}
+Sustituyendo las constantes encontradas en la solución general:
+$$
+y(x) = 2 \sqrt{-x} - 5 \sqrt{-x} \ln(-x)
+$$
+Esta es la solución definida para $x < 0$.
+
+\subsection{Item b}
+$x^2 y'' - 4xy' + 6y = 0$, con $y(-2) = 8$, $y'(-2) = 0$.
+
+\subsubsection{Solución}
+Esta es también una ecuación diferencial de Cauchy-Euler homogénea. Dado que las condiciones iniciales están en $x = -2$, el intervalo de validez es $(-\infty, 0)$. Sin embargo, como las raíces resultantes serán enteras, la solución puede expresarse directamente en términos de potencias de $x$.
+
+\textbf{1. Ecuación Característica}
+Proponemos la solución $y = x^m$. Sustituyendo en la ecuación obtenemos la ecuación auxiliar:
+$$
+m(m-1) - 4m + 6 = 0
+$$
+Desarrollando el polinomio:
+$$
+m^2 - m - 4m + 6 = 0
+$$
+$$
+m^2 - 5m + 6 = 0
+$$
+Factorizando la ecuación cuadrática:
+$$
+(m - 2)(m - 3) = 0
+$$
+Las raíces son reales y distintas: $m_1 = 2$ y $m_2 = 3$.
+
+\textbf{2. Solución General}
+Para raíces reales distintas, la solución general es una combinación lineal de las potencias correspondientes. Dado que las potencias son enteras, la solución es válida para todo $x \neq 0$:
+$$
+y(x) = c_1 x^2 + c_2 x^3
+$$
+
+\textbf{3. Aplicación de Condiciones Iniciales}
+Usamos $y(-2) = 8$:
+$$
+y(-2) = c_1 (-2)^2 + c_2 (-2)^3 = 4c_1 - 8c_2
+$$
+$$
+4c_1 - 8c_2 = 8 \implies c_1 - 2c_2 = 2 \quad \text{(Ecuación 1)}
+$$
+Ahora usamos $y'(-2) = 0$. Calculamos la derivada:
+$$
+y'(x) = 2c_1 x + 3c_2 x^2
+$$
+Evaluamos en $x = -2$:
+$$
+y'(-2) = 2c_1 (-2) + 3c_2 (-2)^2 = -4c_1 + 12c_2
+$$
+$$
+-4c_1 + 12c_2 = 0 \implies -c_1 + 3c_2 = 0 \implies c_1 = 3c_2 \quad \text{(Ecuación 2)}
+$$
+
+\textbf{4. Determinación de Constantes}
+Sustituimos la Ecuación 2 en la Ecuación 1:
+$$
+(3c_2) - 2c_2 = 2 \implies c_2 = 2
+$$
+Calculamos $c_1$:
+$$
+c_1 = 3(2) = 6
+$$
+
+\textbf{5. Solución Particular}
+Sustituimos los valores de $c_1$ y $c_2$ en la solución general:
+$$
+y(x) = 6x^2 + 2x^3
+$$
+Esta función satisface la ecuación diferencial y las condiciones iniciales dadas en $x = -2$.
+
+
+\subsection{Item c}
+$\frac{d^2 x}{dt^2} + \omega^2 x = F_0 \cos(\gamma t)$, con $x(0)= 0$, $x'(0)= 0$, $\gamma \neq \omega$, $F_0$ constante.
+
+\subsubsection{Solución}
+La ecuación diferencial proporcionada describe un movimiento armónico forzado no amortiguado, donde la frecuencia de la fuerza externa $\gamma$ es diferente de la frecuencia natural del sistema $\omega$. Para resolver este problema de valores iniciales, emplearemos el método de coeficientes indeterminados, estructurando la solución general como la suma de la solución homogénea y una solución particular.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+Primero, consideramos la ecuación homogénea asociada:
+$$
+\frac{d^2 x}{dt^2} + \omega^2 x = 0
+$$
+La ecuación característica correspondiente es $r^2 + \omega^2 = 0$, cuyas raíces son números imaginarios puros $r = \pm i\omega$. Por lo tanto, la solución complementaria $x_h(t)$ está dada por:
+$$
+x_h(t) = c_1 \cos(\omega t) + c_2 \text{sen}(\omega t)
+$$
+donde $c_1$ y $c_2$ son constantes arbitrarias.
+
+\textbf{2. Solución Particular}
+Dado que el término no homogéneo es $g(t) = F_0 \cos(\gamma t)$ y se especifica que $\gamma \neq \omega$, no existe resonancia. Proponemos una solución particular de la forma:
+$$
+x_p(t) = A \cos(\gamma t) + B \text{sen}(\gamma t)
+$$
+Calculamos las derivadas necesarias para sustituir en la ecuación original:
+$$
+x_p'(t) = -A\gamma \text{sen}(\gamma t) + B\gamma \cos(\gamma t)
+$$
+$$
+x_p''(t) = -A\gamma^2 \cos(\gamma t) - B\gamma^2 \text{sen}(\gamma t)
+$$
+Sustituimos $x_p$ y $x_p''$ en la ecuación diferencial $\frac{d^2 x}{dt^2} + \omega^2 x = F_0 \cos(\gamma t)$:
+$$
+[-A\gamma^2 \cos(\gamma t) - B\gamma^2 \text{sen}(\gamma t)] + \omega^2 [A \cos(\gamma t) + B \text{sen}(\gamma t)] = F_0 \cos(\gamma t)
+$$
+Agrupamos los términos según las funciones trigonométricas:
+$$
+A(\omega^2 - \gamma^2) \cos(\gamma t) + B(\omega^2 - \gamma^2) \text{sen}(\gamma t) = F_0 \cos(\gamma t)
+$$
+Igualando los coeficientes de ambos lados de la ecuación:
+\begin{itemize}
+    \item Para $\cos(\gamma t)$: $A(\omega^2 - \gamma^2) = F_0 \implies A = \frac{F_0}{\omega^2 - \gamma^2}$
+    \item Para $\text{sen}(\gamma t)$: $B(\omega^2 - \gamma^2) = 0 \implies B = 0$ (dado que $\omega \neq \gamma$)
+\end{itemize}
+Por lo tanto, la solución particular es:
+$$
+x_p(t) = \frac{F_0}{\omega^2 - \gamma^2} \cos(\gamma t)
+$$
+
+\textbf{3. Solución General}
+La solución general es la superposición de la solución homogénea y la particular:
+$$
+x(t) = c_1 \cos(\omega t) + c_2 \text{sen}(\omega t) + \frac{F_0}{\omega^2 - \gamma^2} \cos(\gamma t)
+$$
+
+\textbf{4. Aplicación de Condiciones Iniciales}
+Utilizamos las condiciones $x(0)= 0$ y $x'(0)= 0$ para determinar las constantes $c_1$ y $c_2$.
+
+Para $x(0) = 0$:
+$$
+x(0) = c_1 \cos(0) + c_2 \text{sen}(0) + \frac{F_0}{\omega^2 - \gamma^2} \cos(0) = c_1 + \frac{F_0}{\omega^2 - \gamma^2} = 0
+$$
+Despejando $c_1$:
+$$
+c_1 = -\frac{F_0}{\omega^2 - \gamma^2}
+$$
+Para $x'(0) = 0$, primero calculamos la derivada de la solución general:
+$$
+x'(t) = -c_1 \omega \text{sen}(\omega t) + c_2 \omega \cos(\omega t) - \frac{F_0 \gamma}{\omega^2 - \gamma^2} \text{sen}(\gamma t)
+$$
+Evaluando en $t = 0$:
+$$
+x'(0) = -c_1 \omega (0) + c_2 \omega (1) - \frac{F_0 \gamma}{\omega^2 - \gamma^2} (0) = c_2 \omega = 0
+$$
+Dado que $\omega \neq 0$ (frecuencia natural), concluimos que $c_2 = 0$.
+
+\textbf{5. Solución Final}
+Sustituyendo los valores de $c_1$ y $c_2$ en la solución general:
+$$
+x(t) = -\frac{F_0}{\omega^2 - \gamma^2} \cos(\omega t) + \frac{F_0}{\omega^2 - \gamma^2} \cos(\gamma t)
+$$
+Factorizando el término común, obtenemos la expresión analítica final:
+$$
+x(t) = \frac{F_0}{\omega^2 - \gamma^2} (\cos(\gamma t) - \cos(\omega t))
+$$
+Esta solución describe el fenómeno de pulsaciones o \textit{beats}, característico cuando las frecuencias de excitación y natural son cercanas pero distintas.
+
+\subsection{Item d}
+$\frac{d^2 x}{dt^2} + \omega^2 x = F_0 \cos(\omega t)$, con $x(0)= 0$, $x'(0)= 0$, $F_0$ constante. Use método de variación de parámetros.
+
+\subsubsection{Solución}
+En este caso, la frecuencia de la fuerza externa coincide con la frecuencia natural del sistema ($\gamma = \omega$), lo que produce el fenómeno de resonancia. El enunciado exige explícitamente utilizar el \textbf{método de variación de parámetros} para encontrar la solución particular, lo cual procederemos a desarrollar analíticamente paso a paso.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+La ecuación homogénea asociada es idéntica al item anterior:
+$$
+\frac{d^2 x}{dt^2} + \omega^2 x = 0
+$$
+Cuya solución general es:
+$$
+x_h(t) = c_1 \cos(\omega t) + c_2 \text{sen}(\omega t)
+$$
+Identificamos las soluciones fundamentales como $x_1(t) = \cos(\omega t)$ y $x_2(t) = \text{sen}(\omega t)$.
+
+\textbf{2. Cálculo del Wronskiano}
+Para aplicar variación de parámetros, necesitamos el Wronskiano $W$ de las soluciones fundamentales:
+$$
+W(x_1, x_2)(t) = \begin{vmatrix} \cos(\omega t) & \text{sen}(\omega t) \\ -\omega \text{sen}(\omega t) & \omega \cos(\omega t) \end{vmatrix}
+$$
+Calculando el determinante:
+$$
+W = \omega \cos^2(\omega t) - (-\omega \text{sen}^2(\omega t)) = \omega (\cos^2(\omega t) + \text{sen}^2(\omega t)) = \omega
+$$
+El Wronskiano es constante e igual a $\omega$, lo cual es consistente con la teoría de Abel para ecuaciones sin término de primera derivada.
+
+\textbf{3. Fórmulas de Variación de Parámetros}
+Buscamos una solución particular de la forma $x_p(t) = u_1(t) x_1(t) + u_2(t) x_2(t)$, donde las derivadas de los parámetros están dadas por:
+$$
+u_1'(t) = -\frac{x_2(t) g(t)}{W}, \quad u_2'(t) = \frac{x_1(t) g(t)}{W}
+$$
+Aquí, el término no homogéneo es $g(t) = F_0 \cos(\omega t)$. Sustituimos las funciones conocidas:
+
+Para $u_1'(t)$:
+$$
+u_1'(t) = -\frac{\text{sen}(\omega t) \cdot F_0 \cos(\omega t)}{\omega} = -\frac{F_0}{\omega} \text{sen}(\omega t) \cos(\omega t)
+$$
+Utilizando la identidad trigonométrica $\text{sen}(2\theta) = 2 \text{sen}(\theta) \cos(\theta)$, reescribimos:
+$$
+u_1'(t) = -\frac{F_0}{2\omega} \text{sen}(2\omega t)
+$$
+
+Para $u_2'(t)$:
+$$
+u_2'(t) = \frac{\cos(\omega t) \cdot F_0 \cos(\omega t)}{\omega} = \frac{F_0}{\omega} \cos^2(\omega t)
+$$
+Utilizando la identidad de reducción de potencia $\cos^2(\theta) = \frac{1 + \cos(2\theta)}{2}$:
+$$
+u_2'(t) = \frac{F_0}{2\omega} (1 + \cos(2\omega t))
+$$
+
+\textbf{4. Integración para encontrar $u_1$ y $u_2$}
+Integramos las expresiones obtenidas respecto a $t$:
+
+$$
+u_1(t) = \int -\frac{F_0}{2\omega} \text{sen}(2\omega t) \, dt = -\frac{F_0}{2\omega} \left( -\frac{\cos(2\omega t)}{2\omega} \right) = \frac{F_0}{4\omega^2} \cos(2\omega t)
+$$
+
+$$
+u_2(t) = \int \frac{F_0}{2\omega} (1 + \cos(2\omega t)) \, dt = \frac{F_0}{2\omega} \left( t + \frac{\text{sen}(2\omega t)}{2\omega} \right) = \frac{F_0}{2\omega} t + \frac{F_0}{4\omega^2} \text{sen}(2\omega t)
+$$
+(Nota: No incluimos constantes de integración aquí ya que se absorben en la solución homogénea).
+
+\textbf{5. Construcción de la Solución Particular}
+Sustituimos $u_1$ y $u_2$ en la forma $x_p(t) = u_1 x_1 + u_2 x_2$:
+$$
+x_p(t) = \left[ \frac{F_0}{4\omega^2} \cos(2\omega t) \right] \cos(\omega t) + \left[ \frac{F_0}{2\omega} t + \frac{F_0}{4\omega^2} \text{sen}(2\omega t) \right] \text{sen}(\omega t)
+$$
+Agrupamos los términos que comparten el factor $\frac{F_0}{4\omega^2}$:
+$$
+x_p(t) = \frac{F_0}{4\omega^2} [ \cos(2\omega t) \cos(\omega t) + \text{sen}(2\omega t) \text{sen}(\omega t) ] + \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+Utilizamos la identidad trigonométrica de la diferencia de cosenos $\cos(A - B) = \cos A \cos B + \text{sen} A \text{sen} B$, con $A = 2\omega t$ y $B = \omega t$:
+$$
+\cos(2\omega t - \omega t) = \cos(\omega t)
+$$
+Por lo tanto, la solución particular simplificada es:
+$$
+x_p(t) = \frac{F_0}{4\omega^2} \cos(\omega t) + \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+
+\textbf{6. Solución General}
+La solución general es la suma de la homogénea y la particular:
+$$
+x(t) = c_1 \cos(\omega t) + c_2 \text{sen}(\omega t) + \frac{F_0}{4\omega^2} \cos(\omega t) + \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+Podemos combinar los términos que contienen $\cos(\omega t)$ definiendo una nueva constante $C_1 = c_1 + \frac{F_0}{4\omega^2}$:
+$$
+x(t) = C_1 \cos(\omega t) + c_2 \text{sen}(\omega t) + \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+
+\textbf{7. Aplicación de Condiciones Iniciales}
+Usamos $x(0)= 0$ y $x'(0)= 0$.
+
+Para $x(0) = 0$:
+$$
+x(0) = C_1 \cos(0) + c_2 \text{sen}(0) + 0 = C_1 = 0
+$$
+Entonces, $C_1 = 0$.
+
+Para $x'(0) = 0$, calculamos la derivada de la solución con $C_1 = 0$:
+$$
+x(t) = c_2 \text{sen}(\omega t) + \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+$$
+x'(t) = c_2 \omega \cos(\omega t) + \frac{F_0}{2\omega} [ 1 \cdot \text{sen}(\omega t) + t \cdot \omega \cos(\omega t) ]
+$$
+Evaluando en $t = 0$:
+$$
+x'(0) = c_2 \omega (1) + \frac{F_0}{2\omega} [ 0 + 0 ] = c_2 \omega = 0
+$$
+Dado que $\omega \neq 0$, tenemos $c_2 = 0$.
+
+\textbf{8. Solución Final}
+Sustituyendo las constantes nulas en la solución general, obtenemos la solución particular del problema de valores iniciales en resonancia:
+$$
+x(t) = \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+Esta solución muestra un crecimiento lineal en la amplitud de oscilación a medida que avanza el tiempo ($t \to \infty$), lo cual es característico del fenómeno de resonancia pura en sistemas no amortiguados.
+
+
+\subsection{Item e}
+$y'' + 3y' + 2y = \frac{1}{1+e^x}$
+
+\subsubsection{Solución}
+Para resolver esta ecuación diferencial lineal no homogénea de segundo orden con coeficientes constantes, utilizaremos el método de variación de parámetros. Este método es necesario porque el término no homogéneo $g(x) = \frac{1}{1+e^x}$ no pertenece a las familias estándar (polinomios, exponenciales, senos o cosenos) que permite el método de coeficientes indeterminados.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+Primero, resolvemos la ecuación homogénea asociada:
+$$
+y'' + 3y' + 2y = 0
+$$
+La ecuación característica correspondiente es:
+$$
+r^2 + 3r + 2 = 0
+$$
+Factorizando el polinomio cuadrático:
+$$
+(r + 1)(r + 2) = 0
+$$
+Las raíces son reales y distintas: $r_1 = -1$ y $r_2 = -2$. Por lo tanto, el conjunto fundamental de soluciones es:
+$$
+y_1(x) = e^{-x}, \quad y_2(x) = e^{-2x}
+$$
+La solución complementaria es:
+$$
+y_h(x) = c_1 e^{-x} + c_2 e^{-2x}
+$$
+
+\textbf{2. Cálculo del Wronskiano}
+Calculamos el Wronskiano $W(y_1, y_2)$ de las soluciones fundamentales:
+$$
+W = \begin{vmatrix} y_1 & y_2 \\ y_1' & y_2' \end{vmatrix} = \begin{vmatrix} e^{-x} & e^{-2x} \\ -e^{-x} & -2e^{-2x} \end{vmatrix}
+$$
+$$
+W = e^{-x}(-2e^{-2x}) - e^{-2x}(-e^{-x}) = -2e^{-3x} + e^{-3x} = -e^{-3x}
+$$
+
+\textbf{3. Método de Variación de Parámetros}
+Buscamos una solución particular de la forma $y_p(x) = u_1(x)y_1(x) + u_2(x)y_2(x)$. Las derivadas de los parámetros $u_1$ y $u_2$ están dadas por las fórmulas:
+$$
+u_1'(x) = -\frac{y_2(x) g(x)}{W}, \quad u_2'(x) = \frac{y_1(x) g(x)}{W}
+$$
+donde $g(x) = \frac{1}{1+e^x}$.
+
+\textit{Cálculo de $u_1(x)$:}
+$$
+u_1'(x) = -\frac{e^{-2x} \cdot \frac{1}{1+e^x}}{-e^{-3x}} = \frac{e^{-2x}}{e^{-3x}(1+e^x)} = \frac{e^x}{1+e^x}
+$$
+Integramos para encontrar $u_1(x)$:
+$$
+u_1(x) = \int \frac{e^x}{1+e^x} \, dx
+$$
+Usando la sustitución $v = 1+e^x$, $dv = e^x dx$:
+$$
+u_1(x) = \ln(1+e^x)
+$$
+
+\textit{Cálculo de $u_2(x)$:}
+$$
+u_2'(x) = \frac{e^{-x} \cdot \frac{1}{1+e^x}}{-e^{-3x}} = -\frac{e^{-x}}{e^{-3x}(1+e^x)} = -\frac{e^{2x}}{1+e^x}
+$$
+Integramos para encontrar $u_2(x)$:
+$$
+u_2(x) = -\int \frac{e^{2x}}{1+e^x} \, dx = -\int \frac{e^x \cdot e^x}{1+e^x} \, dx
+$$
+Usamos la sustitución $v = 1+e^x$, lo que implica $e^x = v-1$ y $dv = e^x dx$:
+$$
+u_2(x) = -\int \frac{v-1}{v} \, dv = -\int \left( 1 - \frac{1}{v} \right) \, dv = -(v - \ln|v|) = -v + \ln|v|
+$$
+Sustituyendo de vuelta $v = 1+e^x$:
+$$
+u_2(x) = -(1+e^x) + \ln(1+e^x)
+$$
+Podemos omitir la constante $-1$ ya que se absorbe en la solución homogénea, por lo que tomamos:
+$$
+u_2(x) = -e^x + \ln(1+e^x)
+$$
+
+\textbf{4. Solución Particular y General}
+Construimos la solución particular:
+$$
+y_p(x) = u_1(x)y_1(x) + u_2(x)y_2(x)
+$$
+$$
+y_p(x) = [\ln(1+e^x)] e^{-x} + [-e^x + \ln(1+e^x)] e^{-2x}
+$$
+$$
+y_p(x) = e^{-x} \ln(1+e^x) - e^{-x} + e^{-2x} \ln(1+e^x)
+$$
+El término $-e^{-x}$ es linealmente dependiente con $y_1(x)$, por lo que puede absorberse en la constante $c_1$ de la solución homogénea. La solución general es:
+$$
+y(x) = c_1 e^{-x} + c_2 e^{-2x} + e^{-x} \ln(1+e^x) + e^{-2x} \ln(1+e^x)
+$$
+Factorizando el término logarítmico:
+$$
+y(x) = c_1 e^{-x} + c_2 e^{-2x} + (e^{-x} + e^{-2x}) \ln(1+e^x)
+$$
+
+\subsection{Item f}
+$y'' + 2y' + y = e^{-t} \ln t$
+
+\subsubsection{Solución}
+Al igual que en el item anterior, el término no homogéneo $g(t) = e^{-t} \ln t$ contiene una función logarítmica, lo que nos obliga a utilizar el método de variación de parámetros para encontrar la solución particular de manera rigurosa.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+La ecuación homogénea asociada es:
+$$
+y'' + 2y' + y = 0
+$$
+La ecuación característica es:
+$$
+r^2 + 2r + 1 = 0 \implies (r+1)^2 = 0
+$$
+Tenemos una raíz real repetida $r = -1$ con multiplicidad 2. El conjunto fundamental de soluciones es:
+$$
+y_1(t) = e^{-t}, \quad y_2(t) = t e^{-t}
+$$
+La solución complementaria es:
+$$
+y_h(t) = c_1 e^{-t} + c_2 t e^{-t}
+$$
+
+\textbf{2. Cálculo del Wronskiano}
+Calculamos el Wronskiano $W(y_1, y_2)$:
+$$
+W = \begin{vmatrix} e^{-t} & t e^{-t} \\ -e^{-t} & e^{-t} - t e^{-t} \end{vmatrix}
+$$
+$$
+W = e^{-t}(e^{-t} - t e^{-t}) - t e^{-t}(-e^{-t}) = e^{-2t} - t e^{-2t} + t e^{-2t} = e^{-2t}
+$$
+
+\textbf{3. Método de Variación de Parámetros}
+Las fórmulas para las derivadas de los parámetros son:
+$$
+u_1'(t) = -\frac{y_2(t) g(t)}{W}, \quad u_2'(t) = \frac{y_1(t) g(t)}{W}
+$$
+con $g(t) = e^{-t} \ln t$.
+
+\textit{Cálculo de $u_1(t)$:}
+$$
+u_1'(t) = -\frac{t e^{-t} \cdot e^{-t} \ln t}{e^{-2t}} = -\frac{t e^{-2t} \ln t}{e^{-2t}} = -t \ln t
+$$
+Integramos por partes para encontrar $u_1(t)$. Sea $u = \ln t$, $dv = -t dt$. Entonces $du = \frac{1}{t} dt$, $v = -\frac{t^2}{2}$:
+$$
+u_1(t) = \int -t \ln t \, dt = -\frac{t^2}{2} \ln t - \int \left( -\frac{t^2}{2} \right) \frac{1}{t} \, dt
+$$
+$$
+u_1(t) = -\frac{t^2}{2} \ln t + \frac{1}{2} \int t \, dt = -\frac{t^2}{2} \ln t + \frac{t^2}{4}
+$$
+
+\textit{Cálculo de $u_2(t)$:}
+$$
+u_2'(t) = \frac{e^{-t} \cdot e^{-t} \ln t}{e^{-2t}} = \frac{e^{-2t} \ln t}{e^{-2t}} = \ln t
+$$
+Integramos para encontrar $u_2(t)$ (nuevamente por partes, $u=\ln t, dv=dt$):
+$$
+u_2(t) = \int \ln t \, dt = t \ln t - t
+$$
+
+\textbf{4. Solución Particular y General}
+Construimos la solución particular $y_p(t) = u_1(t)y_1(t) + u_2(t)y_2(t)$:
+$$
+y_p(t) = \left( -\frac{t^2}{2} \ln t + \frac{t^2}{4} \right) e^{-t} + (t \ln t - t) t e^{-t}
+$$
+$$
+y_p(t) = -\frac{t^2}{2} e^{-t} \ln t + \frac{t^2}{4} e^{-t} + t^2 e^{-t} \ln t - t^2 e^{-t}
+$$
+Agrupamos términos semejantes:
+$$
+y_p(t) = \left( -\frac{1}{2} + 1 \right) t^2 e^{-t} \ln t + \left( \frac{1}{4} - 1 \right) t^2 e^{-t}
+$$
+$$
+y_p(t) = \frac{1}{2} t^2 e^{-t} \ln t - \frac{3}{4} t^2 e^{-t}
+$$
+El término $-\frac{3}{4} t^2 e^{-t}$ no es linealmente dependiente con la solución homogénea ($e^{-t}$ y $t e^{-t}$), por lo que se mantiene. La solución general es:
+$$
+y(t) = c_1 e^{-t} + c_2 t e^{-t} + \frac{1}{2} t^2 e^{-t} \ln t - \frac{3}{4} t^2 e^{-t}
+$$
+Podemos factorizar $e^{-t}$ para una presentación más limpia:
+$$
+y(t) = e^{-t} \left[ c_1 + c_2 t + t^2 \left( \frac{1}{2} \ln t - \frac{3}{4} \right) \right]
+$$
+
+\subsection{Item g}
+$4y'' - y = x e^{x/2}$
+
+\subsubsection{Solución}
+Para esta ecuación diferencial lineal no homogénea con coeficientes constantes, el término no homogéneo es de la forma polinomio por exponencial ($x e^{x/2}$). Esto permite utilizar el método de coeficientes indeterminados, el cual es analíticamente más directo que la variación de parámetros para este tipo específico de funciones.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+La ecuación homogénea asociada es:
+$$
+4y'' - y = 0
+$$
+La ecuación característica es:
+$$
+4r^2 - 1 = 0 \implies r^2 = \frac{1}{4} \implies r = \pm \frac{1}{2}
+$$
+Las raíces son reales y distintas $r_1 = \frac{1}{2}$ y $r_2 = -\frac{1}{2}$. La solución complementaria es:
+$$
+y_h(x) = c_1 e^{x/2} + c_2 e^{-x/2}
+$$
+
+\textbf{2. Forma de la Solución Particular}
+El término no homogéneo es $g(x) = x e^{x/2}$. Normalmente, propondríamos una solución de la forma $(Ax + B)e^{x/2}$. Sin embargo, observamos que $e^{x/2}$ corresponde a la raíz $r_1 = \frac{1}{2}$ de la ecuación característica (multiplicidad 1). Por lo tanto, debemos multiplicar la propuesta estándar por $x^1$ para garantizar la independencia lineal.
+La forma correcta para la solución particular es:
+$$
+y_p(x) = x(Ax + B)e^{x/2} = (Ax^2 + Bx)e^{x/2}
+$$
+
+\textbf{3. Determinación de Coeficientes}
+Calculamos las derivadas de $y_p(x)$ para sustituir en la ecuación original $4y'' - y = x e^{x/2}$.
+
+Primera derivada (regla del producto):
+$$
+y_p'(x) = (2Ax + B)e^{x/2} + \frac{1}{2}(Ax^2 + Bx)e^{x/2}
+$$
+$$
+y_p'(x) = \left[ \frac{A}{2}x^2 + \left( 2A + \frac{B}{2} \right)x + B \right] e^{x/2}
+$$
+
+Segunda derivada:
+$$
+y_p''(x) = \left[ Ax + \left( 2A + \frac{B}{2} \right) \right] e^{x/2} + \frac{1}{2} \left[ \frac{A}{2}x^2 + \left( 2A + \frac{B}{2} \right)x + B \right] e^{x/2}
+$$
+Agrupando términos por potencias de $x$:
+$$
+y_p''(x) = \left[ \frac{A}{4}x^2 + \left( A + \frac{B}{4} + A \right)x + \left( 2A + \frac{B}{2} + \frac{B}{2} \right) \right] e^{x/2}
+$$
+$$
+y_p''(x) = \left[ \frac{A}{4}x^2 + \left( 2A + \frac{B}{4} \right)x + (2A + B) \right] e^{x/2}
+$$
+
+Sustituimos $y_p$ y $y_p''$ en la E.D. $4y'' - y = x e^{x/2}$:
+$$
+4 \left[ \frac{A}{4}x^2 + \left( 2A + \frac{B}{4} \right)x + (2A + B) \right] e^{x/2} - (Ax^2 + Bx)e^{x/2} = x e^{x/2}
+$$
+Dividimos por $e^{x/2}$ (que no es cero) y simplificamos:
+$$
+\left[ Ax^2 + (8A + B)x + (8A + 4B) \right] - (Ax^2 + Bx) = x
+$$
+$$
+(A - A)x^2 + (8A + B - B)x + (8A + 4B) = x
+$$
+$$
+8A x + (8A + 4B) = x
+$$
+Igualamos los coeficientes de las potencias de $x$ en ambos lados:
+\begin{itemize}
+    \item Para $x^1$: $8A = 1 \implies A = \frac{1}{8}$
+    \item Para $x^0$: $8A + 4B = 0 \implies 8(\frac{1}{8}) + 4B = 0 \implies 1 + 4B = 0 \implies B = -\frac{1}{4}$
+\end{itemize}
+
+\textbf{4. Solución General}
+La solución particular encontrada es:
+$$
+y_p(x) = \left( \frac{1}{8}x^2 - \frac{1}{4}x \right) e^{x/2}
+$$
+La solución general de la ecuación diferencial es la suma de la homogénea y la particular:
+$$
+y(x) = c_1 e^{x/2} + c_2 e^{-x/2} + \left( \frac{1}{8}x^2 - \frac{1}{4}x \right) e^{x/2}
+$$
+
+\subsection{Item h}
+$y'' - 9y = 54$
+
+\subsubsection{Solución}
+Esta es una ecuación diferencial lineal no homogénea de segundo orden con coeficientes constantes y un término no homogéneo constante. Resolveremos primero la parte homogénea y luego determinaremos la solución particular mediante el método de coeficientes indeterminados.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+La ecuación homogénea asociada es:
+$$
+y'' - 9y = 0
+$$
+La ecuación característica es:
+$$
+r^2 - 9 = 0 \implies r^2 = 9 \implies r = \pm 3
+$$
+Las raíces son reales y distintas $r_1 = 3$ y $r_2 = -3$. La solución complementaria es:
+$$
+y_h(x) = c_1 e^{3x} + c_2 e^{-3x}
+$$
+
+\textbf{2. Solución Particular}
+El término no homogéneo es una constante $g(x) = 54$. Proponemos una solución particular constante:
+$$
+y_p(x) = A
+$$
+Calculamos las derivadas:
+$$
+y_p'(x) = 0, \quad y_p''(x) = 0
+$$
+Sustituimos en la ecuación original $y'' - 9y = 54$:
+$$
+0 - 9(A) = 54
+$$
+Despejamos $A$:
+$$
+-9A = 54 \implies A = -6
+$$
+Por lo tanto, la solución particular es:
+$$
+y_p(x) = -6
+$$
+
+\textbf{3. Solución General}
+La solución general es la superposición de la solución homogénea y la particular:
+$$
+y(x) = y_h(x) + y_p(x)
+$$
+$$
+y(x) = c_1 e^{3x} + c_2 e^{-3x} - 6
+$$
+Esta expresión representa la familia completa de soluciones para la ecuación diferencial dada.
+
+\subsection{Item i}
+$y'' + 25y = 20\text{sen}(5x)$
+
+\subsubsection{Solución}
+La ecuación diferencial dada es lineal no homogénea de segundo orden con coeficientes constantes. Observamos que la frecuencia del término no homogéneo coincide con la frecuencia natural del sistema homogéneo, lo que indica un caso de resonancia. Procederemos analíticamente para determinar la solución general.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+Consideramos la ecuación homogénea asociada:
+$$
+y'' + 25y = 0
+$$
+La ecuación característica es:
+$$
+r^2 + 25 = 0 \implies r^2 = -25 \implies r = \pm 5i
+$$
+Dado que las raíces son imaginarias puras, la solución complementaria está dada por:
+$$
+y_h(x) = c_1 \cos(5x) + c_2 \text{sen}(5x)
+$$
+
+\textbf{2. Forma de la Solución Particular}
+El término no homogéneo es $g(x) = 20\text{sen}(5x)$. Normalmente, propondríamos una solución de la forma $A \cos(5x) + B \text{sen}(5x)$. Sin embargo, observamos que ambas funciones $\cos(5x)$ y $\text{sen}(5x)$ ya están presentes en la solución homogénea $y_h$. Esto implica que existe una duplicidad con las raíces de la ecuación característica.
+Para corregir esta dependencia lineal, debemos multiplicar la propuesta estándar por $x^1$. Por lo tanto, la forma correcta para la solución particular es:
+$$
+y_p(x) = x(A \cos(5x) + B \text{sen}(5x)) = Ax \cos(5x) + Bx \text{sen}(5x)
+$$
+
+\textbf{3. Determinación de los Coeficientes}
+Calculamos las derivadas de $y_p(x)$ para sustituir en la ecuación original.
+Primera derivada (usando regla del producto):
+$$
+y_p'(x) = A \cos(5x) - 5Ax \text{sen}(5x) + B \text{sen}(5x) + 5Bx \cos(5x)
+$$
+Agrupando términos:
+$$
+y_p'(x) = (A + 5Bx) \cos(5x) + (B - 5Ax) \text{sen}(5x)
+$$
+Segunda derivada:
+$$
+y_p''(x) = [5B \cos(5x) - 5(A + 5Bx) \text{sen}(5x)] + [-5A \text{sen}(5x) + 5(B - 5Ax) \cos(5x)]
+$$
+Simplificando y agrupando por funciones trigonométricas:
+$$
+y_p''(x) = (5B + 5B - 25Ax) \cos(5x) + (-5A - 5A - 25Bx) \text{sen}(5x)
+$$
+$$
+y_p''(x) = (10B - 25Ax) \cos(5x) + (-10A - 25Bx) \text{sen}(5x)
+$$
+Sustituimos $y_p$ y $y_p''$ en la ecuación diferencial $y'' + 25y = 20\text{sen}(5x)$:
+$$
+[(10B - 25Ax) \cos(5x) + (-10A - 25Bx) \text{sen}(5x)] + 25[Ax \cos(5x) + Bx \text{sen}(5x)] = 20\text{sen}(5x)
+$$
+Observamos que los términos con $x$ se cancelan:
+$$
+-25Ax \cos(5x) + 25Ax \cos(5x) = 0
+$$
+$$
+-25Bx \text{sen}(5x) + 25Bx \text{sen}(5x) = 0
+$$
+La ecuación se reduce a:
+$$
+10B \cos(5x) - 10A \text{sen}(5x) = 20\text{sen}(5x)
+$$
+Igualamos los coeficientes de las funciones trigonométricas en ambos lados:
+\begin{itemize}
+    \item Para $\cos(5x)$: $10B = 0 \implies B = 0$
+    \item Para $\text{sen}(5x)$: $-10A = 20 \implies A = -2$
+\end{itemize}
+Por lo tanto, la solución particular es:
+$$
+y_p(x) = -2x \cos(5x)
+$$
+
+\textbf{4. Solución General}
+La solución general es la suma de la solución homogénea y la particular:
+$$
+y(x) = c_1 \cos(5x) + c_2 \text{sen}(5x) - 2x \cos(5x)
+$$
+
+\subsection{Item j}
+$y'' + 25y = 6\text{sen}(x)$
+
+\subsubsection{Solución}
+Esta ecuación diferencial es similar a la del item anterior, pero en este caso la frecuencia del término no homogéneo es diferente a la frecuencia natural del sistema, por lo que no hay resonancia. Utilizaremos el método de coeficientes indeterminados.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+La ecuación homogénea asociada es $y'' + 25y = 0$, cuya ecuación característica $r^2 + 25 = 0$ tiene raíces $r = \pm 5i$. La solución complementaria es:
+$$
+y_h(x) = c_1 \cos(5x) + c_2 \text{sen}(5x)
+$$
+
+\textbf{2. Forma de la Solución Particular}
+El término no homogéneo es $g(x) = 6\text{sen}(x)$. Dado que $\text{sen}(x)$ y $\cos(x)$ no son soluciones de la ecuación homogénea (las frecuencias son distintas, $1 \neq 5$), no hay duplicidad. Proponemos una solución particular de la forma estándar:
+$$
+y_p(x) = A \cos(x) + B \text{sen}(x)
+$$
+
+\textbf{3. Determinación de los Coeficientes}
+Calculamos las derivadas de $y_p(x)$:
+$$
+y_p'(x) = -A \text{sen}(x) + B \cos(x)
+$$
+$$
+y_p''(x) = -A \cos(x) - B \text{sen}(x)
+$$
+Sustituimos $y_p$ y $y_p''$ en la ecuación diferencial $y'' + 25y = 6\text{sen}(x)$:
+$$
+(-A \cos(x) - B \text{sen}(x)) + 25(A \cos(x) + B \text{sen}(x)) = 6\text{sen}(x)
+$$
+Agrupamos términos semejantes:
+$$
+(-A + 25A) \cos(x) + (-B + 25B) \text{sen}(x) = 6\text{sen}(x)
+$$
+$$
+24A \cos(x) + 24B \text{sen}(x) = 6\text{sen}(x)
+$$
+Igualamos los coeficientes correspondientes:
+\begin{itemize}
+    \item Para $\cos(x)$: $24A = 0 \implies A = 0$
+    \item Para $\text{sen}(x)$: $24B = 6 \implies B = \frac{6}{24} = \frac{1}{4}$
+\end{itemize}
+La solución particular es:
+$$
+y_p(x) = \frac{1}{4} \text{sen}(x)
+$$
+
+\textbf{4. Solución General}
+Combinando la solución homogénea y la particular, obtenemos:
+$$
+y(x) = c_1 \cos(5x) + c_2 \text{sen}(5x) + \frac{1}{4} \text{sen}(x)
+$$
+
+\subsection{Item k}
+$y'' - 2y' - 3y = 4e^x - 9$
+
+\subsubsection{Solución}
+Para resolver esta ecuación lineal no homogénea con coeficientes constantes, utilizaremos el principio de superposición. El término no homogéneo es la suma de una función exponencial y una constante, por lo que la solución particular será la suma de las formas propuestas para cada término.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+La ecuación homogénea asociada es:
+$$
+y'' - 2y' - 3y = 0
+$$
+La ecuación característica es:
+$$
+r^2 - 2r - 3 = 0
+$$
+Factorizando el polinomio cuadrático:
+$$
+(r - 3)(r + 1) = 0
+$$
+Las raíces son reales y distintas: $r_1 = 3$ y $r_2 = -1$. La solución complementaria es:
+$$
+y_h(x) = c_1 e^{3x} + c_2 e^{-x}
+$$
+
+\textbf{2. Forma de la Solución Particular}
+El término no homogéneo es $g(x) = 4e^x - 9$. Analizamos cada parte por separado:
+\begin{itemize}
+    \item Para $4e^x$: El exponente es $1$. Comparando con las raíces de la ecuación característica $\{3, -1\}$, vemos que $1$ no es una raíz. Por lo tanto, la forma propuesta es $A e^x$.
+    \item Para $-9$: Es una constante (polinomio de grado 0), que corresponde a $e^{0x}$. El exponente $0$ no es una raíz de la ecuación característica. Por lo tanto, la forma propuesta es una constante $B$.
+\end{itemize}
+La forma total de la solución particular es:
+$$
+y_p(x) = A e^x + B
+$$
+
+\textbf{3. Determinación de los Coeficientes}
+Calculamos las derivadas de $y_p(x)$:
+$$
+y_p'(x) = A e^x, \quad y_p''(x) = A e^x
+$$
+Sustituimos en la ecuación diferencial original $y'' - 2y' - 3y = 4e^x - 9$:
+$$
+(A e^x) - 2(A e^x) - 3(A e^x + B) = 4e^x - 9
+$$
+Agrupamos los términos exponenciales y constantes:
+$$
+(A - 2A - 3A) e^x - 3B = 4e^x - 9
+$$
+$$
+-4A e^x - 3B = 4e^x - 9
+$$
+Igualamos los coeficientes en ambos lados de la ecuación:
+\begin{itemize}
+    \item Para $e^x$: $-4A = 4 \implies A = -1$
+    \item Para el término constante: $-3B = -9 \implies B = 3$
+\end{itemize}
+La solución particular es:
+$$
+y_p(x) = -e^x + 3
+$$
+
+\textbf{4. Solución General}
+La solución general es la superposición de la solución homogénea y la particular:
+$$
+y(x) = c_1 e^{3x} + c_2 e^{-x} - e^x + 3
+$$
+
+\subsection{Item l}
+$4y'' + 36y = \csc(3x)$
+
+\subsubsection{Solución}
+Esta ecuación diferencial contiene un término no homogéneo trigonométrico recíproco ($\csc$), lo cual no permite el uso del método de coeficientes indeterminados. Por lo tanto, debemos emplear el método de variación de parámetros. Primero, llevamos la ecuación a su forma estándar.
+
+\textbf{1. Forma Estándar y Solución Homogénea}
+Dividimos toda la ecuación por 4 para que el coeficiente de $y''$ sea 1:
+$$
+y'' + 9y = \frac{1}{4} \csc(3x)
+$$
+La ecuación homogénea asociada es $y'' + 9y = 0$. La ecuación característica es $r^2 + 9 = 0$, con raíces $r = \pm 3i$. La solución complementaria es:
+$$
+y_h(x) = c_1 \cos(3x) + c_2 \text{sen}(3x)
+$$
+Identificamos las soluciones fundamentales:
+$$
+y_1(x) = \cos(3x), \quad y_2(x) = \text{sen}(3x)
+$$
+
+\textbf{2. Cálculo del Wronskiano}
+Calculamos el Wronskiano $W(y_1, y_2)$:
+$$
+W = \begin{vmatrix} \cos(3x) & \text{sen}(3x) \\ -3\text{sen}(3x) & 3\cos(3x) \end{vmatrix}
+$$
+$$
+W = 3\cos^2(3x) - (-3\text{sen}^2(3x)) = 3(\cos^2(3x) + \text{sen}^2(3x)) = 3
+$$
+
+\textbf{3. Fórmulas de Variación de Parámetros}
+Buscamos una solución particular de la forma $y_p(x) = u_1(x)y_1(x) + u_2(x)y_2(x)$. Las derivadas de los parámetros están dadas por:
+$$
+u_1'(x) = -\frac{y_2(x) g(x)}{W}, \quad u_2'(x) = \frac{y_1(x) g(x)}{W}
+$$
+Donde $g(x) = \frac{1}{4} \csc(3x)$ es el término no homogéneo de la ecuación en forma estándar.
+
+\textit{Cálculo de $u_1(x)$:}
+$$
+u_1'(x) = -\frac{\text{sen}(3x) \cdot \frac{1}{4} \csc(3x)}{3}
+$$
+Recordando que $\text{sen}(3x) \csc(3x) = 1$:
+$$
+u_1'(x) = -\frac{1}{12} (1) = -\frac{1}{12}
+$$
+Integrando respecto a $x$:
+$$
+u_1(x) = \int -\frac{1}{12} \, dx = -\frac{1}{12} x
+$$
+
+\textit{Cálculo de $u_2(x)$:}
+$$
+u_2'(x) = \frac{\cos(3x) \cdot \frac{1}{4} \csc(3x)}{3} = \frac{1}{12} \cos(3x) \frac{1}{\text{sen}(3x)} = \frac{1}{12} \cot(3x)
+$$
+Integrando respecto a $x$:
+$$
+u_2(x) = \int \frac{1}{12} \cot(3x) \, dx = \frac{1}{12} \cdot \frac{1}{3} \ln|\text{sen}(3x)| = \frac{1}{36} \ln|\text{sen}(3x)|
+$$
+
+\textbf{4. Construcción de la Solución Particular}
+Sustituimos $u_1$ y $u_2$ en la expresión de $y_p$:
+$$
+y_p(x) = \left( -\frac{1}{12} x \right) \cos(3x) + \left( \frac{1}{36} \ln|\text{sen}(3x)| \right) \text{sen}(3x)
+$$
+$$
+y_p(x) = -\frac{1}{12} x \cos(3x) + \frac{1}{36} \text{sen}(3x) \ln|\text{sen}(3x)|
+$$
+
+\textbf{5. Solución General}
+La solución general es la suma de la solución homogénea y la particular:
+$$
+y(x) = c_1 \cos(3x) + c_2 \text{sen}(3x) - \frac{1}{12} x \cos(3x) + \frac{1}{36} \text{sen}(3x) \ln|\text{sen}(3x)|
+$$
+Esta expresión representa la solución completa de la ecuación diferencial dada en el intervalo donde $\text{sen}(3x) \neq 0$.
+
+
+\section{Problema 6}
+\subsection{Item a}
+Muestre que la solución del problema de valores iniciales:
+$$
+\frac{d^2x}{dt^2} + \omega^2 x = F_0 \cos(\gamma t), \quad x(0)= 0, \quad x'(0)= 0, \quad \gamma \neq \omega, \quad F_0 \text{ constante}
+$$
+Es:
+$$
+x(t) = \frac{F_0}{\omega^2 - \gamma^2} (\cos(\gamma t) - \cos(\omega t))
+$$
+
+\subsubsection{Solución}
+Para demostrar analíticamente que la expresión dada es la solución del problema de valores iniciales planteado, resolveremos la ecuación diferencial paso a paso utilizando el método de coeficientes indeterminados y aplicando las condiciones iniciales proporcionadas.
+
+\textbf{1. Solución de la Ecuación Homogénea}
+Consideramos primero la ecuación homogénea asociada:
+$$
+\frac{d^2x}{dt^2} + \omega^2 x = 0
+$$
+La ecuación característica correspondiente es $r^2 + \omega^2 = 0$, cuyas raíces son números imaginarios puros $r = \pm i\omega$. Por lo tanto, la solución complementaria $x_h(t)$ tiene la forma:
+$$
+x_h(t) = c_1 \cos(\omega t) + c_2 \text{sen}(\omega t)
+$$
+donde $c_1$ y $c_2$ son constantes arbitrarias.
+
+\textbf{2. Solución Particular}
+El término no homogéneo es $g(t) = F_0 \cos(\gamma t)$. Dado que se especifica que $\gamma \neq \omega$, no existe resonancia pura en esta etapa. Proponemos una solución particular de la forma:
+$$
+x_p(t) = A \cos(\gamma t) + B \text{sen}(\gamma t)
+$$
+Calculamos las derivadas necesarias:
+$$
+x_p'(t) = -A\gamma \text{sen}(\gamma t) + B\gamma \cos(\gamma t)
+$$
+$$
+x_p''(t) = -A\gamma^2 \cos(\gamma t) - B\gamma^2 \text{sen}(\gamma t)
+$$
+Sustituimos $x_p$ y $x_p''$ en la ecuación diferencial original $\frac{d^2x}{dt^2} + \omega^2 x = F_0 \cos(\gamma t)$:
+$$
+[-A\gamma^2 \cos(\gamma t) - B\gamma^2 \text{sen}(\gamma t)] + \omega^2 [A \cos(\gamma t) + B \text{sen}(\gamma t)] = F_0 \cos(\gamma t)
+$$
+Agrupamos los términos según las funciones trigonométricas:
+$$
+A(\omega^2 - \gamma^2) \cos(\gamma t) + B(\omega^2 - \gamma^2) \text{sen}(\gamma t) = F_0 \cos(\gamma t)
+$$
+Para que esta igualdad se cumpla para todo $t$, los coeficientes de ambos lados deben coincidir:
+\begin{itemize}
+    \item Coeficiente de $\cos(\gamma t)$: $A(\omega^2 - \gamma^2) = F_0 \implies A = \frac{F_0}{\omega^2 - \gamma^2}$
+    \item Coeficiente de $\text{sen}(\gamma t)$: $B(\omega^2 - \gamma^2) = 0 \implies B = 0$ (puesto que $\omega \neq \gamma$)
+\end{itemize}
+Por lo tanto, la solución particular es:
+$$
+x_p(t) = \frac{F_0}{\omega^2 - \gamma^2} \cos(\gamma t)
+$$
+
+\textbf{3. Solución General}
+La solución general es la superposición de la solución homogénea y la particular:
+$$
+x(t) = c_1 \cos(\omega t) + c_2 \text{sen}(\omega t) + \frac{F_0}{\omega^2 - \gamma^2} \cos(\gamma t)
+$$
+
+\textbf{4. Aplicación de Condiciones Iniciales}
+Utilizamos las condiciones $x(0)= 0$ y $x'(0)= 0$ para determinar las constantes $c_1$ y $c_2$.
+
+Para $x(0) = 0$:
+$$
+x(0) = c_1 \cos(0) + c_2 \text{sen}(0) + \frac{F_0}{\omega^2 - \gamma^2} \cos(0) = c_1 + \frac{F_0}{\omega^2 - \gamma^2} = 0
+$$
+Despejando $c_1$:
+$$
+c_1 = -\frac{F_0}{\omega^2 - \gamma^2}
+$$
+Para $x'(0) = 0$, calculamos la derivada de la solución general:
+$$
+x'(t) = -c_1 \omega \text{sen}(\omega t) + c_2 \omega \cos(\omega t) - \frac{F_0 \gamma}{\omega^2 - \gamma^2} \text{sen}(\gamma t)
+$$
+Evaluando en $t = 0$:
+$$
+x'(0) = -c_1 \omega (0) + c_2 \omega (1) - \frac{F_0 \gamma}{\omega^2 - \gamma^2} (0) = c_2 \omega = 0
+$$
+Dado que $\omega \neq 0$ (frecuencia natural), concluimos que $c_2 = 0$.
+
+\textbf{5. Demostración Final}
+Sustituimos los valores encontrados $c_1 = -\frac{F_0}{\omega^2 - \gamma^2}$ y $c_2 = 0$ en la solución general:
+$$
+x(t) = -\frac{F_0}{\omega^2 - \gamma^2} \cos(\omega t) + 0 + \frac{F_0}{\omega^2 - \gamma^2} \cos(\gamma t)
+$$
+Factorizando el término común $\frac{F_0}{\omega^2 - \gamma^2}$, obtenemos exactamente la expresión requerida:
+$$
+x(t) = \frac{F_0}{\omega^2 - \gamma^2} (\cos(\gamma t) - \cos(\omega t))
+$$
+Esto demuestra analíticamente la validez de la solución propuesta para el problema de valores iniciales dado.
+
+\subsection{Item b}
+Evalúe:
+$$
+\lim_{\gamma \to \omega} \frac{F_0}{\omega^2 - \gamma^2} (\cos(\gamma t) - \cos(\omega t))
+$$
+
+\subsubsection{Solución}
+Este límite representa el comportamiento de la solución cuando la frecuencia de la fuerza externa $\gamma$ se aproxima a la frecuencia natural del sistema $\omega$, es decir, el caso de resonancia. Evaluaremos el límite analíticamente utilizando la Regla de L'Hôpital.
+
+\textbf{1. Identificación de la Indeterminación}
+Reescribimos la expresión para clarificar la variable que tiende al límite ($\gamma \to \omega$):
+$$
+L = F_0 \lim_{\gamma \to \omega} \frac{\cos(\gamma t) - \cos(\omega t)}{\omega^2 - \gamma^2}
+$$
+Si sustituimos directamente $\gamma = \omega$, obtenemos:
+\begin{itemize}
+    \item Numerador: $\cos(\omega t) - \cos(\omega t) = 0$
+    \item Denominador: $\omega^2 - \omega^2 = 0$
+\end{itemize}
+Esto resulta en una indeterminación de la forma $\frac{0}{0}$. Por lo tanto, es aplicable la Regla de L'Hôpital, la cual establece que el límite de la razón de las funciones es igual al límite de la razón de sus derivadas, siempre que este último exista.
+
+\textbf{2. Aplicación de la Regla de L'Hôpital}
+Debemos derivar el numerador y el denominador con respecto a la variable $\gamma$, tratando a $t$ y $\omega$ como constantes.
+
+\textit{Derivada del Numerador respecto a $\gamma$:}
+$$
+\frac{\partial}{\partial \gamma} [\cos(\gamma t) - \cos(\omega t)] = -\text{sen}(\gamma t) \cdot \frac{\partial}{\partial \gamma}(\gamma t) - 0 = -t \text{sen}(\gamma t)
+$$
+
+\textit{Derivada del Denominador respecto a $\gamma$:}
+$$
+\frac{\partial}{\partial \gamma} [\omega^2 - \gamma^2] = 0 - 2\gamma = -2\gamma
+$$
+
+\textbf{3. Cálculo del Límite}
+Sustituimos las derivadas en la expresión del límite:
+$$
+L = F_0 \lim_{\gamma \to \omega} \frac{-t \text{sen}(\gamma t)}{-2\gamma}
+$$
+Simplificamos los signos negativos:
+$$
+L = F_0 \lim_{\gamma \to \omega} \frac{t \text{sen}(\gamma t)}{2\gamma}
+$$
+Ahora evaluamos el límite sustituyendo $\gamma = \omega$:
+$$
+L = F_0 \frac{t \text{sen}(\omega t)}{2\omega}
+$$
+Reordenando los términos, obtenemos el resultado final:
+$$
+L = \frac{F_0}{2\omega} t \text{sen}(\omega t)
+$$
+
+\textbf{4. Interpretación Física}
+Este resultado coincide exactamente con la solución particular obtenida para el caso de resonancia pura (cuando $\gamma = \omega$), como se vio en problemas anteriores (ej. Problema 5.d). Analíticamente, esto confirma que la solución general para $\gamma \neq \omega$ es continua con respecto al parámetro $\gamma$ en el límite cuando $\gamma \to \omega$. La presencia del término $t$ multiplicando a la función senoidal indica que la amplitud de las oscilaciones crece linealmente con el tiempo, lo cual es característico del fenómeno de resonancia en sistemas no amortiguados.
+
+
+\section{Problema 7}
+Encuentre la carga $q(t)$ en el capacitor en un circuito LRC cuando $L= 0.25$ henry(h), $R= 10$ ohm($\Omega$), $C= 0.001$ farad(f), $E(t)= 0$ Voltios, $q(0)= q_0$ coulombs(C) e $i(0)= 0$ amp(A)
+
+\subsection{Solución}
+Para resolver este problema de circuito LRC en serie, debemos plantear y resolver la ecuación diferencial que gobierna el comportamiento de la carga en el capacitor. Dado que no hay fuente de voltaje externa ($E(t) = 0$), se trata de un circuito libre no forzado.
+
+\textbf{1. Ecuación Diferencial del Circuito LRC}
+
+La ecuación diferencial para un circuito LRC en serie está dada por la segunda ley de Kirchhoff:
+$$
+L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q = E(t)
+$$
+Donde:
+\begin{itemize}
+    \item $L$ es la inductancia en henrys
+    \item $R$ es la resistencia en ohms
+    \item $C$ es la capacitancia en farads
+    \item $q(t)$ es la carga en el capacitor en coulombs
+    \item $E(t)$ es el voltaje aplicado en volts
+\end{itemize}
+
+Sustituimos los valores dados en el enunciado:
+$$
+L = 0.25 \, \text{H}, \quad R = 10 \, \Omega, \quad C = 0.001 \, \text{F}, \quad E(t) = 0
+$$
+
+La ecuación diferencial se convierte en:
+$$
+0.25\frac{d^2q}{dt^2} + 10\frac{dq}{dt} + \frac{1}{0.001}q = 0
+$$
+
+Simplificamos el término de la capacitancia:
+$$
+\frac{1}{0.001} = 1000
+$$
+
+Por lo tanto:
+$$
+0.25\frac{d^2q}{dt^2} + 10\frac{dq}{dt} + 1000q = 0
+$$
+
+Para facilitar el trabajo, multiplicamos toda la ecuación por 4 para eliminar el coeficiente decimal:
+$$
+\frac{d^2q}{dt^2} + 40\frac{dq}{dt} + 4000q = 0
+$$
+
+\textbf{2. Solución de la Ecuación Homogénea}
+
+La ecuación característica asociada es:
+$$
+r^2 + 40r + 4000 = 0
+$$
+
+Resolvemos esta ecuación cuadrática utilizando la fórmula general:
+$$
+r = \frac{-40 \pm \sqrt{40^2 - 4(1)(4000)}}{2}
+$$
+$$
+r = \frac{-40 \pm \sqrt{1600 - 16000}}{2} = \frac{-40 \pm \sqrt{-14400}}{2}
+$$
+$$
+r = \frac{-40 \pm 120i}{2} = -20 \pm 60i
+$$
+
+Las raíces son complejas conjugadas con parte real $\alpha = -20$ y parte imaginaria $\beta = 60$. Esto indica que el circuito está \textbf{subamortiguado}, lo que significa que la carga oscilará con una amplitud que decae exponencialmente.
+
+La solución general para la carga es:
+$$
+q(t) = e^{-20t}[c_1 \cos(60t) + c_2 \text{sen}(60t)]
+$$
+
+\textbf{3. Aplicación de Condiciones Iniciales}
+
+Utilizamos las condiciones iniciales dadas para determinar las constantes $c_1$ y $c_2$.
+
+\textit{Primera condición: $q(0) = q_0$}
+
+Evaluamos la solución general en $t = 0$:
+$$
+q(0) = e^{0}[c_1 \cos(0) + c_2 \text{sen}(0)] = c_1(1) + c_2(0) = c_1
+$$
+$$
+c_1 = q_0
+$$
+
+\textit{Segunda condición: $i(0) = q'(0) = 0$}
+
+Primero calculamos la derivada de $q(t)$ para obtener la corriente $i(t)$:
+$$
+q'(t) = \frac{d}{dt}\left\{ e^{-20t}[c_1 \cos(60t) + c_2 \text{sen}(60t)] \right\}
+$$
+
+Aplicando la regla del producto:
+$$
+q'(t) = -20e^{-20t}[c_1 \cos(60t) + c_2 \text{sen}(60t)] + e^{-20t}[-60c_1 \text{sen}(60t) + 60c_2 \cos(60t)]
+$$
+
+Factorizando $e^{-20t}$:
+$$
+q'(t) = e^{-20t}[(-20c_1 + 60c_2)\cos(60t) + (-20c_2 - 60c_1)\text{sen}(60t)]
+$$
+
+Evaluamos en $t = 0$:
+$$
+q'(0) = e^{0}[(-20c_1 + 60c_2)\cos(0) + (-20c_2 - 60c_1)\text{sen}(0)]
+$$
+$$
+q'(0) = -20c_1 + 60c_2 = 0
+$$
+
+Sustituimos $c_1 = q_0$:
+$$
+-20q_0 + 60c_2 = 0 \implies 60c_2 = 20q_0 \implies c_2 = \frac{q_0}{3}
+$$
+
+\textbf{4. Solución Final para la Carga}
+
+Sustituimos los valores de $c_1$ y $c_2$ en la solución general:
+$$
+q(t) = e^{-20t}\left[q_0 \cos(60t) + \frac{q_0}{3} \text{sen}(60t)\right]
+$$
+
+Factorizando $q_0$:
+$$
+q(t) = q_0 e^{-20t}\left[\cos(60t) + \frac{1}{3} \text{sen}(60t)\right]
+$$
+
+\textbf{5. Solución para la Corriente}
+
+La corriente en el circuito está dada por $i(t) = \frac{dq}{dt}$. Utilizando la derivada calculada anteriormente con los valores de las constantes:
+$$
+i(t) = q_0 e^{-20t}\left[(-20 + 20)\cos(60t) + \left(-\frac{20}{3} - 60\right)\text{sen}(60t)\right]
+$$
+$$
+i(t) = q_0 e^{-20t}\left[0 \cdot \cos(60t) - \frac{200}{3}\text{sen}(60t)\right]
+$$
+$$
+i(t) = -\frac{200q_0}{3} e^{-20t} \text{sen}(60t)
+$$
+
+\textbf{6. Interpretación Física}
+
+La solución obtenida describe un comportamiento oscilatorio amortiguado:
+\begin{itemize}
+    \item El término $e^{-20t}$ representa el decaimiento exponencial de la amplitud debido a la resistencia del circuito.
+    \item Las funciones trigonométricas $\cos(60t)$ y $\text{sen}(60t)$ representan las oscilaciones naturales del circuito con frecuencia angular amortiguada $\omega_d = 60$ rad/s.
+    \item La frecuencia natural no amortiguada sería $\omega_0 = \sqrt{\frac{1}{LC}} = \sqrt{\frac{1}{0.25 \times 0.001}} = \sqrt{4000} \approx 63.25$ rad/s.
+    \item El factor de amortiguamiento es $\alpha = \frac{R}{2L} = \frac{10}{2 \times 0.25} = 20$ s$^{-1}$.
+\end{itemize}
+
+La carga inicial $q_0$ en el capacitor se disipa gradualmente a través de la resistencia mientras oscila entre el capacitor y el inductor, hasta que eventualmente toda la energía se disipa y la carga tiende a cero cuando $t \to \infty$.
+
+
+\section{Problema 8}
+Encuentre la carga $q(t)$ en el capacitor en un circuito LRC en: $t= 0.01$ seg cuando $L= 0.05$ henry(h), $R= 2$ ohm($\Omega$), $C= 0.01$ farad(f), $E(t)= 0$, $q(0)= 5$ coulombs(C) e $i(0)= 0$. Determine la primera vez en que la carga del capacitor es igual a cero.
+
+\subsection{Solución}
+Para resolver este problema de circuito LRC en serie, debemos plantear la ecuación diferencial que gobierna la carga $q(t)$, resolverla sujeto a las condiciones iniciales dadas, evaluar la solución en el tiempo especificado y finalmente determinar el primer instante donde la carga se anula. Dado que el voltaje aplicado es $E(t) = 0$, estamos ante un caso de circuito libre no forzado.
+
+\textbf{1. Planteamiento de la Ecuación Diferencial}
+
+La ecuación diferencial para un circuito LRC en serie se deriva de la segunda ley de Kirchhoff y está dada por:
+$$
+L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q = E(t)
+$$
+Sustituimos los parámetros físicos proporcionados en el enunciado:
+\begin{itemize}
+    \item Inductancia: $L = 0.05$ H
+    \item Resistencia: $R = 2$ $\Omega$
+    \item Capacitancia: $C = 0.01$ F
+    \item Voltaje aplicado: $E(t) = 0$ V
+\end{itemize}
+
+La ecuación se convierte en:
+$$
+0.05\frac{d^2q}{dt^2} + 2\frac{dq}{dt} + \frac{1}{0.01}q = 0
+$$
+Calculamos el inverso de la capacitancia $\frac{1}{0.01} = 100$. La ecuación queda:
+$$
+0.05 q'' + 2 q' + 100 q = 0
+$$
+Para simplificar los coeficientes y facilitar el cálculo de las raíces, multiplicamos toda la ecuación por $\frac{1}{0.05} = 20$:
+$$
+q'' + 40 q' + 2000 q = 0
+$$
+
+\textbf{2. Solución de la Ecuación Homogénea}
+
+Proponemos una solución de la forma $q(t) = e^{rt}$ para obtener la ecuación característica asociada:
+$$
+r^2 + 40r + 2000 = 0
+$$
+Resolvemos esta ecuación cuadrática utilizando la fórmula general:
+$$
+r = \frac{-40 \pm \sqrt{40^2 - 4(1)(2000)}}{2}
+$$
+Calculamos el discriminante:
+$$
+\Delta = 1600 - 8000 = -6400
+$$
+Dado que el discriminante es negativo, las raíces son complejas conjugadas:
+$$
+r = \frac{-40 \pm \sqrt{-6400}}{2} = \frac{-40 \pm 80i}{2} = -20 \pm 40i
+$$
+Identificamos la parte real $\alpha = -20$ y la parte imaginaria $\beta = 40$. Esto indica que el circuito está \textbf{subamortiguado}, lo que implica que la carga oscilará con una amplitud que decae exponencialmente. La solución general para la carga es:
+$$
+q(t) = e^{-20t} [c_1 \cos(40t) + c_2 \text{sen}(40t)]
+$$
+
+\textbf{3. Aplicación de Condiciones Iniciales}
+
+Utilizamos las condiciones iniciales $q(0) = 5$ y $i(0) = q'(0) = 0$ para determinar las constantes $c_1$ y $c_2$.
+
+\textit{Primera condición: $q(0) = 5$}
+Evaluamos la solución general en $t = 0$:
+$$
+q(0) = e^{0} [c_1 \cos(0) + c_2 \text{sen}(0)] = 1 \cdot [c_1(1) + 0] = c_1
+$$
+Por lo tanto:
+$$
+c_1 = 5
+$$
+
+\textit{Segunda condición: $q'(0) = 0$}
+Primero calculamos la derivada $q'(t)$ utilizando la regla del producto:
+$$
+q'(t) = \frac{d}{dt} \left( e^{-20t} [c_1 \cos(40t) + c_2 \text{sen}(40t)] \right)
+$$
+$$
+q'(t) = -20 e^{-20t} [c_1 \cos(40t) + c_2 \text{sen}(40t)] + e^{-20t} [-40 c_1 \text{sen}(40t) + 40 c_2 \cos(40t)]
+$$
+Agrupamos términos para evaluar en $t=0$:
+$$
+q'(t) = e^{-20t} [ (-20c_1 + 40c_2) \cos(40t) + (-20c_2 - 40c_1) \text{sen}(40t) ]
+$$
+Evaluando en $t = 0$:
+$$
+q'(0) = 1 \cdot [ (-20c_1 + 40c_2)(1) + 0 ] = -20c_1 + 40c_2
+$$
+Igualamos a cero y sustitimos $c_1 = 5$:
+$$
+-20(5) + 40c_2 = 0 \implies -100 + 40c_2 = 0 \implies 40c_2 = 100
+$$
+$$
+c_2 = \frac{100}{40} = 2.5
+$$
+
+\textbf{4. Función de Carga Específica}
+
+Sustituyendo las constantes encontradas, la función de carga en el tiempo es:
+$$
+q(t) = e^{-20t} [5 \cos(40t) + 2.5 \text{sen}(40t)]
+$$
+
+\textbf{5. Carga en $t = 0.01$ seg}
+
+Evaluamos la función $q(t)$ en el instante solicitado $t = 0.01$:
+$$
+q(0.01) = e^{-20(0.01)} [5 \cos(40(0.01)) + 2.5 \text{sen}(40(0.01))]
+$$
+$$
+q(0.01) = e^{-0.2} [5 \cos(0.4) + 2.5 \text{sen}(0.4)]
+$$
+Utilizando valores aproximados (en radianes):
+\begin{itemize}
+    \item $e^{-0.2} \approx 0.81873$
+    \item $\cos(0.4) \approx 0.92106$
+    \item $\text{sen}(0.4) \approx 0.38942$
+\end{itemize}
+Sustituimos estos valores:
+$$
+q(0.01) \approx 0.81873 [5(0.92106) + 2.5(0.38942)]
+$$
+$$
+q(0.01) \approx 0.81873 [4.6053 + 0.97355] = 0.81873 [5.57885]
+$$
+$$
+q(0.01) \approx 4.5676 \, \text{C}
+$$
+La carga en el capacitor en $t=0.01$ seg es aproximadamente \textbf{4.57 Coulombs}.
+
+\textbf{6. Primera Vez que la Carga es Cero}
+
+Para encontrar el primer instante $t > 0$ donde la carga es cero, resolvemos la ecuación $q(t) = 0$:
+$$
+e^{-20t} [5 \cos(40t) + 2.5 \text{sen}(40t)] = 0
+$$
+Dado que la función exponencial $e^{-20t}$ nunca es cero para ningún $t$ finito, la condición se reduce a:
+$$
+5 \cos(40t) + 2.5 \text{sen}(40t) = 0
+$$
+Despejamos la función trigonométrica:
+$$
+2.5 \text{sen}(40t) = -5 \cos(40t)
+$$
+Dividimos por $2.5 \cos(40t)$ (asumiendo $\cos(40t) \neq 0$):
+$$
+\frac{\text{sen}(40t)}{\cos(40t)} = -\frac{5}{2.5}
+$$
+$$
+\tan(40t) = -2
+$$
+La solución general para la ecuación tangente es:
+$$
+40t = \arctan(-2) + n\pi, \quad n \in \mathbb{Z}
+$$
+Dado que $\arctan(-2)$ devuelve un valor negativo (aproximadamente $-1.107$ rad), y buscamos el primer tiempo positivo $t > 0$, debemos elegir el entero $n$ tal que el argumento sea positivo. El primer valor positivo ocurre en el segundo cuadrante, correspondiente a $n=1$:
+$$
+40t = \pi + \arctan(-2) = \pi - \arctan(2)
+$$
+Despejamos $t$:
+$$
+t = \frac{\pi - \arctan(2)}{40}
+$$
+Calculando el valor numérico:
+\begin{itemize}
+    \item $\pi \approx 3.14159$
+    \item $\arctan(2) \approx 1.10715$
+\end{itemize}
+$$
+t \approx \frac{3.14159 - 1.10715}{40} = \frac{2.03444}{40} \approx 0.05086 \, \text{seg}
+$$
+Por lo tanto, la primera vez que la carga del capacitor es igual a cero es aproximadamente a los \textbf{0.0509 segundos}.
+
+
+\section{Problema 9}
+Encuentre la carga $q(t)$ en el capacitor y la corriente en el circuito LRC. Determine la carga máxima en el capacitor dado $L= \frac{5}{3}$ henry(h), $R= 10$ ohm($\Omega$), $C= \frac{1}{30}$ farad(f), $E(t)= 300$ Voltios, $q(0)= 0$ coulombs(C) e $i(0)= 0$ amp.
+
+\subsection{Solución}
+Para resolver este problema de circuito LRC en serie con una fuente de voltaje constante, debemos establecer la ecuación diferencial que modela el sistema, resolverla para encontrar la carga $q(t)$, derivar para obtener la corriente $i(t)$, y finalmente analizar la función de carga para determinar su valor máximo. Dado que el voltaje aplicado es constante ($E(t) = 300$), se trata de un circuito forzado no homogéneo.
+
+\textbf{1. Planteamiento de la Ecuación Diferencial}
+
+La ecuación diferencial que gobierna la carga $q(t)$ en un circuito LRC en serie se deriva de la segunda ley de Kirchhoff:
+$$
+L\frac{d^2q}{dt^2} + R\frac{dq}{dt} + \frac{1}{C}q = E(t)
+$$
+Sustituimos los parámetros físicos proporcionados en el enunciado:
+\begin{itemize}
+    \item Inductancia: $L = \frac{5}{3}$ H
+    \item Resistencia: $R = 10$ $\Omega$
+    \item Capacitancia: $C = \frac{1}{30}$ F $\implies \frac{1}{C} = 30$
+    \item Voltaje aplicado: $E(t) = 300$ V
+\end{itemize}
+
+La ecuación se convierte en:
+$$
+\frac{5}{3}\frac{d^2q}{dt^2} + 10\frac{dq}{dt} + 30q = 300
+$$
+Para simplificar los coeficientes y trabajar con números enteros, multiplicamos toda la ecuación por $\frac{3}{5}$:
+$$
+\frac{d^2q}{dt^2} + 10\left(\frac{3}{5}\right)\frac{dq}{dt} + 30\left(\frac{3}{5}\right)q = 300\left(\frac{3}{5}\right)
+$$
+$$
+q'' + 6q' + 18q = 180
+$$
+
+\textbf{2. Solución de la Ecuación Homogénea}
+
+Primero resolvemos la ecuación homogénea asociada $q'' + 6q' + 18q = 0$. La ecuación característica es:
+$$
+r^2 + 6r + 18 = 0
+$$
+Resolvemos para $r$ utilizando la fórmula general:
+$$
+r = \frac{-6 \pm \sqrt{6^2 - 4(1)(18)}}{2} = \frac{-6 \pm \sqrt{36 - 72}}{2} = \frac{-6 \pm \sqrt{-36}}{2}
+$$
+$$
+r = \frac{-6 \pm 6i}{2} = -3 \pm 3i
+$$
+Las raíces son complejas conjugadas con parte real $\alpha = -3$ y parte imaginaria $\beta = 3$. Esto indica que el circuito está \textbf{subamortiguado}. La solución complementaria es:
+$$
+q_h(t) = e^{-3t} [c_1 \cos(3t) + c_2 \text{sen}(3t)]
+$$
+
+\textbf{3. Solución Particular}
+
+Dado que el término no homogéneo es una constante ($180$), proponemos una solución particular constante $q_p(t) = A$. Sustituimos en la ecuación diferencial simplificada:
+$$
+0 + 6(0) + 18(A) = 180 \implies 18A = 180 \implies A = 10
+$$
+Por lo tanto, la solución particular es $q_p(t) = 10$. Esto representa la carga steady-state (estado estacionario) en el capacitor cuando $t \to \infty$.
+
+\textbf{4. Solución General para la Carga}
+
+La solución general es la suma de la homogénea y la particular:
+$$
+q(t) = e^{-3t} [c_1 \cos(3t) + c_2 \text{sen}(3t)] + 10
+$$
+
+\textbf{5. Aplicación de Condiciones Iniciales}
+
+Utilizamos las condiciones $q(0) = 0$ y $i(0) = q'(0) = 0$ para determinar $c_1$ y $c_2$.
+
+\textit{Primera condición: $q(0) = 0$}
+$$
+q(0) = e^{0} [c_1 \cos(0) + c_2 \text{sen}(0)] + 10 = c_1 + 10 = 0
+$$
+$$
+c_1 = -10
+$$
+
+\textit{Segunda condición: $q'(0) = 0$}
+Calculamos la derivada $q'(t)$ usando la regla del producto:
+$$
+q'(t) = -3e^{-3t} [c_1 \cos(3t) + c_2 \text{sen}(3t)] + e^{-3t} [-3c_1 \text{sen}(3t) + 3c_2 \cos(3t)]
+$$
+Evaluamos en $t = 0$:
+$$
+q'(0) = -3 [c_1(1) + 0] + 1 [0 + 3c_2(1)] = -3c_1 + 3c_2
+$$
+Igualamos a cero y sustitimos $c_1 = -10$:
+$$
+-3(-10) + 3c_2 = 0 \implies 30 + 3c_2 = 0 \implies 3c_2 = -30 \implies c_2 = -10
+$$
+
+Sustituyendo las constantes, la función de carga es:
+$$
+q(t) = 10 - 10e^{-3t} [\cos(3t) + \text{sen}(3t)]
+$$
+
+\textbf{6. Solución para la Corriente}
+
+La corriente en el circuito es la derivada de la carga $i(t) = \frac{dq}{dt}$. Utilizamos la expresión derivada anteriormente con los valores de $c_1$ y $c_2$:
+$$
+i(t) = -3e^{-3t} [-10 \cos(3t) - 10 \text{sen}(3t)] + e^{-3t} [30 \text{sen}(3t) - 30 \cos(3t)]
+$$
+Simplificamos término a término:
+$$
+i(t) = e^{-3t} [ (30 \cos(3t) + 30 \text{sen}(3t)) + (30 \text{sen}(3t) - 30 \cos(3t)) ]
+$$
+Los términos con coseno se cancelan ($30 \cos - 30 \cos = 0$):
+$$
+i(t) = e^{-3t} [ 60 \text{sen}(3t) ]
+$$
+$$
+i(t) = 60 e^{-3t} \text{sen}(3t)
+$$
+
+\textbf{7. Determinación de la Carga Máxima}
+
+La carga máxima ocurre cuando la corriente es cero y cambia de signo (de positiva a negativa), lo que indica que el capacitor deja de cargarse y comienza a descargarse. Resolvemos $i(t) = 0$ para $t > 0$:
+$$
+60 e^{-3t} \text{sen}(3t) = 0
+$$
+Dado que $e^{-3t} \neq 0$, debemos tener $\text{sen}(3t) = 0$. Las soluciones son $3t = n\pi$ para $n \in \mathbb{Z}$.
+El primer instante positivo corresponde a $n = 1$:
+$$
+3t = \pi \implies t = \frac{\pi}{3}
+$$
+Verificamos que sea un máximo observando el signo de la corriente:
+\begin{itemize}
+    \item Para $0 < t < \frac{\pi}{3}$, $\text{sen}(3t) > 0 \implies i(t) > 0$ (la carga aumenta).
+    \item Para $\frac{\pi}{3} < t < \frac{2\pi}{3}$, $\text{sen}(3t) < 0 \implies i(t) < 0$ (la carga disminuye).
+\end{itemize}
+Por lo tanto, en $t = \frac{\pi}{3}$ la carga alcanza su primer máximo local, que debido al decaimiento exponencial será el máximo global para $t > 0$.
+
+Evaluamos $q(t)$ en $t = \frac{\pi}{3}$:
+$$
+q\left(\frac{\pi}{3}\right) = 10 - 10e^{-3(\frac{\pi}{3})} \left[ \cos\left(3 \cdot \frac{\pi}{3}\right) + \text{sen}\left(3 \cdot \frac{\pi}{3}\right) \right]
+$$
+$$
+q\left(\frac{\pi}{3}\right) = 10 - 10e^{-\pi} [\cos(\pi) + \text{sen}(\pi)]
+$$
+Sabemos que $\cos(\pi) = -1$ y $\text{sen}(\pi) = 0$:
+$$
+q_{max} = 10 - 10e^{-\pi} [-1 + 0] = 10 + 10e^{-\pi}
+$$
+$$
+q_{max} = 10(1 + e^{-\pi}) \, \text{C}
+$$
+Aproximando numéricamente ($e^{-\pi} \approx 0.0432$):
+$$
+q_{max} \approx 10(1.0432) = 10.432 \, \text{C}
+$$
+
+\textbf{8. Resumen de Resultados}
+
+Las funciones analíticas que describen el circuito son:
+$$
+q(t) = 10 - 10e^{-3t} (\cos(3t) + \text{sen}(3t)) \, \text{C}
+$$
+$$
+i(t) = 60 e^{-3t} \text{sen}(3t) \, \text{A}
+$$
+La carga máxima alcanzada en el capacitor es:
+$$
+q_{max} = 10(1 + e^{-\pi}) \, \text{C} \approx 10.43 \, \text{C}
+$$
+
+
+\bibliographystyle{plainurl}
+\bibliography{bibliografia} 
+\end{document}

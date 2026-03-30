@@ -297,14 +297,15 @@ $$\frac{du}{dx} - 1 = \frac{1-u}{u} \implies \frac{du}{dx} = \frac{1-u}{u} + 1 =
 $$u du = dx \implies \frac{1}{2}u^2 = x + C$$
 \textbf{Solución:} $\frac{1}{2}(x+y)^2 = x + C$.
 
-\subsection*{j. $(1 - \frac{3}{y} + x) \frac{dy}{dx} + y = \frac{3}{x-1}$}
+\subsection*{j. $(1 - \frac{3}{y} + x) \frac{dy}{dx} + y = \frac{3}{x} - 1$}
 \textbf{Método: Ecuación Exacta.}
-Reescribimos: $(y - \frac{3}{x-1}) dx + (1 - \frac{3}{y} + x) dy = 0$.
-$M = y - \frac{3}{x-1} \implies M_y = 1$.
+Reescribimos: $(y - \frac{3}{x} + 1) dx + (1 - \frac{3}{y} + x) dy = 0$.
+$M = y - \frac{3}{x} + 1 \implies M_y = 1$.
 $N = 1 - \frac{3}{y} + x \implies N_x = 1$. Es exacta.
-$\Psi_x = y - \frac{3}{x-1} \implies \Psi = xy - 3\ln|x-1| + g(y)$.
+$\Psi_x = y - \frac{3}{x} + 1 \implies \Psi = xy - 3\ln|x| + x + g(y)$.
 $\Psi_y = x + g'(y) = 1 - \frac{3}{y} + x \implies g'(y) = 1 - \frac{3}{y} \implies g(y) = y - 3\ln|y|$.
-\textbf{Solución:} $xy - 3\ln|x-1| + y - 3\ln|y| = C$.
+\textbf{Solución:} $xy - 3\ln|x| + x + y - 3\ln|y| = C$.
+
 
 \subsection*{k. (y q.) $x \frac{dy}{dx} + y = \frac{1}{y^2}$}
 \textbf{Método: Ecuación de Bernoulli.}
@@ -388,6 +389,74 @@ Para este tramo: $y(x) = \frac{e - 1}{2} e^{-x^2}$.
 
 \textbf{Resultado:}
 $$y(x) = \begin{cases} \frac{1}{2}(1 - e^{-x^2}), & 0 \le x < 1 \\ \frac{e - 1}{2} e^{-x^2}, & x \ge 1 \end{cases}$$
+
+\subsection*{Diferenciabilidad en $x=1$}
+
+La solución obtenida por tramos es
+$$
+y(x)=
+\begin{cases}
+\dfrac12(1-e^{-x^2}), & 0\le x<1,\\
+\dfrac{e-1}{2}e^{-x^2}, & x\ge 1.
+\end{cases}
+$$
+
+Primero verificamos continuidad en $x=1$.
+
+$$
+y(1^-)=\frac12(1-e^{-1}), 
+\qquad
+y(1)=\frac{e-1}{2}e^{-1}
+$$
+
+Como
+$$
+\frac{e-1}{2}e^{-1}=\frac12(1-e^{-1}),
+$$
+
+entonces
+$$
+y(1^-)=y(1),
+$$
+por lo que la solución es continua en $x=1$.
+
+Ahora calculamos las derivadas laterales.
+
+Para $0\le x<1$:
+$$
+y(x)=\frac12(1-e^{-x^2})
+$$
+
+$$
+y'(x)=\frac12(2x e^{-x^2})=x e^{-x^2}
+$$
+
+$$
+y'_-(1)=e^{-1}
+$$
+
+Para $x\ge 1$:
+$$
+y(x)=\frac{e-1}{2}e^{-x^2}
+$$
+
+$$
+y'(x)=\frac{e-1}{2}(-2x e^{-x^2})=-(e-1)x e^{-x^2}
+$$
+
+$$
+y'_+(1)=-(e-1)e^{-1}
+$$
+
+Como
+$$
+y'_-(1)=e^{-1} \neq -(e-1)e^{-1}=y'_+(1),
+$$
+
+las derivadas laterales no coinciden.
+
+\textbf{Conclusión:} la solución es continua pero \textbf{no es diferenciable en $x=1$}.
+
 
 \subsection*{t. Resuelva $\frac{dy}{dx} + y = f(x), y(0) = 0$ donde $f(x) = \begin{cases} 1, & 0 \le x \le 1 \\ 0, & x > 1 \end{cases}$}
 

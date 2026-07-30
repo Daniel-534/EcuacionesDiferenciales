@@ -1,0 +1,161 @@
+\documentclass[a4paper]{article}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=2cm]{geometry}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{parskip}
+\usepackage[most]{tcolorbox}
+\usepackage[hidelinks, colorlinks=true, linkcolor=green!60!black, urlcolor=green!60!black]{hyperref}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{mathrsfs}
+
+
+% cabecera
+\pagestyle{fancy}
+\fancyhead[l]{Integral}
+\fancyhead[c]{Función Beta}
+\fancyhead[r]{\today}
+\fancyfoot[c]{\thepage}
+\renewcommand{\headrulewidth}{0.2pt} % linea horizontal
+
+
+\begin{document}
+
+\tableofcontents
+
+\section{Integral $I = \int_0^{\pi/2} \ln^2(\cos x)\, dx$ mediante la función Beta}
+
+Evaluar la integral definida:
+
+$$I = \int_0^{\pi/2} \ln^2(\cos x)\, dx$$
+
+utilizando la expresión integral de la función Beta y diferenciación bajo el signo integral.
+
+\subsection{Solución}
+
+Recordemos la expresión integral de la función Beta:
+
+$$B(u,v) = 2\int_0^{\pi/2} \cos^{2u-1}x\, \sin^{2v-1}x\, dx$$
+
+Derivamos parcialmente respecto a $u$:
+
+$$\partial_u B = 2\int_0^{\pi/2} \partial_u\!\left(\cos^{2u-1}x\right) \sin^{2v-1}x\, dx$$
+
+Calculamos la derivada del factor trigonométrico:
+
+$$\partial_u\!\left(\cos^{2u-1}x\right) = \partial_u\!\left(e^{(2u-1)\ln(\cos x)}\right) = 2\ln(\cos x)\cdot \cos^{2u-1}x$$
+
+Por lo tanto:
+
+$$\partial_u B = 4\int_0^{\pi/2} \cos^{2u-1}x\, \sin^{2v-1}x\, \ln(\cos x)\, dx$$
+
+Derivamos nuevamente y obtenemos:
+
+$$\partial_u^2 B = 8\int_0^{\pi/2} \cos^{2u-1}x\, \sin^{2v-1}x\, \ln^2(\cos x)\, dx$$
+
+Con esta expresión podemos construir nuestra integral haciendo los exponentes de las funciones trigonométricas igual a cero:
+
+$$2u - 1 = 0 \implies u = \tfrac{1}{2}$$
+$$2v - 1 = 0 \implies v = \tfrac{1}{2}$$
+
+De modo que:
+
+$$I = \int_0^{\pi/2} \ln^2(\cos x)\, dx = \frac{1}{8}\,\partial_u^2 B(u,v)\Big|_{u=v=1/2}$$
+
+Recordemos la relación entre la función Beta y la función Gamma:
+
+$$B(u,v) = \frac{\Gamma(u)\,\Gamma(v)}{\Gamma(u+v)}$$
+
+Derivando respecto a $u$:
+
+$$\partial_u B = \frac{\Gamma'(u)\,\Gamma(v)\,\Gamma(u+v) - \Gamma(u)\,\Gamma(v)\,\Gamma'(u+v)}{\Gamma^2(u+v)}$$
+
+Recordemos la función digamma:
+
+$$\psi(s) = \frac{d}{ds}\big[\log(\Gamma(s))\big] = \frac{\Gamma'(s)}{\Gamma(s)} \implies \Gamma'(s) = \psi(s)\,\Gamma(s)$$
+
+Sustituyendo y factorizando:
+
+$$\partial_u B = \frac{\Gamma(v)\,\Gamma(u)\,\Gamma(u+v)}{\Gamma^2(u+v)}\big[\psi(u) - \psi(u+v)\big]$$
+
+Simplificando:
+
+$$\partial_u B = B(u,v)\big[\psi(u) - \psi(u+v)\big]$$
+
+Notación: $\psi'(s) = \psi_1(s)$ (función trigamma). Derivando nuevamente:
+
+$$\partial_u^2 B = \partial_u B\big[\psi(u) - \psi(u+v)\big] + B\big[\psi_1(u) - \psi_1(u+v)\big]$$
+
+$$\partial_u B\Big|_{u=v=1/2} = B\!\left(\tfrac{1}{2},\tfrac{1}{2}\right)\left[\psi\!\left(\tfrac{1}{2}\right) - \psi(1)\right]$$
+
+Calculamos cada valor:
+
+$$B\!\left(\tfrac{1}{2},\tfrac{1}{2}\right) = \frac{\Gamma(1/2)\,\Gamma(1/2)}{\Gamma(1)} = \frac{\sqrt{\pi}\cdot\sqrt{\pi}}{1} = \pi$$
+
+$$\psi\!\left(\tfrac{1}{2}\right) = \frac{\Gamma'(1/2)}{\Gamma(1/2)} = \frac{-\sqrt{\pi}\,(\gamma + 2\ln 2)}{\sqrt{\pi}} = -(\gamma + 2\ln 2)$$
+
+$$\psi(1) = \frac{\Gamma'(1)}{\Gamma(1)} = -\gamma$$
+
+Sustituyendo:
+
+$$\partial_u B\Big|_{u=v=1/2} = \pi\big[-\gamma - 2\ln 2 + \gamma\big] = -2\pi\ln 2$$
+
+Escribamos $\psi_1$ como serie partiendo de la serie de $\psi$:
+
+$$\psi(1+z) = -\gamma + \sum_{k\geq 1}\left(\frac{1}{k} - \frac{1}{k+z}\right)$$
+
+Derivando:
+
+$$\psi_1(1+z) = \sum_{k\geq 1}\frac{1}{(k+z)^2}$$
+
+Evaluando en $z = -\tfrac{1}{2}$:
+
+$$\psi_1\!\left(\tfrac{1}{2}\right) = \sum_{k\geq 1}\frac{1}{\left(k - \tfrac{1}{2}\right)^2} = 4\sum_{k\geq 1}\frac{1}{(2k-1)^2}$$
+
+Recordemos el problema de Basilea:
+
+$$\frac{\pi^2}{6} = \sum_{k\geq 1}\frac{1}{k^2} = \sum_{k\geq 1}\frac{1}{(2k)^2} + \sum_{k\geq 1}\frac{1}{(2k-1)^2} = \frac{1}{4}\cdot\frac{\pi^2}{6} + \sum_{k\geq 1}\frac{1}{(2k-1)^2}$$
+
+Despejando:
+
+$$\sum_{k\geq 1}\frac{1}{(2k-1)^2} = \frac{\pi^2}{6} - \frac{\pi^2}{24} = \frac{\pi^2}{8}$$
+
+Por lo tanto:
+
+$$\psi_1\!\left(\tfrac{1}{2}\right) = 4\cdot\frac{\pi^2}{8} = \frac{\pi^2}{2}$$
+
+
+Evaluando la serie en $z = 0$:
+
+$$\psi_1(1) = \sum_{k\geq 1}\frac{1}{k^2} = \frac{\pi^2}{6}$$
+
+
+Sustituimos todos los valores en la expresión de la segunda derivada:
+
+$$\partial_u^2 B\Big|_{u=v=1/2} = -2\pi\ln 2\left[\psi\!\left(\tfrac{1}{2}\right) - \psi(1)\right] + \pi\left[\psi_1\!\left(\tfrac{1}{2}\right) - \psi_1(1)\right]$$
+
+$$= -2\pi\ln 2\big[-2\ln 2\big] + \pi\left(\frac{\pi^2}{2} - \frac{\pi^2}{6}\right)$$
+
+$$= 4\pi\ln^2 2 + \pi\cdot\frac{\pi^2}{3} = 4\pi\ln^2 2 + \frac{\pi^3}{3}$$
+
+
+$$I = \frac{1}{8}\,\partial_u^2 B(u,v)\Big|_{u=v=1/2} = \frac{1}{8}\left(4\pi\ln^2 2 + \frac{\pi^3}{3}\right) = \frac{\pi}{2}\ln^2 2 + \frac{\pi^3}{24}$$
+
+$$\boxed{\int_0^{\pi/2} \ln^2(\cos x)\, dx = \frac{\pi}{2}\left(\ln^2 2 + \frac{\pi^2}{12}\right)}$$
+
+\subsection{Comprobación computacional}
+
+Para verificar el resultado obtenido, puede consultar las siguientes referencias en WolframAlpha:
+
+\begin{itemize}
+    \item \href{https://www.wolframalpha.com/input?i=Integrate%5BLog%5BCos%5Bx%5D%5D%5E2%2C%7Bx%2C0%2CPi%2F2%7D%5D}{Verificación de la integral $\displaystyle\int_0^{\pi/2} \ln^2(\cos x)\, dx$}
+    
+    \item \href{https://www.wolframalpha.com/input?i=Pi%2F2*%28Log%5B2%5D%5E2%2B%5Cpi%5E2%2F12%29}{Evaluación del resultado $\displaystyle\frac{\pi}{2}\left(\ln^2 2 + \frac{\pi^2}{12}\right)$}
+\end{itemize}
+
+\end{document}

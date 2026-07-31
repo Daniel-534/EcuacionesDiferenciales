@@ -17,8 +17,8 @@
 
 % cabecera
 \pagestyle{fancy}
-\fancyhead[l]{Integral}
-\fancyhead[c]{Función Beta}
+\fancyhead[l]{Integrales}
+\fancyhead[c]{Vol1}
 \fancyhead[r]{\today}
 \fancyfoot[c]{\thepage}
 \renewcommand{\headrulewidth}{0.2pt} % linea horizontal
@@ -157,5 +157,44 @@ Para verificar el resultado obtenido, puede consultar las siguientes referencias
     
     \item \href{https://www.wolframalpha.com/input?i=Pi%2F2*%28Log%5B2%5D%5E2%2B%5Cpi%5E2%2F12%29}{Evaluación del resultado $\displaystyle\frac{\pi}{2}\left(\ln^2 2 + \frac{\pi^2}{12}\right)$}
 \end{itemize}
+
+\section{Cálculo de la Integral $I = \int_{0}^{\infty} x^{-x} e^{-x^2} dx$}
+
+\subsection{Definición de la Integral Auxiliar $I(k)$}
+Definimos la integral auxiliar dependiente del parámetro $k$:
+$$ I(k) = \int_{0}^{\infty} x^{k} e^{-x^2} dx $$
+Realizamos el cambio de variable $x^2 = u$, lo que implica $2x dx = du$ o $dx = \frac{1}{2\sqrt{u}} du$. Sustituyendo en la integral:
+$$ I(k) = \frac{1}{2} \int_{0}^{\infty} u^{k/2} e^{-u} u^{-1/2} du $$
+$$ I(k) = \frac{1}{2} \int_{0}^{\infty} u^{k/2 - 1/2} e^{-u} du $$
+Reconociendo la definición de la función Gamma $\Gamma(z) = \int_0^\infty t^{z-1} e^{-t} dt$, tenemos:
+$$ I(k) = \frac{1}{2} \Gamma\left(\frac{k}{2} + \frac{1}{2}\right) $$
+
+\subsection{Derivadas de $I(k)$}
+Calculamos la derivada de orden $k$ de $I(k)$ con respecto al parámetro $k$. Usando la regla de la cadena repetidamente:
+$$ I^{(k)}(k) = \frac{1}{2} \cdot \left(\frac{1}{2}\right)^k \Gamma^{(k)}\left(\frac{k}{2} + \frac{1}{2}\right) = \frac{1}{2^{k+1}} \Gamma^{(k)}\left(\frac{k}{2} + \frac{1}{2}\right) $$
+Por otro lado, diferenciando bajo el signo integral:
+$$ I'(k) = \int_{0}^{\infty} x^{k} \ln(x) e^{-x^2} dx $$
+$$ I^{(k)}(k) = \int_{0}^{\infty} x^{k} \ln^k(x) e^{-x^2} dx \quad (\text{k-ésima derivada de } I(k)) $$
+
+\subsection{Desarrollo de la Integral Original $I$}
+La integral original es:
+$$ I = \int_{0}^{\infty} x^{-x} e^{-x^2} dx $$
+Notamos que $x^{-x} = e^{-x \ln x}$. Usando la serie de Taylor para la exponencial $e^z = \sum_{k \ge 0} \frac{z^k}{k!}$, con $z = -x \ln x$:
+$$ e^{-x \ln x} = \sum_{k \ge 0} \frac{(-1)^k x^k \ln^k x}{k!} $$
+Sustituyendo en la integral $I$:
+$$ I = \int_{0}^{\infty} e^{-x^2} \sum_{k \ge 0} \frac{(-1)^k x^k \ln^k x}{k!} dx $$
+Intercambiando el orden de la suma y la integral:
+$$ I = \sum_{k \ge 0} \frac{(-1)^k}{k!} \int_{0}^{\infty} x^k e^{-x^2} \ln^k x \, dx $$
+El término integral es precisamente $I^{(k)}(k)$ calculado anteriormente. Por lo tanto:
+$$ I = \sum_{k \ge 0} \frac{(-1)^k}{k!} \frac{1}{2^{k+1}} \Gamma^{(k)}\left(\frac{k}{2} + \frac{1}{2}\right) $$
+
+\subsection{Simplificación Final}
+Recordamos que $k! = \Gamma(k+1)$. Hacemos el cambio de índice $k+1 = N$, es decir, $k = N-1$. La suma comienza en $N=1$.
+Sustituyendo $k = N-1$ en la expresión:
+$$ I = \sum_{N \ge 1} \frac{(-1)^{N-1}}{\Gamma(N)} \frac{1}{2^{(N-1)+1}} \Gamma^{(N-1)}\left(\frac{N-1}{2} + \frac{1}{2}\right) $$
+Simplificando los exponentes y argumentos:
+$$ I = \sum_{N \ge 1} \frac{(-1)^{N-1}}{2^N} \frac{\Gamma^{(N-1)}\left(\frac{N}{2}\right)}{\Gamma(N)} $$
+
+
 
 \end{document}
